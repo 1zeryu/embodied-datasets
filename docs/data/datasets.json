@@ -2,7 +2,110 @@
   "meta": {
     "schema_version": 1,
     "updated_at": "2026-11-14",
-    "count": 0
+    "count": 3
   },
-  "datasets": []
+  "datasets": [
+    {
+      "id": "hiphi-hand",
+      "name": "HiPHI-Hand",
+      "org": "Noitom Robotics",
+      "source_url": "https://huggingface.co/datasets/noitomrobotics/HiPHI-Hand",
+      "download_url": "https://huggingface.co/datasets/noitomrobotics/HiPHI-Hand",
+      "platform": "dexterous_hand",
+      "modalities": [
+        "rgb",
+        "joint_state"
+      ],
+      "task_types": [
+        "手部动作捕捉",
+        "人机交互",
+        "灵巧操作"
+      ],
+      "scale": {
+        "hours": 11
+      },
+      "data_format": "MP4 + CSV",
+      "license": "ModalityNet Open Research License v1.0",
+      "license_url": "https://modalitynet.com/Open-Research-License",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-14",
+      "last_updated": "2026-11-09",
+      "summary": "诺亦腾 11 小时第一视角双目视频与手部骨骼动捕数据集",
+      "notes": "需申请访问；仅限非商业科研、教育及评测使用，商用需另行授权"
+    },
+    {
+      "id": "agibot-world-2026",
+      "name": "AgiBot World 2026",
+      "org": "AgiBot World Team",
+      "source_url": "https://huggingface.co/datasets/agibot-world/AgiBotWorld2026",
+      "download_url": "https://huggingface.co/datasets/agibot-world/AgiBotWorld2026",
+      "platform": "dual_arm",
+      "robots": [
+        "AgiBot G2"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "抓取放置",
+        "接触丰富操作",
+        "错误恢复",
+        "具身推理"
+      ],
+      "scale": {},
+      "data_format": "LeRobot v2.1",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-14",
+      "last_updated": "2026-10-26",
+      "summary": "智元双机械臂真机多主题数据集，第四期新增具身推理",
+      "notes": "数据按主题分五期陆续开放，第四期主题为具身推理；总量未在官方页面公布"
+    },
+    {
+      "id": "heir",
+      "name": "HEIR: Harness Egocentric Intent for Human-Robot Interactions",
+      "org": "Tsinghua University / BAAI",
+      "source_url": "https://heir-project.github.io/",
+      "download_url": "https://huggingface.co/datasets/Anonymous-HEIR123/HEIR-Dataset",
+      "platform": "mobile",
+      "robots": [
+        "Galaxea R1 Lite"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language",
+        "audio"
+      ],
+      "task_types": [
+        "家庭服务",
+        "移动操作",
+        "意图理解",
+        "人机协作"
+      ],
+      "scale": {
+        "episodes": 1836,
+        "hours": 38.56
+      },
+      "data_format": "JSON",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-14",
+      "last_updated": "2026-11-12",
+      "summary": "清华与智源发布的家庭人机交互多模态数据集，含视线与语音",
+      "notes": "标注与评测实例公开，原始敏感录像需申请受控访问"
+    }
+  ]
 }
