@@ -52,3 +52,26 @@
 - `train_use` 依据许可证推导。明确允许任意用途训练填 `allowed`；仅限非商业研究填 `research_only`；无明确声明填 `unknown`。
 - `license` 为 `unknown` 时，`train_use` 与 `commercial_use` 必须同时为 `unknown`。
 - 同一数据集以 `id` 与 `source_url` 双重去重。已存在记录只允许更新 `last_updated`、`scale`、`license` 等可能变化的事实字段。
+
+## 更新日志 changelog.json
+
+路径 `docs/data/changelog.json`，每次有变更时向 `entries` 数组最前面插入一条记录，格式如下。
+
+```json
+{
+  "date": "YYYY-MM-DD",
+  "added": [{ "id": "droid", "name": "DROID", "summary": "一句话说明" }],
+  "updated": [{ "id": "agibot-world", "name": "AgiBot World", "fields": ["scale", "license"] }],
+  "total": 12,
+  "note": ""
+}
+```
+
+规则：
+
+- `entries` 按日期倒序，最新的一次运行在最前面。
+- `added` 只记录本次新增的数据集，`updated` 只记录本次字段发生变化的数据集，`fields` 写明变了哪些字段。
+- `total` 为本次运行结束后 datasets 数组的总长度。
+- 本次没有任何新增或变更时，不写日志、不提交。
+- `meta.entries` 等于 `entries` 数组长度，`meta.updated_at` 为最近一次产生变更的日期。
+
