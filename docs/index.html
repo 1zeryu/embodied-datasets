@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>具身智能数据集索引</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --panel: #f6f7f9;
+    --border: #e3e6ea;
+    --text: #1d2129;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --ok-bg: #e8f5ec;
+    --ok-fg: #1a7f3c;
+    --warn-bg: #fdf1e3;
+    --warn-fg: #a55a06;
+    --muted-bg: #eef0f3;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 14px/1.6 -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  header, main, footer { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  header { padding-top: 48px; padding-bottom: 24px; }
+  h1 { font-size: 26px; margin: 0 0 8px; letter-spacing: -0.2px; }
+  .sub { margin: 0 0 10px; color: var(--muted); }
+  .meta { margin: 0; font-size: 13px; color: var(--muted); }
+  .controls {
+    max-width: 1180px; margin: 0 auto; padding: 0 24px 16px;
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  input[type="search"], select {
+    padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px;
+    background: #fff; color: var(--text); font-size: 14px; outline: none;
+  }
+  input[type="search"] { flex: 1 1 240px; min-width: 200px; }
+  input[type="search"]:focus, select:focus { border-color: var(--accent); }
+  button {
+    padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px;
+    background: #fff; color: var(--muted); font-size: 14px; cursor: pointer;
+  }
+  button:hover { color: var(--text); border-color: #c9ced6; }
+  main { padding-bottom: 24px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  thead th {
+    text-align: left; font-weight: 600; color: var(--muted); font-size: 12.5px;
+    padding: 10px 12px; border-bottom: 1px solid var(--border); white-space: nowrap;
+  }
+  tbody td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tbody tr { cursor: pointer; }
+  tbody tr:hover { background: var(--panel); }
+  .name { font-weight: 600; }
+  .org { display: block; color: var(--muted); font-size: 12.5px; }
+  .tag {
+    display: inline-block; padding: 1px 8px; margin: 0 4px 4px 0;
+    border-radius: 999px; background: var(--muted-bg); color: #4b5563; font-size: 12px;
+  }
+  .badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; white-space: nowrap; }
+  .badge.ok { background: var(--ok-bg); color: var(--ok-fg); }
+  .badge.warn { background: var(--warn-bg); color: var(--warn-fg); }
+  .badge.muted { background: var(--muted-bg); color: var(--muted); }
+  .empty { padding: 56px 0; text-align: center; color: var(--muted); }
+  footer { padding: 24px 24px 56px; color: var(--muted); font-size: 12.5px; }
+  footer p { margin: 6px 0; }
+  #modal {
+    position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
+    background: rgba(17, 24, 39, .45); padding: 24px; z-index: 10;
+  }
+  #modal.open { display: flex; }
+  .card {
+    background: #fff; border-radius: 14px; width: min(720px, 100%);
+    max-height: 86vh; overflow: auto; padding: 28px; position: relative;
+  }
+  .card h2 { margin: 0 0 4px; font-size: 20px; }
+  .card .close {
+    position: absolute; top: 16px; right: 16px; border: none; background: none;
+    font-size: 22px; line-height: 1; color: var(--muted); cursor: pointer; padding: 4px 8px;
+  }
+  .dl { margin-top: 20px; display: grid; grid-template-columns: 96px 1fr; gap: 10px 16px; font-size: 13.5px; }
+  .dl dt { color: var(--muted); }
+  .dl dd { margin: 0; word-break: break-word; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  @media (max-width: 720px) {
+    .hide-sm { display: none; }
+    header { padding-top: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>具身智能数据集索引</h1>
+  <p class="sub">每天自动整理公开的具身智能数据集，记录规模、模态、许可证与可训练性。</p>
+  <p class="meta" id="meta">加载中…</p>
+</header>
+
+<section class="controls">
+  <input id="q" type="search" placeholder="搜索名称、机构、机器人型号…">
+  <select id="f-platform"><option value="">全部平台</option></select>
+  <select id="f-modality"><option value="">全部模态</option></select>
+  <select id="f-train">
+    <option value="">全部可用性</option>
+    <option value="allowed">可用于训练</option>
+    <option value="research_only">仅限研究</option>
+    <option value="unknown">未确认</option>
+  </select>
+  <button id="reset">重置</button>
+</section>
+
+<main>
+  <table id="table">
+    <thead>
+      <tr>
+        <th>数据集</th>
+        <th class="hide-sm">平台</th>
+        <th class="hide-sm">模态</th>
+        <th class="hide-sm">规模</th>
+        <th>许可证</th>
+        <th>可训练</th>
+        <th class="hide-sm">更新</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <p class="empty" id="empty" hidden>暂无数据，等待首次定时任务运行。</p>
+</main>
+
+<footer>
+  <p>许可证与可用性结论由自动化流程从数据集官方页面提取，仅供筛选参考，不构成法律意见。商用或正式训练前请核对许可证原文。</p>
+  <p id="updated"></p>
+</footer>
+
+<div id="modal"><div class="card"><button class="close" id="close">×</button><div id="detail"></div></div></div>
+
+<script>
+const PLATFORM = { single_arm: '单臂', dual_arm: '双臂', humanoid: '人形', mobile: '移动底盘', dexterous_hand: '灵巧手', multi: '多平台' };
+const MODALITY = { rgb: 'RGB', depth: '深度', joint_state: '关节状态', action: '动作', language: '语言指令', tactile: '触觉', point_cloud: '点云', audio: '音频' };
+const TRAIN = {
+  allowed: ['可用于训练', 'ok'],
+  research_only: ['仅限研究', 'warn'],
+  unknown: ['未确认', 'muted']
+};
+
+let all = [];
+const state = { q: '', platform: '', modality: '', train: '' };
+
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const num = v => Number(v).toLocaleString('en-US');
+
+function scaleText(s) {
+  if (!s) return '—';
+  const parts = [];
+  if (s.episodes) parts.push(num(s.episodes) + ' 条');
+  if (s.hours) parts.push(num(s.hours) + ' 小时');
+  if (s.size_tb) parts.push(s.size_tb + ' TB');
+  return parts.length ? parts.join(' · ') : '—';
+}
+
+function trainBadge(v) {
+  const [label, cls] = TRAIN[v] || TRAIN.unknown;
+  return '<span class="badge ' + cls + '">' + label + '</span>';
+}
+
+function fillSelect(el, dict) {
+  Object.entries(dict).forEach(([k, v]) => {
+    const o = document.createElement('option');
+    o.value = k; o.textContent = v;
+    el.appendChild(o);
+  });
+}
+
+function match(d) {
+  if (state.platform && d.platform !== state.platform) return false;
+  if (state.modality && !(d.modalities || []).includes(state.modality)) return false;
+  if (state.train && d.train_use !== state.train) return false;
+  if (state.q) {
+    const hay = [d.name, d.org, d.summary, d.license, ...(d.robots || []), ...(d.task_types || [])]
+      .join(' ').toLowerCase();
+    if (!hay.includes(state.q.toLowerCase())) return false;
+  }
+  return true;
+}
+
+function render() {
+  const list = all.filter(match).sort((a, b) => String(b.last_updated || '').localeCompare(String(a.last_updated || '')));
+  const rows = document.getElementById('rows');
+  rows.innerHTML = list.map((d, i) => `
+    <tr data-i="${all.indexOf(d)}">
+      <td><span class="name">${esc(d.name)}</span><span class="org">${esc(d.org || '')}</span></td>
+      <td class="hide-sm">${esc(PLATFORM[d.platform] || d.platform || '—')}</td>
+      <td class="hide-sm">${(d.modalities || []).slice(0, 3).map(m => '<span class="tag">' + esc(MODALITY[m] || m) + '</span>').join('')}</td>
+      <td class="hide-sm">${esc(scaleText(d.scale))}</td>
+      <td>${esc(d.license || 'unknown')}</td>
+      <td>${trainBadge(d.train_use)}</td>
+      <td class="hide-sm">${esc(d.last_updated || '—')}</td>
+    </tr>`).join('');
+  document.getElementById('empty').hidden = list.length > 0;
+  document.getElementById('table').hidden = list.length === 0;
+}
+
+function openDetail(d) {
+  const row = (k, v) => v ? `<dt>${k}</dt><dd>${v}</dd>` : '';
+  document.getElementById('detail').innerHTML = `
+    <h2>${esc(d.name)}</h2>
+    <p class="meta">${esc(d.org || '')}</p>
+    <div class="dl">
+      ${row('简介', esc(d.summary))}
+      ${row('平台', esc(PLATFORM[d.platform] || d.platform || '—'))}
+      ${row('机器人', esc((d.robots || []).join('、') || '—'))}
+      ${row('模态', esc((d.modalities || []).map(m => MODALITY[m] || m).join('、') || '—'))}
+      ${row('任务类型', esc((d.task_types || []).join('、') || '—'))}
+      ${row('规模', esc(scaleText(d.scale)))}
+      ${row('数据格式', esc(d.data_format))}
+      ${row('许可证', esc(d.license) + (d.license_url ? ' · <a href="' + esc(d.license_url) + '" target="_blank" rel="noopener">原文</a>' : ''))}
+      ${row('可训练', trainBadge(d.train_use))}
+      ${row('商用', trainBadge(d.commercial_use))}
+      ${row('再分发', trainBadge(d.redistribution === 'restricted' ? 'unknown' : d.redistribution))}
+      ${row('首次收录', esc(d.first_seen))}
+      ${row('数据源更新', esc(d.last_updated))}
+      ${row('备注', esc(d.notes))}
+      ${row('来源', '<a href="' + esc(d.source_url) + '" target="_blank" rel="noopener">' + esc(d.source_url) + '</a>')}
+      ${row('下载', d.download_url ? '<a href="' + esc(d.download_url) + '" target="_blank" rel="noopener">' + esc(d.download_url) + '</a>' : '')}
+    </div>`;
+  document.getElementById('modal').classList.add('open');
+}
+
+function bind() {
+  fillSelect(document.getElementById('f-platform'), PLATFORM);
+  fillSelect(document.getElementById('f-modality'), MODALITY);
+
+  document.getElementById('q').addEventListener('input', e => { state.q = e.target.value.trim(); render(); });
+  document.getElementById('f-platform').addEventListener('change', e => { state.platform = e.target.value; render(); });
+  document.getElementById('f-modality').addEventListener('change', e => { state.modality = e.target.value; render(); });
+  document.getElementById('f-train').addEventListener('change', e => { state.train = e.target.value; render(); });
+  document.getElementById('reset').addEventListener('click', () => {
+    Object.assign(state, { q: '', platform: '', modality: '', train: '' });
+    document.getElementById('q').value = '';
+    ['f-platform', 'f-modality', 'f-train'].forEach(id => document.getElementById(id).value = '');
+    render();
+  });
+
+  document.getElementById('rows').addEventListener('click', e => {
+    const tr = e.target.closest('tr');
+    if (tr) openDetail(all[Number(tr.dataset.i)]);
+  });
+  document.getElementById('close').addEventListener('click', () => document.getElementById('modal').classList.remove('open'));
+  document.getElementById('modal').addEventListener('click', e => {
+    if (e.target.id === 'modal') document.getElementById('modal').classList.remove('open');
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('modal').classList.remove('open');
+  });
+}
+
+fetch('./data/datasets.json')
+  .then(r => r.json())
+  .then(data => {
+    all = data.datasets || [];
+    const meta = data.meta || {};
+    document.getElementById('meta').textContent =
+      '最后更新 ' + (meta.updated_at || '—') + ' · 共 ' + all.length + ' 个数据集';
+    document.getElementById('updated').textContent = '数据文件更新于 ' + (meta.updated_at || '—');
+    bind();
+    render();
+  })
+  .catch(() => {
+    document.getElementById('meta').textContent = '数据加载失败';
+    document.getElementById('empty').hidden = false;
+    document.getElementById('empty').textContent = '无法读取数据文件，请通过本地服务器或 GitHub Pages 访问本页。';
+  });
+</script>
+</body>
+</html>
