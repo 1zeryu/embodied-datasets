@@ -85,6 +85,11 @@
   .dl { margin-top: 20px; display: grid; grid-template-columns: 96px 1fr; gap: 10px 16px; font-size: 13.5px; }
   .dl dt { color: var(--muted); }
   .dl dd { margin: 0; word-break: break-word; }
+  .tree {
+    margin: 0; padding: 10px 12px; background: var(--panel); border-radius: 8px;
+    font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    white-space: pre; overflow-x: auto; max-height: 320px; overflow-y: auto;
+  }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
   @media (max-width: 720px) {
@@ -230,6 +235,7 @@ function openDetail(d) {
       ${row('数据格式', esc(d.data_format) + (fd.container ? ' · ' + esc(fd.container) : ''))}
       ${row('采样参数', esc(sampling))}
       ${row('数据字段', esc((fd.fields || []).join('、')))}
+      ${d.tree ? `<dt>目录结构</dt><dd><pre class="tree">${esc(d.tree)}</pre></dd>` : ''}
       ${row('传感器', esc(senText))}
       ${row('内参', tri(cal.intrinsics))}
       ${row('外参', tri(cal.extrinsics))}

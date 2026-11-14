@@ -36,6 +36,7 @@
 | summary | string | 是 | 一句话中文说明，不超过 60 字 |
 | notes | string | 否 | 使用限制或注意事项 |
 | format_detail | object | 否 | 存储结构，见下方说明 |
+| tree | string | 否 | 目录结构文本，最多 3 层、40 行 |
 | calibration | object | 否 | 标定信息，见下方说明 |
 | annotation | object | 否 | 标注信息，见下方说明 |
 | sensors | object | 否 | 传感器信息，见下方说明 |
@@ -49,6 +50,33 @@
 | fps | number | 采集帧率 |
 | resolution | string | 主相机分辨率，如 `640x480` |
 | video_codec | string | 视频编码，如 `h264` `hevc` `raw` |
+
+## tree 字段
+
+用纯文本记录数据集根目录的结构，多行字符串，页面按等宽字体展示。示例：
+
+```
+FineART/
+├─ data/
+│  ├─ chunk-000/
+│  │  └─ episode_000000.parquet
+│  └─ ...
+├─ meta/
+│  ├─ info.json
+│  ├─ episodes.jsonl
+│  └─ tasks.jsonl
+└─ videos/
+   └─ chunk-000/
+      └─ ...
+```
+
+规则：
+
+- 来源必须是数据集官方文件列表。HuggingFace 可用 `https://huggingface.co/api/datasets/{repo}/tree/main?recursive=true` 获取。
+- 只展开前 3 层，更深的用 `...` 结尾。
+- 同一目录下同类文件超过 3 个时，只列第一个再加 `...`。
+- 总行数不超过 40 行。
+- 拿不到文件列表时省略该字段，不得凭印象编写。
 
 ## calibration 对象
 

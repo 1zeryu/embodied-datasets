@@ -45,6 +45,12 @@
 - `resolution`：主相机分辨率，如 `640x480`
 - `video_codec`：如 `h264`、`hevc`、`raw`
 
+#### 目录结构 `tree`
+
+用官方文件列表生成目录树，格式与限制见 `schema.md`。这一步要排在采集其他字段之前，因为它能直接反映数据真实的组织方式，也决定了后面标定信息能不能查到。
+
+HuggingFace 数据集用 `https://huggingface.co/api/datasets/{repo}/tree/main?recursive=true` 拿到完整文件列表，再按三层裁剪。列目录时重点留意有没有 `camera_info`、`calibration`、`extrinsics`、`depth` 这类目录或文件。
+
 #### 标定信息 `calibration`
 
 判断数据集是否提供相机内外参与深度：
