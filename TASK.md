@@ -83,7 +83,9 @@ HuggingFace 数据集用 `https://huggingface.co/api/datasets/{repo}/tree/main?r
 
 ### 5. 补齐旧记录
 
-对已存在但缺少 `format_detail`、`calibration`、`annotation`、`sensors` 的记录，同样按第 3 步的规则补全已验证的信息。补不到的填 `unknown`，避免反复重试。
+对已存在但缺少 `tree`、`format_detail`、`calibration`、`annotation`、`sensors` 的记录，同样按第 3 步的规则补全已验证的信息。补不到的填 `unknown`，避免反复重试。
+
+已有记录中 `calibration` 为 `unknown` 的字段，要基于文件树重新核验一次。如果文件里确实存在标定文件或深度目录，就改成 `provided` 并同步修正 `format_detail.fields`；核验后仍然找不到，保持 `unknown`。不允许仅凭 README 的一句模糊描述就改判。
 
 ### 6. 写日志
 
