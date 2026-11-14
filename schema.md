@@ -21,6 +21,7 @@
 | source_url | string | 是 | 官方页面或论文页，用于溯源 |
 | download_url | string | 否 | 下载入口，可为 HuggingFace 页面或官网 |
 | platform | enum | 是 | `single_arm` `dual_arm` `humanoid` `mobile` `dexterous_hand` `multi` |
+| source_type | enum | 是 | `real` `sim` `hybrid` `human` `unknown` |
 | robots | string[] | 否 | 具体机器人型号，如 `["Franka Emika Panda"]` |
 | modalities | enum[] | 是 | `rgb` `depth` `joint_state` `action` `language` `tactile` `point_cloud` `audio` |
 | task_types | string[] | 是 | 自由文本，如 `抓取`、`精细操作`、`导航` |
@@ -77,6 +78,22 @@ FineART/
 - 同一目录下同类文件超过 3 个时，只列第一个再加 `...`。
 - 总行数不超过 40 行。
 - 拿不到文件列表时省略该字段，不得凭印象编写。
+
+## source_type 判定
+
+| 取值 | 含义 |
+|---|---|
+| `real` | 真机采集，全部数据来自实体机器人 |
+| `sim` | 纯仿真生成，如 MuJoCo、Isaac Sim、SAPIEN |
+| `hybrid` | 同时包含真机与仿真数据，或仿真数据经真机校准 |
+| `human` | 人类第一视角演示视频，无机器人执行动作 |
+| `unknown` | 无法从官方描述判断 |
+
+判定依据是数据集 README 或论文里对采集方式的说明。机器人遥操作采集的真机数据属于 `real`；用人类视频做预训练的数据集属于 `human`，即使目标任务是机器人操作。
+
+## robots 字段
+
+写具体型号，如 `Franka Emika Panda`、`UR5e`、`ALOHA`、`Unitree G1`、`xArm 7`。只知道厂商或类别时，写能确认的最细粒度，并在 `notes` 说明。
 
 ## calibration 对象
 

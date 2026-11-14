@@ -31,6 +31,8 @@
   .sub { margin: 0 0 10px; color: var(--muted); }
   .links { margin: 0 0 6px; font-size: 13px; }
   .meta { margin: 0; font-size: 13px; color: var(--muted); }
+  .stats { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
+  .stats b { color: var(--text); font-weight: 600; }
   .controls {
     max-width: 1180px; margin: 0 auto; padding: 0 24px 16px;
     display: flex; flex-wrap: wrap; gap: 10px;
@@ -105,10 +107,27 @@
   <p class="sub">每天自动整理公开的具身智能数据集，记录规模、模态、许可证与可训练性。</p>
   <p class="links"><a href="./log.html">更新日志 →</a></p>
   <p class="meta" id="meta">加载中…</p>
+  <p class="stats" id="stats"></p>
 </header>
 
 <section class="controls">
   <input id="q" type="search" placeholder="搜索名称、机构、机器人型号…">
+  <select id="f-source">
+    <option value="">全部数据类型</option>
+    <option value="real">真机采集</option>
+    <option value="sim">仿真</option>
+    <option value="hybrid">真机 + 仿真</option>
+    <option value="human">人类视频</option>
+    <option value="unknown">未标注</option>
+  </select>
+  <select id="f-calib">
+    <option value="">全部标定情况</option>
+    <option value="intrinsics">提供内参</option>
+    <option value="extrinsics">提供外参</option>
+    <option value="depth">提供深度</option>
+    <option value="none">三项均未确认</option>
+  </select>
+  <select id="f-robot"><option value="">全部机器人</option></select>
   <select id="f-platform"><option value="">全部平台</option></select>
   <select id="f-modality"><option value="">全部模态</option></select>
   <select id="f-train">
@@ -153,9 +172,16 @@ const TRAIN = {
   research_only: ['仅限研究', 'warn'],
   unknown: ['未确认', 'muted']
 };
+const SOURCE = {
+  real: ['真机', 'ok'],
+  sim: ['仿真', 'warn'],
+  hybrid: ['真机+仿真', 'warn'],
+  human: ['人类视频', 'muted'],
+  unknown: ['未标注', 'muted']
+};
 
 let all = [];
-const state = { q: '', platform: '', modality: '', train: '' };
+const state = { q: '', source: '', calib: '', robot: '', platform: '', modality: '', train: '' };
 
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const num = v => Number(v).toLocaleString('en-US');
@@ -182,10 +208,25 @@ function fillSelect(el, dict) {
   });
 }
 
+function sourceBadge(d) {
+  const [label, cls] = SOURCE[d.source_type] || SOURCE.unknown;
+  return '<span class="badge ' + cls + '">' + label + '</span>';
+}
+
 function match(d) {
   if (state.platform && d.platform !== state.platform) return false;
   if (state.modality && !(d.modalities || []).includes(state.modality)) return false;
   if (state.train && d.train_use !== state.train) return false;
+  if (state.source && (d.source_type || 'unknown') !== state.source) return false;
+  if (state.robot && !(d.robots || []).includes(state.robot)) return false;
+  if (state.calib) {
+    const c = d.calibration || {};
+    if (state.calib === 'none') {
+      if (c.intrinsics === 'provided' || c.extrinsics === 'provided' || c.depth === 'provided') return false;
+    } else if (c[state.calib] !== 'provided') {
+      return false;
+    }
+  }
   if (state.q) {
     const hay = [d.name, d.org, d.summary, d.license, ...(d.robots || []), ...(d.task_types || [])]
       .join(' ').toLowerCase();
@@ -199,7 +240,7 @@ function render() {
   const rows = document.getElementById('rows');
   rows.innerHTML = list.map((d, i) => `
     <tr data-i="${all.indexOf(d)}">
-      <td><span class="name">${esc(d.name)}</span><span class="org">${esc(d.org || '')}</span></td>
+      <td><span class="name">${esc(d.name)}</span> ${sourceBadge(d)}<span class="org">${esc(d.org || '')}</span></td>
       <td class="hide-sm">${esc(PLATFORM[d.platform] || d.platform || '—')}</td>
       <td class="hide-sm">${(d.modalities || []).slice(0, 3).map(m => '<span class="tag">' + esc(MODALITY[m] || m) + '</span>').join('')}</td>
       <td class="hide-sm">${esc(scaleText(d.scale))}</td>
@@ -207,6 +248,9 @@ function render() {
       <td>${trainBadge(d.train_use)}</td>
       <td class="hide-sm">${esc(d.last_updated || '—')}</td>
     </tr>`).join('');
+  const n = f => list.filter(f).length;
+  document.getElementById('stats').innerHTML =
+    `共 <b>${list.length}</b> 条 · 真机 <b>${n(x => x.source_type === 'real')}</b> · 仿真 <b>${n(x => x.source_type === 'sim')}</b> · 人类视频 <b>${n(x => x.source_type === 'human')}</b> · 提供内参 <b>${n(x => (x.calibration || {}).intrinsics === 'provided')}</b> · 提供外参 <b>${n(x => (x.calibration || {}).extrinsics === 'provided')}</b>`;
   document.getElementById('empty').hidden = list.length > 0;
   document.getElementById('table').hidden = list.length === 0;
 }
@@ -228,6 +272,7 @@ function openDetail(d) {
     <div class="dl">
       ${row('简介', esc(d.summary))}
       ${row('平台', esc(PLATFORM[d.platform] || d.platform || '—'))}
+      ${row('数据类型', sourceBadge(d))}
       ${row('机器人', esc((d.robots || []).join('、') || '—'))}
       ${row('模态', esc((d.modalities || []).map(m => MODALITY[m] || m).join('、') || '—'))}
       ${row('任务类型', esc((d.task_types || []).join('、') || '—'))}
@@ -258,15 +303,24 @@ function openDetail(d) {
 function bind() {
   fillSelect(document.getElementById('f-platform'), PLATFORM);
   fillSelect(document.getElementById('f-modality'), MODALITY);
+  const robots = [...new Set(all.flatMap(d => d.robots || []))].sort((a, b) => a.localeCompare(b, 'zh'));
+  robots.forEach(r => {
+    const o = document.createElement('option');
+    o.value = r; o.textContent = r;
+    document.getElementById('f-robot').appendChild(o);
+  });
 
   document.getElementById('q').addEventListener('input', e => { state.q = e.target.value.trim(); render(); });
+  document.getElementById('f-source').addEventListener('change', e => { state.source = e.target.value; render(); });
+  document.getElementById('f-calib').addEventListener('change', e => { state.calib = e.target.value; render(); });
+  document.getElementById('f-robot').addEventListener('change', e => { state.robot = e.target.value; render(); });
   document.getElementById('f-platform').addEventListener('change', e => { state.platform = e.target.value; render(); });
   document.getElementById('f-modality').addEventListener('change', e => { state.modality = e.target.value; render(); });
   document.getElementById('f-train').addEventListener('change', e => { state.train = e.target.value; render(); });
   document.getElementById('reset').addEventListener('click', () => {
-    Object.assign(state, { q: '', platform: '', modality: '', train: '' });
+    Object.assign(state, { q: '', source: '', calib: '', robot: '', platform: '', modality: '', train: '' });
     document.getElementById('q').value = '';
-    ['f-platform', 'f-modality', 'f-train'].forEach(id => document.getElementById(id).value = '');
+    ['f-source', 'f-calib', 'f-robot', 'f-platform', 'f-modality', 'f-train'].forEach(id => document.getElementById(id).value = '');
     render();
   });
 
