@@ -1,9 +1,103 @@
 {
   "meta": {
-    "updated_at": "2026-11-14",
-    "entries": 2
+    "updated_at": "2026-11-15",
+    "entries": 3
   },
   "entries": [
+    {
+      "date": "2026-11-15",
+      "added": [
+        {
+          "id": "umi",
+          "name": "UMI (Universal Manipulation Interface) Data",
+          "summary": "UMI 手持夹爪示教数据，含原始 GoPro 录像、SLAM 工作区与处理后 zarr。"
+        },
+        {
+          "id": "loco-manipulation-data",
+          "name": "Loco-manipulation Data",
+          "summary": "Unitree G1 全身遥操作移动操作数据，99 条轨迹含头部深度与双手触觉。"
+        },
+        {
+          "id": "humanoid-touch-dream",
+          "name": "Humanoid Touch Dream 源数据",
+          "summary": "CMU 与 Bosch 的 Unitree G1 触觉操作源数据，871 条示教覆盖 6 项任务。"
+        },
+        {
+          "id": "humanoid-g1-odometry",
+          "name": "Humanoid (Unitree G1) Inertial Odometry Dataset",
+          "summary": "Unitree G1 惯性里程计基准，含 pelvis IMU、29 关节状态与真值位姿。"
+        }
+      ],
+      "updated": [
+        {
+          "id": "fineart",
+          "name": "FineART",
+          "fields": ["source_type"]
+        },
+        {
+          "id": "open-humanwam-50k",
+          "name": "Open-HumanWAM-50K",
+          "fields": ["source_type"]
+        },
+        {
+          "id": "robomocap",
+          "name": "RoboMoCap",
+          "fields": ["source_type"]
+        },
+        {
+          "id": "ropedia-xperience-2",
+          "name": "Ropedia Xperience 2",
+          "fields": ["source_type"]
+        },
+        {
+          "id": "agibot-world-2026",
+          "name": "AgiBot World 2026",
+          "fields": ["source_type"]
+        },
+        {
+          "id": "handson",
+          "name": "HandsOn",
+          "fields": ["source_type"]
+        },
+        {
+          "id": "bidex-100",
+          "name": "BiDex-100",
+          "fields": ["source_type"]
+        },
+        {
+          "id": "xp-teleop",
+          "name": "Xp-Teleop",
+          "fields": ["source_type"]
+        },
+        {
+          "id": "gen-humanwholebody",
+          "name": "Gen-HumanWholeBody",
+          "fields": ["source_type"]
+        },
+        {
+          "id": "lingyu-realworld-robotics",
+          "name": "LingYu Real-World Robotics Dataset",
+          "fields": ["source_type"]
+        },
+        {
+          "id": "human-1m",
+          "name": "PhysicalAI Human-1M（100K 小时开源子集）",
+          "fields": ["source_type"]
+        },
+        {
+          "id": "hubego-100k",
+          "name": "HubEgo-100K",
+          "fields": ["source_type"]
+        },
+        {
+          "id": "excavator-embodied-intelligence",
+          "name": "Excavator Embodied Intelligence Dataset",
+          "fields": ["source_type"]
+        }
+      ],
+      "total": 17,
+      "note": "跳过 mzxuan/manipulation_realworld：个人上传，仅 43 条示教；lerobot/LIBERO-Cosmos3 为 nvidia/LIBERO_LeRobot_v3 的再打包；Embodidatasets/warehouse-embodied-dataset 仅 3 条预览且需 NDA；YueChen0614/HumanoidDojo 仅材质贴图。RoboMoCap 的 calibration 目录内 device.json 仅 23 字节，无内参，维持 unknown。"
+    },
     {
       "date": "2026-11-14",
       "added": [

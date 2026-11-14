@@ -1,10 +1,270 @@
 {
   "meta": {
     "schema_version": 1,
-    "updated_at": "2026-11-14",
-    "count": 13
+    "updated_at": "2026-11-15",
+    "count": 17
   },
   "datasets": [
+    {
+      "id": "umi",
+      "name": "UMI (Universal Manipulation Interface) Data",
+      "org": "Stanford University / Columbia University / Toyota Research Institute",
+      "source_url": "https://huggingface.co/datasets/real-stanford/universal_manipulation_interface",
+      "download_url": "https://huggingface.co/datasets/real-stanford/universal_manipulation_interface",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "action"
+      ],
+      "task_types": [
+        "手持夹爪示教",
+        "动态抛掷",
+        "布料折叠",
+        "洗碗",
+        "开放场景泛化"
+      ],
+      "scale": {
+        "size_tb": 0.8
+      },
+      "data_format": "Zarr + MP4",
+      "license": "MIT",
+      "license_url": "https://github.com/real-stanford/universal_manipulation_interface",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-15",
+      "last_updated": "2026-10-19",
+      "summary": "UMI 手持夹爪示教数据，含原始 GoPro 录像、SLAM 工作区与处理后 zarr。",
+      "notes": "由人手持夹爪录制，无机器人执行动作；6 个任务目录共 26,565 个文件、773.8 GB；bimanual_cloth_folding 与 bimanual_dish_washing 为双手数据。",
+      "format_detail": {
+        "container": "Zarr (zip) + MP4 + CSV/PKL",
+        "fields": [
+          "data/camera0_rgb",
+          "data/robot0_eef_pos",
+          "data/robot0_eef_rot_axis_angle",
+          "data/robot0_gripper_width",
+          "meta/episode_ends",
+          "demos/<demo>/camera_trajectory.csv",
+          "demos/<demo>/imu_data.json"
+        ],
+        "resolution": "224x224"
+      },
+      "tree": "universal_manipulation_interface/\n├─ bimanual_cloth_folding/\n│  ├─ open_source_slam_reruns/\n│  │  └─ ...\n│  ├─ sessions/\n│  │  ├─ 20231225_cheng/\n│  │  │  └─ ...\n│  │  └─ ...\n│  └─ bimanual_cloth_folding.zarr.zip\n├─ bimanual_dish_washing/\n│  └─ ...\n├─ cup_in_lab/\n│  ├─ mp4s/\n│  │  └─ ...\n│  └─ cup_in_the_lab.zarr.zip\n├─ cup_in_the_wild/\n│  ├─ mp4s/\n│  │  └─ ...\n│  └─ cup_in_the_wild.zarr.zip\n├─ dynamic_tossing/\n│  └─ ...\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "provided",
+        "depth": "not_provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "views": [
+          "wrist"
+        ]
+      }
+    },
+    {
+      "id": "loco-manipulation-data",
+      "name": "Loco-manipulation Data",
+      "org": "Relo02",
+      "source_url": "https://huggingface.co/datasets/Relo02/loco-manipulation-data",
+      "download_url": "https://huggingface.co/datasets/Relo02/loco-manipulation-data",
+      "platform": "humanoid",
+      "source_type": "real",
+      "robots": [
+        "Unitree G1（Inspire RH56DFTP 灵巧手）"
+      ],
+      "modalities": [
+        "rgb",
+        "depth",
+        "joint_state",
+        "action",
+        "language",
+        "tactile"
+      ],
+      "task_types": [
+        "移动操作",
+        "全身遥操作",
+        "抓取放置"
+      ],
+      "scale": {
+        "episodes": 99,
+        "hours": 1.03,
+        "size_tb": 0.03
+      },
+      "data_format": "Parquet + MP4 + HDF5",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-15",
+      "last_updated": "2026-11-06",
+      "summary": "Unitree G1 全身遥操作移动操作数据，99 条轨迹含头部深度与双手触觉。",
+      "notes": "仅收录 white_becker_from_sliding_ruller 一个任务，111,719 帧约 62 分钟；Meta Quest 3 手柄遥操作，头部 D435i 单目 RGB，无腕部相机；同时提供 teleop_raw 原始格式与 HTD HDF5 转换格式。",
+      "format_detail": {
+        "container": "Parquet + MP4 + HDF5 + PNG",
+        "fields": [
+          "frames.parquet（关节角与速度、IMU、里程计、触觉、手指力）",
+          "main.mp4",
+          "depth/NNNNNN.png",
+          "ep.json",
+          "htd episode_*.hdf5"
+        ],
+        "fps": 30,
+        "resolution": "640x480",
+        "video_codec": "h264"
+      },
+      "tree": "loco-manipulation-data/\n├─ white_becker_from_sliding_ruller/\n│  ├─ teleop_raw/\n│  │  └─ manipulation/\n│  │     └─ ...\n│  └─ htd/\n│     └─ g1_inspire_wb/\n│        └─ ...\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "provided",
+        "eef_pose": "unknown"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "provided"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "provided",
+        "tactile": "provided"
+      }
+    },
+    {
+      "id": "humanoid-touch-dream",
+      "name": "Humanoid Touch Dream 源数据",
+      "org": "Carnegie Mellon University / Bosch Center for AI",
+      "source_url": "https://huggingface.co/datasets/chrisyrniu/humanoid-touch-dream",
+      "download_url": "https://huggingface.co/datasets/chrisyrniu/humanoid-touch-dream",
+      "platform": "humanoid",
+      "source_type": "real",
+      "robots": [
+        "Unitree G1（Inspire DFTP / F1 灵巧手）"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "tactile"
+      ],
+      "task_types": [
+        "灵巧操作",
+        "接触密集操作",
+        "书柜整理",
+        "插接装配",
+        "毛巾折叠"
+      ],
+      "scale": {
+        "episodes": 871,
+        "size_tb": 0.4
+      },
+      "data_format": "HDF5 + MP4",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-15",
+      "last_updated": "2026-11-02",
+      "summary": "CMU 与 Bosch 的 Unitree G1 触觉操作源数据，871 条示教覆盖 6 项任务。",
+      "notes": "871 条修复后源示教（814 训练 / 57 验证）与 2,459 段视频，约 391 GB；tea 仅有主相机视频；另有 Open-X-Tactile 转换版；VR 遥操作采集，论文 arXiv 2604.13015。",
+      "format_detail": {
+        "container": "HDF5 + MP4"
+      },
+      "tree": "humanoid-touch-dream/\n├─ book/\n│  └─ g1_inspire_dftp/\n│     ├─ train/\n│     │  └─ ...\n│     └─ val/\n│        └─ ...\n├─ insert_t/\n│  └─ g1_inspire_dftp/\n│     └─ ...\n├─ lab/\n│  └─ g1_inspire_f1/\n│     └─ ...\n├─ scoop/\n│  └─ g1_inspire_dftp/\n│     └─ ...\n├─ tea/\n│  └─ g1_inspire_dftp/\n│     └─ ...\n├─ towel/\n│  └─ g1_inspire_dftp/\n│     └─ ...\n├─ .gitattributes\n├─ README.md\n└─ dataset_manifest.json",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "unknown"
+      },
+      "annotation": {
+        "language": "unknown",
+        "subtask": "not_provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 3,
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "provided"
+      }
+    },
+    {
+      "id": "humanoid-g1-odometry",
+      "name": "Humanoid (Unitree G1) Inertial Odometry Dataset",
+      "org": "Open-IO（SSIO 团队）",
+      "source_url": "https://huggingface.co/datasets/Open-IO/humanoid-g1-odometry",
+      "download_url": "https://huggingface.co/datasets/Open-IO/humanoid-g1-odometry",
+      "platform": "humanoid",
+      "source_type": "real",
+      "robots": [
+        "Unitree G1"
+      ],
+      "modalities": [
+        "joint_state"
+      ],
+      "task_types": [
+        "惯性里程计",
+        "全身运动",
+        "步态数据"
+      ],
+      "scale": {
+        "episodes": 32,
+        "hours": 1.17
+      },
+      "data_format": "NumPy (.npy)",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-15",
+      "last_updated": "2026-10-19",
+      "summary": "Unitree G1 惯性里程计基准，含 pelvis IMU、29 关节状态与真值位姿。",
+      "notes": "843,379 帧、约 1.17 小时，标称 200 Hz 且存在时间戳缺口；无相机与图像，真值位姿来自 SuperOdom LiDAR-惯性里程计；论文 arXiv 2610.25988。",
+      "format_detail": {
+        "container": "NumPy (.npy)",
+        "fields": [
+          "imus.npy",
+          "pose.npy",
+          "time_ns.npy",
+          "joints.npy",
+          "joints.json",
+          "spec.json"
+        ],
+        "fps": 200
+      },
+      "tree": "humanoid-g1-odometry/\n├─ 10708_navigation_20260527_193508/\n│  ├─ imus.npy\n│  ├─ joints.json\n│  └─ ...\n├─ 10708_navigation_20260527_193939/\n│  └─ ...\n├─ 10871_humanoid_20260520_223451/\n│  └─ ...\n├─ assets/\n│  └─ ...\n├─ splits/\n│  ├─ test.txt\n│  └─ train.txt\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "not_provided",
+        "extrinsics": "not_provided",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "proprioception": "provided"
+      }
+    },
     {
       "id": "fineart",
       "name": "FineART",
@@ -12,6 +272,7 @@
       "source_url": "https://huggingface.co/datasets/lerobot/FineART",
       "download_url": "https://huggingface.co/datasets/lerobot/FineART",
       "platform": "dual_arm",
+      "source_type": "real",
       "robots": [
         "Trossen Stationary AI"
       ],
@@ -86,6 +347,7 @@
       "source_url": "https://huggingface.co/datasets/DAGroup-PKU/Open-HumanWAM-50K",
       "download_url": "https://huggingface.co/datasets/DAGroup-PKU/Open-HumanWAM-50K",
       "platform": "multi",
+      "source_type": "human",
       "modalities": [
         "rgb",
         "language",
@@ -137,6 +399,7 @@
       "source_url": "https://bitrobot-foundation.github.io/robomocap/",
       "download_url": "https://huggingface.co/datasets/BitRobot/robomocap",
       "platform": "humanoid",
+      "source_type": "human",
       "modalities": [
         "rgb",
         "audio",
@@ -196,6 +459,7 @@
       "source_url": "https://huggingface.co/datasets/ropedia-ai/Ropedia-Xperience-2",
       "download_url": "https://huggingface.co/datasets/ropedia-ai/Ropedia-Xperience-2",
       "platform": "multi",
+      "source_type": "human",
       "modalities": [
         "rgb",
         "depth",
@@ -258,6 +522,7 @@
       "source_url": "https://www.agibot.com/article/231/detail/129.html",
       "download_url": "https://huggingface.co/datasets/agibot-world/AgiBotWorld2026",
       "platform": "humanoid",
+      "source_type": "real",
       "robots": [
         "AgiBot G2"
       ],
@@ -330,6 +595,7 @@
       "source_url": "https://github.com/TsinghuaC3I/HandsOn",
       "download_url": "https://huggingface.co/datasets/Cyan666/HandsOn-Datasets",
       "platform": "dexterous_hand",
+      "source_type": "sim",
       "robots": [
         "ROKAE AR5-5_08 ×2 + Wuji Hand 1（Isaac Sim 仿真）"
       ],
@@ -401,6 +667,7 @@
       "source_url": "https://huggingface.co/datasets/Robbyant-Research/BiDex-100",
       "download_url": "https://huggingface.co/datasets/Robbyant-Research/BiDex-100",
       "platform": "multi",
+      "source_type": "sim",
       "robots": [
         "Franka FR3 v2 双臂 + Sharpa 灵巧手",
         "Astribot S1 + Sharpa 灵巧手"
@@ -478,6 +745,7 @@
       "source_url": "https://huggingface.co/datasets/ropedia-ai/Xp-Teleop",
       "download_url": "https://huggingface.co/datasets/ropedia-ai/Xp-Teleop",
       "platform": "humanoid",
+      "source_type": "real",
       "robots": [
         "Unitree G1（Inspire FTP 灵巧手）"
       ],
@@ -549,6 +817,7 @@
       "source_url": "https://huggingface.co/datasets/genrobot2025/Gen-HumanWholeBody",
       "download_url": "https://huggingface.co/datasets/genrobot2025/Gen-HumanWholeBody",
       "platform": "multi",
+      "source_type": "human",
       "modalities": [
         "rgb",
         "joint_state",
@@ -615,6 +884,7 @@
       "source_url": "https://huggingface.co/datasets/LingYu-Robotics/lingyu-realworld-robotics-dataset",
       "download_url": "https://huggingface.co/datasets/LingYu-Robotics/lingyu-realworld-robotics-dataset",
       "platform": "dual_arm",
+      "source_type": "real",
       "robots": [
         "LingYu TA2"
       ],
@@ -687,6 +957,7 @@
       "source_url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Human-1M-100K",
       "download_url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Human-1M-100K",
       "platform": "multi",
+      "source_type": "human",
       "modalities": [
         "rgb",
         "language"
@@ -746,6 +1017,7 @@
       "source_url": "https://huggingface.co/datasets/Hubdata/HubEgo-100K",
       "download_url": "https://huggingface.co/datasets/Hubdata/HubEgo-100K",
       "platform": "multi",
+      "source_type": "human",
       "modalities": [
         "rgb",
         "language"
@@ -809,6 +1081,7 @@
       "source_url": "https://huggingface.co/datasets/aiwika/Excavator-Embodied-Intelligence-Dataset",
       "download_url": "https://huggingface.co/datasets/aiwika/Excavator-Embodied-Intelligence-Dataset",
       "platform": "mobile",
+      "source_type": "real",
       "robots": [
         "TZ200",
         "TZ240",
