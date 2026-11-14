@@ -2,7 +2,7 @@
   "meta": {
     "schema_version": 1,
     "updated_at": "2026-11-14",
-    "count": 6
+    "count": 12
   },
   "datasets": [
     {
@@ -41,7 +41,42 @@
       "first_seen": "2026-11-14",
       "last_updated": "2026-11-06",
       "summary": "Scale AI 与 Hugging Face 发布的双臂操作数据集，含 4 万条轨迹与 53 万条子任务标注。",
-      "notes": "约 1.86 TB，151 项任务，四路相机 30 fps；约四分之三时长集中在分拣与抓放任务。"
+      "notes": "约 1.86 TB，151 项任务，四路相机 30 fps；约四分之三时长集中在分拣与抓放任务。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.state",
+          "action",
+          "observation.images.cam_high",
+          "observation.images.cam_low",
+          "observation.images.cam_left_wrist",
+          "observation.images.cam_right_wrist",
+          "language_persistent",
+          "task_index"
+        ],
+        "fps": 30,
+        "resolution": "360x640"
+      },
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "provided"
+      },
+      "sensors": {
+        "cameras": 4,
+        "views": [
+          "overhead",
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided"
+      }
     },
     {
       "id": "open-humanwam-50k",
@@ -72,7 +107,26 @@
       "first_seen": "2026-11-14",
       "last_updated": "2026-11-11",
       "summary": "5 万小时第一视角人类操作视频，附手部动作与自然语言标注，用于机器人策略预训练。",
-      "notes": "人类视频语料而非真机轨迹；仓库为自动审批的门控数据集，下载前需同意访问条款。"
+      "notes": "人类视频语料而非真机轨迹；仓库为自动审批的门控数据集，下载前需同意访问条款。",
+      "format_detail": {
+        "container": "Parquet + MP4"
+      },
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "unknown",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "unknown",
+        "success": "unknown"
+      },
+      "sensors": {
+        "views": [
+          "ego"
+        ]
+      }
     },
     {
       "id": "robomocap",
@@ -104,7 +158,33 @@
       "first_seen": "2026-11-14",
       "last_updated": "2026-11-10",
       "summary": "200 余小时第一视角视频与全身光学动捕数据，面向人形机器人移动操作学习。",
-      "notes": "14 名采集者、293 个动作；含头戴六目相机、腕部相机、120 Hz 动捕与音频，joint_state 指人体骨架而非机器人关节。"
+      "notes": "14 名采集者、293 个动作；含头戴六目相机、腕部相机、120 Hz 动捕与音频，joint_state 指人体骨架而非机器人关节。",
+      "format_detail": {
+        "container": "NPZ + JSON + WAV（含 BVH/CSV/TRC 动捕原始文件）",
+        "fields": [
+          "cameras/poses.npz",
+          "cameras/slam.npz",
+          "motions/skeleton.npz",
+          "motions/smplx.npz",
+          "motions/hands_mano.npz",
+          "raw/audio.wav"
+        ],
+        "fps": 120
+      },
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "provided",
+        "depth": "unknown",
+        "eef_pose": "not_provided"
+      },
+      "sensors": {
+        "cameras": 8,
+        "views": [
+          "ego",
+          "wrist",
+          "third_person"
+        ]
+      }
     },
     {
       "id": "ropedia-xperience-2",
@@ -137,7 +217,35 @@
       "first_seen": "2026-11-14",
       "last_updated": "2026-11-13",
       "summary": "将 1,589 个真实场景扫描与 4,230 段第一视角行为记录对齐到同一坐标系的具身数据集。",
-      "notes": "首批 126 个场景约 1.07 TB 已上线，其余分批发布；人类数据，不含机器人轨迹；仅限非商业使用。"
+      "notes": "首批 126 个场景约 1.07 TB 已上线，其余分批发布；人类数据，不含机器人轨迹；仅限非商业使用。",
+      "format_detail": {
+        "container": "Parquet + PLY/OBJ + HDF5 + TAR",
+        "fields": [
+          "metadata/scenes.parquet",
+          "scenes/<id>/3d_scanning/gaussian_splat.ply",
+          "scenes/<id>/mapping/rgb.tar",
+          "scenes/<id>/mocap/full_body_mocap.hdf5",
+          "scenes/<id>/mocap/caption.json"
+        ],
+        "fps": 30
+      },
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "unknown",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 4,
+        "views": [
+          "ego"
+        ]
+      }
     },
     {
       "id": "agibot-world-2026",
@@ -176,7 +284,39 @@
       "first_seen": "2026-11-14",
       "last_updated": "2026-10-24",
       "summary": "智元 G2 真机采集的具身数据集，第四期新增具身推理任务与高层问答标注。",
-      "notes": "第四期具身推理数据于 2026-10-22 开放；仅限非商业研究，衍生作品需同许可共享。"
+      "notes": "第四期具身推理数据于 2026-10-22 开放；仅限非商业研究，衍生作品需同许可共享。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.state",
+          "action",
+          "observation.images.top_head",
+          "observation.images.hand_left",
+          "observation.images.hand_right",
+          "observation.images.head_depth",
+          "observation.images.head_left_fisheye",
+          "observation.images.head_right_fisheye",
+          "task_index"
+        ]
+      },
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "unknown",
+        "depth": "provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "provided"
+      },
+      "sensors": {
+        "views": [
+          "overhead",
+          "wrist"
+        ],
+        "proprioception": "provided"
+      }
     },
     {
       "id": "handson",
@@ -186,7 +326,7 @@
       "download_url": "https://huggingface.co/datasets/Cyan666/HandsOn-Datasets",
       "platform": "dexterous_hand",
       "robots": [
-        "ROKAE 双臂平台 + Wuji 灵巧手（Isaac Sim 仿真）"
+        "ROKAE AR5-5_08 ×2 + Wuji Hand 1（Isaac Sim 仿真）"
       ],
       "modalities": [
         "rgb",
@@ -202,7 +342,8 @@
         "跨本体迁移"
       ],
       "scale": {
-        "episodes": 18000
+        "episodes": 18000,
+        "hours": 56.1
       },
       "data_format": "LeRobot v2.1",
       "license": "MIT",
@@ -213,7 +354,441 @@
       "first_seen": "2026-11-14",
       "last_updated": "2026-11-08",
       "summary": "清华 C3I 的仿真灵巧操作基准，18,000 条示教覆盖 66 项任务。",
-      "notes": "基于 Isaac Sim 5.1 与 ROKAE–Wuji 双臂平台，示教约 605 万步、30 Hz；任务分 Core-50 与 Transfer-16，支持 5 种机械臂与 6 种灵巧手；2026-11-08 另发布 10,000 条 Newton/Wuji2 轨迹。"
+      "notes": "基于 Isaac Sim 5.1 与 ROKAE–Wuji 双臂平台，示教约 605 万步、30 Hz；任务分 Core-50 与 Transfer-16，支持 5 种机械臂与 6 种灵巧手；2026-11-08 另发布 10,000 条 Newton/Wuji2 轨迹。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.state",
+          "action",
+          "front 视频",
+          "left wrist 视频",
+          "right wrist 视频",
+          "source_task"
+        ],
+        "fps": 30,
+        "resolution": "854x480 前置 / 848x480 腕部"
+      },
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "unknown",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "unknown",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 3,
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided"
+      }
+    },
+    {
+      "id": "bidex-100",
+      "name": "BiDex-100",
+      "org": "Robbyant Research",
+      "source_url": "https://huggingface.co/datasets/Robbyant-Research/BiDex-100",
+      "download_url": "https://huggingface.co/datasets/Robbyant-Research/BiDex-100",
+      "platform": "multi",
+      "robots": [
+        "Franka FR3 v2 双臂 + Sharpa 灵巧手",
+        "Astribot S1 + Sharpa 灵巧手"
+      ],
+      "modalities": [
+        "rgb",
+        "depth",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "双臂灵巧操作",
+        "长时程操作",
+        "记忆任务",
+        "指令跟随",
+        "泛化评测"
+      ],
+      "scale": {
+        "episodes": 8080,
+        "hours": 69.43,
+        "size_tb": 0.2
+      },
+      "data_format": "LeRobot v2.1 / v3.0",
+      "license": "CC BY-NC 4.0",
+      "license_url": "https://huggingface.co/datasets/Robbyant-Research/BiDex-100/blob/main/datasets/lerobotv30/LICENSE",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-14",
+      "last_updated": "2026-11-14",
+      "summary": "MuJoCo 仿真的双臂灵巧操作基准，106 项任务、8,080 条成功验证示教。",
+      "notes": "两种本体：双 Franka FR3 v2 与 Astribot S1，均配 Sharpa 灵巧手；v2.1 与 v3.0 是同一批轨迹的两份布局，勿重复计数；整库约 195 GiB，含仿真资产；58 维统一动作空间。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.images.head_color",
+          "observation.images.head_depth",
+          "observation.images.left_wrist_color",
+          "observation.images.left_wrist_depth",
+          "observation.images.right_wrist_color",
+          "observation.images.right_wrist_depth",
+          "observation.state",
+          "action"
+        ],
+        "fps": 25,
+        "resolution": "480x360",
+        "video_codec": "h264"
+      },
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "unknown",
+        "success": "provided"
+      },
+      "sensors": {
+        "cameras": 3,
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided"
+      }
+    },
+    {
+      "id": "xp-teleop",
+      "name": "Xp-Teleop",
+      "org": "Ropedia",
+      "source_url": "https://huggingface.co/datasets/ropedia-ai/Xp-Teleop",
+      "download_url": "https://huggingface.co/datasets/ropedia-ai/Xp-Teleop",
+      "platform": "humanoid",
+      "robots": [
+        "Unitree G1（Inspire FTP 灵巧手）"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language",
+        "tactile"
+      ],
+      "task_types": [
+        "长时程移动操作",
+        "人形机器人操作",
+        "动作分段标注"
+      ],
+      "scale": {
+        "episodes": 27,
+        "hours": 0.9
+      },
+      "data_format": "MP4 + NPZ + JSONL",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-14",
+      "last_updated": "2026-10-24",
+      "summary": "Unitree G1 头戴相机录制的 27 条长时程移动操作轨迹，切成 543 个动作片段。",
+      "notes": "Ropedia W0 的基准子集，96,064 帧；原始深度帧未随数据集发布，仅保留路径；含 Inspire 触觉（每手 1062 个触觉点）与约 1.6 kHz 头戴 IMU。",
+      "format_detail": {
+        "container": "MP4 + NPZ + CSV",
+        "fields": [
+          "video_rgb.mp4",
+          "video_keypoints.mp4",
+          "frames.npz（uv / xyz_cam / cam_c2w / q）",
+          "imu.csv",
+          "tactile.jsonl",
+          "caption.json"
+        ],
+        "fps": 30,
+        "resolution": "1280x720",
+        "video_codec": "h264"
+      },
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "provided",
+        "tactile": "provided"
+      }
+    },
+    {
+      "id": "gen-humanwholebody",
+      "name": "Gen-HumanWholeBody",
+      "org": "GenRobot.AI",
+      "source_url": "https://huggingface.co/datasets/genrobot2025/Gen-HumanWholeBody",
+      "download_url": "https://huggingface.co/datasets/genrobot2025/Gen-HumanWholeBody",
+      "platform": "multi",
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "language"
+      ],
+      "task_types": [
+        "全身移动操作",
+        "人类示范",
+        "动作重定向"
+      ],
+      "scale": {
+        "episodes": 15943,
+        "hours": 600,
+        "size_tb": 8.8
+      },
+      "data_format": "MCAP",
+      "license": "unknown",
+      "train_use": "unknown",
+      "commercial_use": "unknown",
+      "redistribution": "unknown",
+      "first_seen": "2026-11-14",
+      "last_updated": "2026-10-30",
+      "summary": "GenRobot 用第一视角设备重建的 600 小时全身操作人体数据，覆盖 1.6 万个场景。",
+      "notes": "门控数据集，提交表单后自动审批；基于 DAS-Ego 采集、由其数据基础模型重建，全身关节位置误差约 3 cm；含 6 路 RGB 与 body_track、handtracking 等模态；属人体数据，不含机器人轨迹；页面未给出许可证名称。",
+      "format_detail": {
+        "container": "MCAP",
+        "fields": [
+          "origin",
+          "face_mark",
+          "vio",
+          "handtracking",
+          "annotation_v2",
+          "body_track",
+          "bold_mark",
+          "task",
+          "sub_task"
+        ],
+        "fps": 30,
+        "resolution": "1600x1300"
+      },
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "unknown",
+        "eef_pose": "unknown"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 6,
+        "views": [
+          "ego"
+        ]
+      }
+    },
+    {
+      "id": "lingyu-realworld-robotics",
+      "name": "LingYu Real-World Robotics Dataset",
+      "org": "LingYu Robotics（dexteleop）",
+      "source_url": "https://huggingface.co/datasets/LingYu-Robotics/lingyu-realworld-robotics-dataset",
+      "download_url": "https://huggingface.co/datasets/LingYu-Robotics/lingyu-realworld-robotics-dataset",
+      "platform": "dual_arm",
+      "robots": [
+        "LingYu TA2"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "双臂操作",
+        "可变形物体操作",
+        "精细操作",
+        "长时程分拣堆叠"
+      ],
+      "scale": {
+        "episodes": 13263,
+        "hours": 139.4,
+        "size_tb": 9.2
+      },
+      "data_format": "LeRobot v2.1",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-14",
+      "last_updated": "2026-11-14",
+      "summary": "灵御真机双臂遥操作数据，139.4 小时、13,263 条轨迹，覆盖 22 个桌面任务子集。",
+      "notes": "VR 遥操作采集，三路立体 RGB（头部 3840×1920、腕部 2560×800）统一到 45 Hz；每个子集是独立 LeRobot 数据集，仓库根目录不能直接加载；另有超市零售数据需单独申请。",
+      "format_detail": {
+        "container": "Parquet + MP4/HEVC",
+        "fields": [
+          "observation.state",
+          "action",
+          "observation.images.head_camera",
+          "observation.images.left_color",
+          "observation.images.right_color",
+          "task_index"
+        ],
+        "fps": 45,
+        "resolution": "3840x1920 头部 / 2560x800 腕部",
+        "video_codec": "hevc"
+      },
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "unknown",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "unknown",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 3,
+        "views": [
+          "ego",
+          "wrist"
+        ],
+        "proprioception": "provided"
+      }
+    },
+    {
+      "id": "human-1m",
+      "name": "PhysicalAI Human-1M（100K 小时开源子集）",
+      "org": "NVIDIA",
+      "source_url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Human-1M-100K",
+      "download_url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Human-1M-100K",
+      "platform": "multi",
+      "modalities": [
+        "rgb",
+        "language"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "人类示范",
+        "手部动作标注",
+        "机器人动作重定向"
+      ],
+      "scale": {
+        "episodes": 3405573,
+        "hours": 100000
+      },
+      "data_format": "LeRobot v3.0",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-14",
+      "last_updated": "2026-11-07",
+      "summary": "NVIDIA 开源的 10 万小时第一视角人类操作数据，含 T1/T2 语言标注与头手 6DoF 轨迹。",
+      "notes": "完整 Human-1M 为 100 万小时，本次开源 10 万小时、340 万条 episode；按 vendor/batch 分片存放于 Hub bucket，需在页面申请访问；视频要求至少 30 FPS/480p，实际帧率随 episode 变化；属人体数据，手部位姿不等于机器人末端位姿。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.images.{camera}",
+          "observation.state",
+          "meta/subtasks.parquet",
+          "meta/episodes"
+        ]
+      },
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "unknown",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "views": [
+          "ego",
+          "wrist"
+        ]
+      }
+    },
+    {
+      "id": "hubego-100k",
+      "name": "HubEgo-100K",
+      "org": "Hub Data, Inc.",
+      "source_url": "https://huggingface.co/datasets/Hubdata/HubEgo-100K",
+      "download_url": "https://huggingface.co/datasets/Hubdata/HubEgo-100K",
+      "platform": "multi",
+      "modalities": [
+        "rgb",
+        "language"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "技能操作",
+        "人类示范"
+      ],
+      "scale": {
+        "episodes": 72754,
+        "hours": 10124
+      },
+      "data_format": "LeRobot v3 + MCAP",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-14",
+      "last_updated": "2026-11-14",
+      "summary": "1 万小时第一视角技能操作视频，7.2 万条 episode，覆盖 30 个职业类别。",
+      "notes": "目标 10 万小时，当前为第 1 批 10,124 小时；门控数据集，提交表单后自动审批；头戴单目 1920×1080、H.264、30 fps；子任务标注由视觉语言模型生成，未经人工校验；observation.state 为 IMU 而非机器人本体状态。",
+      "format_detail": {
+        "container": "Parquet + MP4（另附 MCAP 原始传感器流）",
+        "fields": [
+          "observation.images.main",
+          "observation.state",
+          "meta/annotations.parquet",
+          "meta/subtasks.parquet",
+          "catalog.parquet"
+        ],
+        "fps": 30,
+        "resolution": "1920x1080",
+        "video_codec": "h264"
+      },
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "unknown",
+        "eef_pose": "unknown"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "unknown"
+      }
     }
   ]
 }

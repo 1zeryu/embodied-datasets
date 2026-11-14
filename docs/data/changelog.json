@@ -1,7 +1,108 @@
 {
   "meta": {
     "updated_at": "2026-11-14",
-    "entries": 0
+    "entries": 1
   },
-  "entries": []
+  "entries": [
+    {
+      "date": "2026-11-14",
+      "added": [
+        {
+          "id": "bidex-100",
+          "name": "BiDex-100",
+          "summary": "MuJoCo 仿真的双臂灵巧操作基准，106 项任务、8,080 条成功验证示教。"
+        },
+        {
+          "id": "xp-teleop",
+          "name": "Xp-Teleop",
+          "summary": "Unitree G1 头戴相机录制的 27 条长时程移动操作轨迹，切成 543 个动作片段。"
+        },
+        {
+          "id": "gen-humanwholebody",
+          "name": "Gen-HumanWholeBody",
+          "summary": "GenRobot 用第一视角设备重建的 600 小时全身操作人体数据，覆盖 1.6 万个场景。"
+        },
+        {
+          "id": "lingyu-realworld-robotics",
+          "name": "LingYu Real-World Robotics Dataset",
+          "summary": "灵御真机双臂遥操作数据，139.4 小时、13,263 条轨迹，覆盖 22 个桌面任务子集。"
+        },
+        {
+          "id": "human-1m",
+          "name": "PhysicalAI Human-1M（100K 小时开源子集）",
+          "summary": "NVIDIA 开源的 10 万小时第一视角人类操作数据，含 T1/T2 语言标注与头手 6DoF 轨迹。"
+        },
+        {
+          "id": "hubego-100k",
+          "name": "HubEgo-100K",
+          "summary": "1 万小时第一视角技能操作视频，7.2 万条 episode，覆盖 30 个职业类别。"
+        }
+      ],
+      "updated": [
+        {
+          "id": "fineart",
+          "name": "FineART",
+          "fields": [
+            "format_detail",
+            "calibration",
+            "annotation",
+            "sensors"
+          ]
+        },
+        {
+          "id": "open-humanwam-50k",
+          "name": "Open-HumanWAM-50K",
+          "fields": [
+            "format_detail",
+            "calibration",
+            "annotation",
+            "sensors"
+          ]
+        },
+        {
+          "id": "robomocap",
+          "name": "RoboMoCap",
+          "fields": [
+            "format_detail",
+            "calibration",
+            "sensors"
+          ]
+        },
+        {
+          "id": "ropedia-xperience-2",
+          "name": "Ropedia Xperience 2",
+          "fields": [
+            "format_detail",
+            "calibration",
+            "annotation",
+            "sensors"
+          ]
+        },
+        {
+          "id": "agibot-world-2026",
+          "name": "AgiBot World 2026",
+          "fields": [
+            "format_detail",
+            "calibration",
+            "annotation",
+            "sensors"
+          ]
+        },
+        {
+          "id": "handson",
+          "name": "HandsOn",
+          "fields": [
+            "robots",
+            "scale",
+            "format_detail",
+            "calibration",
+            "annotation",
+            "sensors"
+          ]
+        }
+      ],
+      "total": 12,
+      "note": "跳过 XzqhTechLtd/Ego-DailyManipulation-EgoKit：仅 5 条 episode、约 5 分钟，规模过小；FreDERicia/SWAM-Pretrain 为既有数据集的再打包，不单列。"
+    }
+  ]
 }
