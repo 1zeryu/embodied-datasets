@@ -1,9 +1,107 @@
 {
   "meta": {
     "updated_at": "2026-11-14",
-    "entries": 1
+    "entries": 2
   },
   "entries": [
+    {
+      "date": "2026-11-14",
+      "added": [
+        {
+          "id": "excavator-embodied-intelligence",
+          "name": "Excavator Embodied Intelligence Dataset",
+          "summary": "WIKA 采集的挖掘机真机多模态数据，17 个作业会话，含五路视频、激光雷达与 CAN 信号。"
+        }
+      ],
+      "updated": [
+        {
+          "id": "fineart",
+          "name": "FineART",
+          "fields": [
+            "tree"
+          ]
+        },
+        {
+          "id": "open-humanwam-50k",
+          "name": "Open-HumanWAM-50K",
+          "fields": [
+            "tree"
+          ]
+        },
+        {
+          "id": "robomocap",
+          "name": "RoboMoCap",
+          "fields": [
+            "tree"
+          ]
+        },
+        {
+          "id": "ropedia-xperience-2",
+          "name": "Ropedia Xperience 2",
+          "fields": [
+            "tree"
+          ]
+        },
+        {
+          "id": "agibot-world-2026",
+          "name": "AgiBot World 2026",
+          "fields": [
+            "tree"
+          ]
+        },
+        {
+          "id": "handson",
+          "name": "HandsOn",
+          "fields": [
+            "tree"
+          ]
+        },
+        {
+          "id": "bidex-100",
+          "name": "BiDex-100",
+          "fields": [
+            "tree"
+          ]
+        },
+        {
+          "id": "xp-teleop",
+          "name": "Xp-Teleop",
+          "fields": [
+            "tree"
+          ]
+        },
+        {
+          "id": "gen-humanwholebody",
+          "name": "Gen-HumanWholeBody",
+          "fields": [
+            "tree"
+          ]
+        },
+        {
+          "id": "lingyu-realworld-robotics",
+          "name": "LingYu Real-World Robotics Dataset",
+          "fields": [
+            "tree"
+          ]
+        },
+        {
+          "id": "human-1m",
+          "name": "PhysicalAI Human-1M（100K 小时开源子集）",
+          "fields": [
+            "tree"
+          ]
+        },
+        {
+          "id": "hubego-100k",
+          "name": "HubEgo-100K",
+          "fields": [
+            "tree"
+          ]
+        }
+      ],
+      "total": 13,
+      "note": "跳过 Nexdata-kr/50000-Hours-UMI：仓库仅含说明与演示视频，无实际数据；JJimmyL/VideoICL-Embodied-Demos50 为视频问答基准，无动作轨迹；embodied-olympics/release1-raw 为加密门控评测数据，字段无法核验。"
+    },
     {
       "date": "2026-11-14",
       "added": [

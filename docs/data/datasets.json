@@ -2,7 +2,7 @@
   "meta": {
     "schema_version": 1,
     "updated_at": "2026-11-14",
-    "count": 12
+    "count": 13
   },
   "datasets": [
     {
@@ -57,6 +57,7 @@
         "fps": 30,
         "resolution": "360x640"
       },
+      "tree": "FineART/\n├─ data/\n│  └─ chunk-000/\n│     ├─ file-000.parquet\n│     └─ ...\n├─ meta/\n│  ├─ episodes/\n│  │  └─ chunk-000/\n│  │     └─ ...\n│  ├─ sampling/\n│  │  ├─ motion_scan.json\n│  │  └─ ...\n│  ├─ info.json\n│  ├─ stats.json\n│  └─ tasks.parquet\n├─ videos/\n│  ├─ observation.images.cam_high/\n│  │  ├─ chunk-000/\n│  │  │  └─ ...\n│  │  ├─ chunk-001/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ observation.images.cam_left_wrist/\n│  │  ├─ chunk-000/\n│  │  │  └─ ...\n│  │  ├─ chunk-001/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ observation.images.cam_low/\n│  │  ├─ chunk-000/\n│  │  │  └─ ...\n│  │  ├─ chunk-001/\n│  │  │  └─ ...\n│  │  └─ ...\n│  └─ ...\n├─ .gitattributes\n└─ README.md",
       "calibration": {
         "intrinsics": "unknown",
         "extrinsics": "unknown",
@@ -111,6 +112,7 @@
       "format_detail": {
         "container": "Parquet + MP4"
       },
+      "tree": "Open-HumanWAM-50K/\n├─ assets/\n│  ├─ data_overview.png\n│  └─ teaser.png\n├─ egodex/\n│  ├─ part-legacy-shard-000000-12fc43533d20-dataset-003/\n│  │  ├─ data/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ part-legacy-shard-000001-94e154a9c4b5-dataset-003/\n│  │  ├─ data/\n│  │  │  └─ ...\n│  │  └─ ...\n│  └─ ...\n├─ egopro/\n│  ├─ part-legacy-shard-000001-94e154a9c4b5-dataset-005/\n│  │  ├─ data/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ part-legacy-shard-000002-fb1ebf72c725-dataset-000/\n│  │  ├─ data/\n│  │  │  └─ ...\n│  │  └─ ...\n│  └─ ...\n└─ ...",
       "calibration": {
         "intrinsics": "unknown",
         "extrinsics": "unknown",
@@ -171,6 +173,7 @@
         ],
         "fps": 120
       },
+      "tree": "robomocap/\n├─ actions/\n│  ├─ dynamic_recovery/\n│  │  ├─ DR01/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ environment_coupled_wholebody/\n│  │  ├─ EC01/\n│  │  │  └─ ...\n│  │  └─ ...\n│  └─ ...\n├─ calibration/\n│  ├─ 452031d7af00ef6f/\n│  │  ├─ 452031d7af00ef6f_api_v1_device.json\n│  │  └─ ...\n│  ├─ 60a6f081bbe60b0d/\n│  │  ├─ 60a6f081bbe60b0d_api_v1_device.json\n│  │  └─ ...\n│  └─ ...\n├─ metadata/\n│  ├─ definitions/\n│  │  ├─ conventions.md\n│  │  └─ ...\n│  ├─ splits/\n│  │  ├─ test.txt\n│  │  ├─ train.txt\n│  │  └─ val.txt\n│  ├─ collection_sites.json\n│  └─ ...\n└─ ...",
       "calibration": {
         "intrinsics": "unknown",
         "extrinsics": "provided",
@@ -229,6 +232,7 @@
         ],
         "fps": 30
       },
+      "tree": "Ropedia-Xperience-2/\n├─ assets/\n│  └─ overview.jpg\n├─ metadata/\n│  ├─ captures.parquet\n│  └─ ...\n├─ scenes/\n│  ├─ 2092905108914266113/\n│  │  ├─ 3d_scanning/\n│  │  │  └─ ...\n│  │  ├─ mapping/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ 2092913920584933377/\n│  │  ├─ 3d_scanning/\n│  │  │  └─ ...\n│  │  ├─ mapping/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ 2092918528559239170/\n│  │  ├─ 3d_scanning/\n│  │  │  └─ ...\n│  │  ├─ mapping/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ 2093322698755887106/\n│  │  ├─ 3d_scanning/\n│  │  │  └─ ...\n│  │  ├─ mapping/\n│  │  │  └─ ...\n│  │  └─ ...\n│  └─ ...\n├─ .gitattributes\n└─ README.md",
       "calibration": {
         "intrinsics": "provided",
         "extrinsics": "provided",
@@ -299,6 +303,7 @@
           "task_index"
         ]
       },
+      "tree": "AgiBotWorld2026/\n├─ ImitationLearning/\n│  ├─ CommercialSpaces/\n│  │  ├─ task_3400/\n│  │  │  └─ ...\n│  │  └─ ...\n│  └─ Home/\n│     └─ task_4713/\n│        └─ ...\n├─ PhysicalReasoning/\n│  ├─ .dataset_build/\n│  │  ├─ snapshot/\n│  │  │  └─ ...\n│  │  ├─ build_manifest.json\n│  │  └─ ...\n│  ├─ .denseprompt_merge/\n│  │  ├─ previous_export/\n│  │  │  └─ ...\n│  │  ├─ decisions.jsonl\n│  │  └─ receipt.json\n│  └─ ...\n├─ ReinforcementLearning/\n│  ├─ Home/\n│  │  ├─ task_12173/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ Industry/\n│  │  ├─ task_6671/\n│  │  │  └─ ...\n│  │  └─ ...\n│  └─ README_THEME_3.md\n└─ ...",
       "calibration": {
         "intrinsics": "provided",
         "extrinsics": "unknown",
@@ -368,6 +373,7 @@
         "fps": 30,
         "resolution": "854x480 前置 / 848x480 腕部"
       },
+      "tree": "HandsOn-Datasets/\n├─ assets/\n│  └─ handson-lockup.png\n├─ code/\n│  ├─ __pycache__/\n│  │  ├─ prompt_sampler.cpython-311.pyc\n│  │  └─ ...\n│  ├─ prompt_sampler.py\n│  └─ training_reader.py\n├─ data/\n│  ├─ chunk-000/\n│  │  ├─ episode_000000.parquet\n│  │  └─ ...\n│  ├─ chunk-001/\n│  │  ├─ episode_001000.parquet\n│  │  └─ ...\n│  ├─ chunk-002/\n│  │  ├─ episode_002000.parquet\n│  │  └─ ...\n│  ├─ chunk-003/\n│  │  ├─ episode_003000.parquet\n│  │  └─ ...\n│  └─ ...\n├─ language/\n│  └─ prompt_paraphrases.json\n├─ meta/\n│  ├─ episodes.jsonl\n│  └─ ...\n└─ ...",
       "calibration": {
         "intrinsics": "unknown",
         "extrinsics": "unknown",
@@ -444,6 +450,7 @@
         "resolution": "480x360",
         "video_codec": "h264"
       },
+      "tree": "BiDex-100/\n├─ assets/\n│  ├─ articraft_objects/\n│  │  ├─ LICENSE\n│  │  ├─ README.md\n│  │  └─ articraft_objects.tar.gz\n│  ├─ assembly_objects/\n│  │  ├─ LICENSE\n│  │  ├─ README.md\n│  │  └─ assembly_objects.tar.gz\n│  ├─ astribot_descriptions/\n│  │  ├─ LICENSE\n│  │  ├─ README.md\n│  │  └─ astribot_descriptions.tar.gz\n│  ├─ libero/\n│  │  ├─ LICENSE\n│  │  ├─ README.md\n│  │  └─ libero.tar.gz\n│  └─ ...\n├─ datasets/\n│  ├─ lerobotv21/\n│  │  ├─ Generalization/\n│  │  │  └─ ...\n│  │  ├─ Instruction_Following/\n│  │  │  └─ ...\n│  │  └─ ...\n│  └─ lerobotv30/\n│     ├─ Generalization/\n│     │  └─ ...\n│     ├─ Instruction_Following/\n│     │  └─ ...\n│     └─ ...\n├─ .gitattributes\n└─ README.md",
       "calibration": {
         "intrinsics": "unknown",
         "extrinsics": "unknown",
@@ -514,6 +521,7 @@
         "resolution": "1280x720",
         "video_codec": "h264"
       },
+      "tree": "Xp-Teleop/\n├─ meta/\n│  ├─ calibration.jsonl\n│  └─ ...\n├─ takes/\n│  ├─ bean_from_fridge_to_board/\n│  │  └─ segments/\n│  │     └─ ...\n│  ├─ bottle_into_basket/\n│  │  └─ segments/\n│  │     └─ ...\n│  ├─ bottles_to_round_table/\n│  │  └─ segments/\n│  │     └─ ...\n│  ├─ box_from_drawer_into_basket/\n│  │  └─ segments/\n│  │     └─ ...\n│  └─ ...\n├─ .gitattributes\n├─ LICENSE\n└─ README.md",
       "calibration": {
         "intrinsics": "provided",
         "extrinsics": "provided",
@@ -581,6 +589,7 @@
         "fps": 30,
         "resolution": "1600x1300"
       },
+      "tree": "Gen-HumanWholeBody/\n├─ assets/\n│  └─ overview.jpg\n├─ data/\n│  ├─ agriculture/\n│  │  ├─ agricultural_product_processing_factory/\n│  │  │  └─ ...\n│  │  ├─ agriculture_and_farming/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ agriculture_and_farming/\n│  │  ├─ apple_orchard/\n│  │  │  └─ ...\n│  │  ├─ chicken_farm/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ automotive_and_transport/\n│  │  ├─ bicycle_repair_shop/\n│  │  │  └─ ...\n│  │  ├─ car_4s_shop/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ beauty_and_personal_care/\n│  │  ├─ barber_shop/\n│  │  │  └─ ...\n│  │  ├─ nail_salon/\n│  │  │  └─ ...\n│  │  └─ ...\n│  └─ ...\n├─ .gitattributes\n└─ README.md",
       "calibration": {
         "intrinsics": "unknown",
         "extrinsics": "unknown",
@@ -650,6 +659,7 @@
         "resolution": "3840x1920 头部 / 2560x800 腕部",
         "video_codec": "hevc"
       },
+      "tree": "lingyu-realworld-robotics-dataset/\n├─ fold_airplane_box/\n│  ├─ data/\n│  │  └─ chunk-000/\n│  │     └─ ...\n│  ├─ meta/\n│  │  ├─ episodes.jsonl\n│  │  └─ ...\n│  └─ ...\n├─ fold_socks/\n│  ├─ data/\n│  │  └─ chunk-000/\n│  │     └─ ...\n│  ├─ meta/\n│  │  ├─ episodes.jsonl\n│  │  └─ ...\n│  └─ ...\n├─ fold_towel_into_box/\n│  ├─ data/\n│  │  ├─ chunk-000/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ meta/\n│  │  ├─ episodes.jsonl\n│  │  └─ ...\n│  └─ ...\n└─ ...",
       "calibration": {
         "intrinsics": "unknown",
         "extrinsics": "unknown",
@@ -710,6 +720,7 @@
           "meta/episodes"
         ]
       },
+      "tree": "PhysicalAI-Human-1M-100K/\n├─ assets/\n│  ├─ fonts/\n│  │  ├─ nvidia-sans-bold.woff\n│  │  └─ ...\n│  ├─ access-dataset.svg\n│  └─ ...\n├─ data/\n│  ├─ schema.json\n│  └─ stereo_samples.json\n├─ figures/\n│  ├─ capture_configurations.png\n│  └─ ...\n├─ preview/\n│  ├─ videos/\n│  │  ├─ demo_001_0b4a67b0_main.mp4\n│  │  └─ ...\n│  └─ metadata.jsonl\n├─ samples/\n│  ├─ downloads/\n│  │  ├─ stereo_desk_wrist.tar.gz\n│  │  ├─ stereo_flower_wrist.tar.gz\n│  │  └─ stereo_repair.tar.gz\n│  └─ lerobot/\n│     ├─ stereo_desk_wrist/\n│     │  └─ ...\n│     ├─ stereo_flower_wrist/\n│     │  └─ ...\n│     └─ ...\n├─ .gitattributes\n└─ ...",
       "calibration": {
         "intrinsics": "provided",
         "extrinsics": "provided",
@@ -771,6 +782,7 @@
         "resolution": "1920x1080",
         "video_codec": "h264"
       },
+      "tree": "HubEgo-100K/\n├─ mono/\n│  ├─ data/\n│  │  ├─ chunk-000/\n│  │  │  └─ ...\n│  │  └─ chunk-001/\n│  │     └─ ...\n│  ├─ mcap/\n│  │  ├─ chunk-000.tar\n│  │  └─ ...\n│  ├─ meta/\n│  │  ├─ episodes/\n│  │  │  └─ ...\n│  │  ├─ annotations.parquet\n│  │  └─ ...\n│  ├─ videos/\n│  │  └─ observation.images.main/\n│  │     └─ ...\n│  └─ catalog.parquet\n├─ .gitattributes\n├─ LICENSE.md\n└─ README.md",
       "calibration": {
         "intrinsics": "unknown",
         "extrinsics": "unknown",
@@ -788,6 +800,77 @@
           "ego"
         ],
         "proprioception": "unknown"
+      }
+    },
+    {
+      "id": "excavator-embodied-intelligence",
+      "name": "Excavator Embodied Intelligence Dataset",
+      "org": "WIKA（aiwika）",
+      "source_url": "https://huggingface.co/datasets/aiwika/Excavator-Embodied-Intelligence-Dataset",
+      "download_url": "https://huggingface.co/datasets/aiwika/Excavator-Embodied-Intelligence-Dataset",
+      "platform": "mobile",
+      "robots": [
+        "TZ200",
+        "TZ240",
+        "XG2662",
+        "XG2665"
+      ],
+      "modalities": [
+        "rgb",
+        "point_cloud",
+        "joint_state",
+        "action"
+      ],
+      "task_types": [
+        "土方作业",
+        "场地平整",
+        "土方装车",
+        "动作阶段识别"
+      ],
+      "scale": {
+        "size_tb": 0.9
+      },
+      "data_format": "MCAP",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://huggingface.co/datasets/aiwika/Excavator-Embodied-Intelligence-Dataset",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-14",
+      "last_updated": "2026-10-27",
+      "summary": "WIKA 采集的挖掘机真机多模态数据，17 个作业会话，含五路视频、激光雷达与 CAN 信号。",
+      "notes": "220 个 MCAP 分片约 934 GB，CDR 序列化；部分样本带 21 段人工动作区间标注；原文列出 10 种机型，示例含 XG2665；无深度图与相机内参。",
+      "format_detail": {
+        "container": "MCAP（CDR 序列化）",
+        "fields": [
+          "/camera/gmsl_1/image/encoded",
+          "/lidar/rs_h32f70_1/points",
+          "/imu1/data",
+          "/chcnav/devpvt",
+          "/rec/markers",
+          "CAN（操纵输入 / 关节角度 / 液压 / 发动机状态）"
+        ],
+        "fps": 30
+      },
+      "tree": "Excavator-Embodied-Intelligence-Dataset/\n├─ real-device-data/\n│  ├─ 20261008-130320/\n│  │  ├─ 20261008-130320_0.annotation.json\n│  │  └─ ...\n│  ├─ 20261011-085215/\n│  │  ├─ 20261011-085215_0.annotation.json\n│  │  └─ ...\n│  ├─ 20261011-090328/\n│  │  ├─ 20261011-090328_0.annotation.json\n│  │  └─ ...\n│  ├─ 20261011-093027/\n│  │  ├─ 20261011-093027_0.annotation.json\n│  │  └─ 20261011-093027_0.parsed.mcap\n│  └─ ...\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 5,
+        "views": [
+          "third_person"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
       }
     }
   ]
