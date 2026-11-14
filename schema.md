@@ -35,6 +35,54 @@
 | last_updated | string | 是 | 数据源最后更新时间，格式 `YYYY-MM-DD` |
 | summary | string | 是 | 一句话中文说明，不超过 60 字 |
 | notes | string | 否 | 使用限制或注意事项 |
+| format_detail | object | 否 | 存储结构，见下方说明 |
+| calibration | object | 否 | 标定信息，见下方说明 |
+| annotation | object | 否 | 标注信息，见下方说明 |
+| sensors | object | 否 | 传感器信息，见下方说明 |
+
+## format_detail 对象
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| container | string | 存储容器，如 `Parquet + MP4` `TFRecord` `HDF5` `MCAP` `rosbag` `Zarr` |
+| fields | string[] | 数据集中实际存在的键名，如 `observation.images.cam_high` |
+| fps | number | 采集帧率 |
+| resolution | string | 主相机分辨率，如 `640x480` |
+| video_codec | string | 视频编码，如 `h264` `hevc` `raw` |
+
+## calibration 对象
+
+四个字段取值均为 `provided` `not_provided` `unknown`。
+
+| 字段 | 说明 |
+|---|---|
+| intrinsics | 是否提供相机内参 |
+| extrinsics | 是否提供相机外参 |
+| depth | 是否包含深度图 |
+| eef_pose | 是否提供末端执行器位姿序列 |
+
+判定依据是数据集内实际存在的标定文件，或 README 的明确描述。文档提到但文件中没有，填 `not_provided`；完全找不到描述，填 `unknown`。
+
+## annotation 对象
+
+取值均为 `provided` `not_provided` `unknown`。
+
+| 字段 | 说明 |
+|---|---|
+| language | 是否有自然语言任务描述 |
+| subtask | 是否有子任务分段标注 |
+| success | 是否标注成功或失败 |
+
+## sensors 对象
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| cameras | number | 相机数量 |
+| views | enum[] | `third_person` `wrist` `ego` `overhead` |
+| proprioception | enum | `provided` `not_provided` `unknown` |
+| tactile | enum | `provided` `not_provided` `unknown` |
+
+未知的单个字段直接省略，整个对象都无法确认时也可省略。不得为了填满而猜值。
 
 ## scale 对象
 

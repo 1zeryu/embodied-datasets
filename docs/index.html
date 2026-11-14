@@ -208,6 +208,15 @@ function render() {
 
 function openDetail(d) {
   const row = (k, v) => v ? `<dt>${k}</dt><dd>${v}</dd>` : '';
+  const fd = d.format_detail || {};
+  const cal = d.calibration || {};
+  const ann = d.annotation || {};
+  const sen = d.sensors || {};
+  const tri = v => ({ provided: '提供', not_provided: '未提供', unknown: '未知' }[v] || '—');
+  const viewText = (sen.views || []).map(v => ({ third_person: '第三人称', wrist: '腕部', ego: '第一视角', overhead: '顶部' }[v] || v)).join('、');
+  const sampling = [fd.fps ? fd.fps + ' fps' : '', fd.resolution || '', fd.video_codec || ''].filter(Boolean).join(' · ');
+  const annText = [ann.language ? '语言 ' + tri(ann.language) : '', ann.subtask ? '子任务 ' + tri(ann.subtask) : '', ann.success ? '成败 ' + tri(ann.success) : ''].filter(Boolean).join(' · ');
+  const senText = [sen.cameras ? sen.cameras + ' 路相机' : '', viewText, sen.proprioception ? '本体状态 ' + tri(sen.proprioception) : '', sen.tactile ? '触觉 ' + tri(sen.tactile) : ''].filter(Boolean).join(' · ');
   document.getElementById('detail').innerHTML = `
     <h2>${esc(d.name)}</h2>
     <p class="meta">${esc(d.org || '')}</p>
@@ -218,7 +227,15 @@ function openDetail(d) {
       ${row('模态', esc((d.modalities || []).map(m => MODALITY[m] || m).join('、') || '—'))}
       ${row('任务类型', esc((d.task_types || []).join('、') || '—'))}
       ${row('规模', esc(scaleText(d.scale)))}
-      ${row('数据格式', esc(d.data_format))}
+      ${row('数据格式', esc(d.data_format) + (fd.container ? ' · ' + esc(fd.container) : ''))}
+      ${row('采样参数', esc(sampling))}
+      ${row('数据字段', esc((fd.fields || []).join('、')))}
+      ${row('传感器', esc(senText))}
+      ${row('内参', tri(cal.intrinsics))}
+      ${row('外参', tri(cal.extrinsics))}
+      ${row('深度图', tri(cal.depth))}
+      ${row('末端位姿', tri(cal.eef_pose))}
+      ${row('标注', esc(annText))}
       ${row('许可证', esc(d.license) + (d.license_url ? ' · <a href="' + esc(d.license_url) + '" target="_blank" rel="noopener">原文</a>' : ''))}
       ${row('可训练', trainBadge(d.train_use))}
       ${row('商用', trainBadge(d.commercial_use))}
