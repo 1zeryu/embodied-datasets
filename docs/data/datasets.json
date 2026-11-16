@@ -1,10 +1,350 @@
 {
   "meta": {
     "schema_version": 1,
-    "updated_at": "2026-11-15",
-    "count": 17
+    "updated_at": "2026-11-16",
+    "count": 22
   },
   "datasets": [
+    {
+      "id": "egoforce",
+      "name": "EgoForce",
+      "org": "University of Michigan / Stanford University / Microsoft Research",
+      "source_url": "https://huggingface.co/datasets/zhicao/EgoForce",
+      "download_url": "https://huggingface.co/datasets/zhicao/EgoForce",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "tactile"
+      ],
+      "task_types": [
+        "第一视角演示",
+        "双手精细操作",
+        "装配",
+        "倒水",
+        "衣物折叠"
+      ],
+      "scale": {
+        "episodes": 18373,
+        "hours": 739
+      },
+      "data_format": "MP4 + NPZ + JSON",
+      "license": "CC BY-NC 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-16",
+      "last_updated": "2026-11-11",
+      "summary": "18,373 段第一视角双手操作视频，同步指尖力与压力手套数据，共 739 小时。",
+      "notes": "人类双手数据，无机器人执行动作；191 名采集者、25 项任务，采集于 2026-09-02 至 09-08；其中 62 段无触觉数据；头戴视频为左右并排双目 1920x600，腕部 960x540；手部关键点不随数据发布，仓库仅提供离线估计脚本，且该脚本含 CC BY-NC-ND 4.0 的 WiLoR。",
+      "format_detail": {
+        "container": "MP4 + NPZ + JSON",
+        "fields": [
+          "head.mp4",
+          "wrist_left.mp4",
+          "wrist_right.mp4",
+          "timestamps.json",
+          "tactile.npz"
+        ],
+        "fps": 30,
+        "resolution": "1920x600（头戴双目）/ 960x540（腕部）"
+      },
+      "tree": "EgoForce/\n├─ 20260902/\n│  ├─ Pour_water/\n│  │  ├─ BNN_2828_E_01/\n│  │  │  └─ ...\n│  │  └─ ...\n│  ├─ Sorting_Brushes/\n│  │  └─ ...\n│  └─ ...\n├─ 20260903/\n│  └─ ...\n├─ 20260904/\n│  └─ ...\n├─ 20260905/\n│  └─ ...\n├─ 20260906/\n│  └─ ...\n├─ 20260907/\n│  └─ ...\n├─ 20260908/\n│  └─ ...\n├─ handpose_algorithm/\n│  └─ ...\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 3,
+        "views": [
+          "ego",
+          "wrist"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "provided"
+      }
+    },
+    {
+      "id": "hiphi-hand",
+      "name": "HiPHI-Hand",
+      "org": "诺亦腾机器人（Noitom Robotics）/ ModalityNet",
+      "source_url": "https://huggingface.co/datasets/noitomrobotics/HiPHI-Hand",
+      "download_url": "https://huggingface.co/datasets/noitomrobotics/HiPHI-Hand",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "joint_state"
+      ],
+      "task_types": [
+        "手部动捕",
+        "手物交互",
+        "灵巧操作",
+        "动作重定向"
+      ],
+      "scale": {
+        "episodes": 794
+      },
+      "data_format": "MP4 + CSV + JSON",
+      "license": "ModalityNet Open Research License 1.0",
+      "license_url": "https://modalitynet.com/Open-Research-License",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-16",
+      "last_updated": "2026-11-09",
+      "summary": "诺亦腾开源的立体鱼眼手部动捕数据，794 段片段含 Vicon 与 MediaPipe 手部骨架。",
+      "notes": "人类手部数据，无机器人执行动作；分 5 个数据集，各含 208/156/120/206/104 段，标定按数据集共享；左右鱼眼 1360x1360、30 fps，采用 OpenCV 等距鱼眼模型；Vicon 25 点为动捕真值，MediaPipe 21 点为算法结果，均在 IMU 坐标系下；joint_state 指人体手部关节而非机器人关节；门控数据集，需填表申请，商用需另行联系；官方新闻稿称总时长约 11 小时，README 未给出总时长。",
+      "format_detail": {
+        "container": "MP4 + CSV + JSON",
+        "fields": [
+          "video/rgb_left.mp4",
+          "video/rgb_right.mp4",
+          "annotation/mediapipe21.csv",
+          "annotation/vicon25.csv",
+          "calibration.json",
+          "visualization/stereo_overlay.mp4"
+        ],
+        "fps": 30,
+        "resolution": "1360x1360",
+        "video_codec": "h264"
+      },
+      "tree": "HiPHI-Hand/\n├─ dataset_01/\n│  ├─ calibration.json\n│  └─ data/\n│     ├─ 0001/\n│     │  └─ ...\n│     └─ ...\n├─ dataset_02/\n│  └─ ...\n├─ dataset_03/\n│  └─ ...\n├─ dataset_04/\n│  └─ ...\n├─ dataset_05/\n│  └─ ...\n├─ .gitattributes\n├─ LICENSE.md\n├─ README.md\n└─ visualize.py",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 2,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "huro-egoverse",
+      "name": "HuRo-EgoVerse",
+      "org": "HuRo 团队",
+      "source_url": "https://huggingface.co/datasets/Joocjun/HuRo-EgoVerse",
+      "download_url": "https://huggingface.co/datasets/Joocjun/HuRo-EgoVerse",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "language",
+        "joint_state"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "手部动作重建",
+        "机器人动作重定向",
+        "VLA 预训练"
+      ],
+      "scale": {
+        "episodes": 193499,
+        "hours": 731.5
+      },
+      "data_format": "Parquet + MP4",
+      "license": "CC BY 4.0（表格）/ CC BY-NC 4.0（去手臂视频）",
+      "license_url": "https://huggingface.co/datasets/Joocjun/HuRo-EgoVerse/blob/main/DATA_LICENSE.md",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-16",
+      "last_updated": "2026-11-09",
+      "summary": "EgoVerse 的 HuRo 机器人化子集，731.5 小时人体视频附手部标注与 ALLEX 轨迹。",
+      "notes": "取自 EgoVerse，含 7,562 个 clip、193,499 段标注与 731.5 小时去手臂视频；标注表与轨迹按 CC BY 4.0，去手臂视频因 ProPainter 许可按 CC BY-NC 4.0；不含原始未修改帧；相机位姿、重定向与语言指令均为流水线伪标签，不宜作评测真值；全部片段 240x320，xi 恒为 0；门控数据集，提交表单后自动审批；须保留 EgoVerse 与 ALLEX 的署名。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "clips_chunked/original/annot/<clip_id>/<start>_<end>.parquet",
+          "clips_chunked/original/video/<clip_id>/<start>_<end>_inpainted.mp4",
+          "clips_chunked/allex/annot/<clip_id>/<start>_<end>.parquet",
+          "segments.csv"
+        ],
+        "fps": 30,
+        "resolution": "240x320"
+      },
+      "tree": "HuRo-EgoVerse/\n├─ clips_chunked/\n│  ├─ allex/\n│  │  └─ annot/\n│  │     └─ ...\n│  └─ original/\n│     ├─ annot/\n│     │  └─ ...\n│     └─ video/\n│        └─ ...\n├─ .gitattributes\n├─ DATA_LICENSE.md\n├─ README.md\n├─ REBUILDING.md\n└─ segments.csv",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "not_provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "robocap-lidar-100",
+      "name": "RoboCap LiDAR-100",
+      "org": "BitRobot",
+      "source_url": "https://huggingface.co/datasets/BitRobot/RoboCap-LiDAR-100",
+      "download_url": "https://huggingface.co/datasets/BitRobot/RoboCap-LiDAR-100",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "depth",
+        "point_cloud",
+        "language"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "厨房操作",
+        "汽车维修",
+        "汽车美容",
+        "动作识别"
+      ],
+      "scale": {
+        "episodes": 1964,
+        "hours": 50,
+        "size_tb": 3.4
+      },
+      "data_format": "MCAP",
+      "license": "CC BY-NC 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-16",
+      "last_updated": "2026-11-10",
+      "summary": "BitRobot 头戴 LiDAR 第一视角工作视频，50 小时覆盖厨房、汽修与汽车美容。",
+      "notes": "人类工作视频，无机器人执行动作；100 小时计划分两批发布，本次为前 50 小时；132 个 session、5 个场地、37 类任务、196 类动作；每段一个 MCAP，含 320x240 LiDAR 距离图、1600x1200 鱼眼 JPEG 与 870 Hz IMU，LiDAR 频率 30 Hz 或 10 Hz；点云存在三种编码，部分 session 需读 lidar_angle_vectors.bin 附件；门控数据集需人工审批，商用需单独授权，禁止再分发原始数据。",
+      "format_detail": {
+        "container": "MCAP（zstd + protobuf）",
+        "fields": [
+          "/rs_lidar/points",
+          "/rs_camera/color/image_raw",
+          "/rs_imu",
+          "/tf",
+          "/rs_camera/color/camera_info"
+        ],
+        "fps": 30,
+        "resolution": "1600x1200（相机）/ 320x240（LiDAR 距离图）"
+      },
+      "tree": "RoboCap-LiDAR-100/\n├─ assets/\n│  ├─ hours_by_action.png\n│  └─ ...\n├─ calibration/\n│  ├─ 0BTI6F/\n│  │  └─ calibration.yaml\n│  └─ ...\n├─ episodes/\n│  ├─ 0BTI6F/\n│  │  └─ ...\n│  └─ ...\n├─ metadata/\n│  ├─ cut_list_50h.csv\n│  ├─ episodes.csv\n│  ├─ episodes.parquet\n│  ├─ sessions.csv\n│  └─ taxonomy.md\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "loopglove",
+      "name": "LoopGlove",
+      "org": "Loopeva",
+      "source_url": "https://huggingface.co/datasets/WhyPeace/LoopGlove",
+      "download_url": "https://huggingface.co/datasets/WhyPeace/LoopGlove",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "language",
+        "tactile"
+      ],
+      "task_types": [
+        "桌面装配",
+        "拧螺丝",
+        "双手操作",
+        "触觉手套示教"
+      ],
+      "scale": {
+        "episodes": 7148,
+        "hours": 16.4,
+        "size_tb": 0.4
+      },
+      "data_format": "Zarr（Open-X-Tactile）",
+      "license": "Apache License 2.0",
+      "license_url": "https://huggingface.co/datasets/WhyPeace/LoopGlove/blob/main/LICENSE",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-16",
+      "last_updated": "2026-11-16",
+      "summary": "Loopeva 第一视角双手装配数据，触觉手套与重定向手部关节，共 16.4 小时。",
+      "notes": "仅一项长程装配任务：左手扶桌、右手装白色桌腿并对孔、拧螺丝、放回扳手；2,388 段源录制分属 12 个子集，经同步过滤后切成 7,148 段、1,771,492 帧，30 Hz；63 个 ZIP64 分卷共约 451.23 GiB，需全部解压；触觉为未标定的指尖/指腹/掌心 ADC 原始值；left/right_hand_joints 为重定向后的 Wuji Hand2.2 关节角，非人体实测；深度与触觉历史未导出；官方 OXT 质检结果为 0 通过、8 警告、4 失败。",
+      "format_detail": {
+        "container": "Zarr v2（Open-X-Tactile，打包为 ZIP64）",
+        "fields": [
+          "timestamps",
+          "camera_ego_rgb",
+          "camera_ego_pose",
+          "left_wrist_pose",
+          "right_wrist_pose",
+          "left_hand_joints",
+          "right_hand_joints",
+          "sub_task_instruction",
+          "left_tactile_data_tip",
+          "left_tactile_data_mid",
+          "left_tactile_data_palm"
+        ],
+        "fps": 30,
+        "resolution": "1280x720"
+      },
+      "tree": "LoopGlove/\n├─ LoopGlove/\n│  ├─ table_0000/\n│  │  ├─ archive_manifest.json\n│  │  ├─ table_0000.part-001-of-007.zip\n│  │  └─ ...\n│  └─ ...\n├─ .gitattributes\n├─ LICENSE\n├─ README.md\n├─ archive_manifest.json\n└─ metadata.json",
+      "calibration": {
+        "intrinsics": "not_provided",
+        "extrinsics": "provided",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "provided"
+      }
+    },
     {
       "id": "umi",
       "name": "UMI (Universal Manipulation Interface) Data",
@@ -442,6 +782,11 @@
         "extrinsics": "provided",
         "depth": "unknown",
         "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "unknown",
+        "subtask": "unknown",
+        "success": "unknown"
       },
       "sensors": {
         "cameras": 8,

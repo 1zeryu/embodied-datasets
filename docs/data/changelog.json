@@ -1,9 +1,48 @@
 {
   "meta": {
-    "updated_at": "2026-11-15",
-    "entries": 3
+    "updated_at": "2026-11-16",
+    "entries": 4
   },
   "entries": [
+    {
+      "date": "2026-11-16",
+      "added": [
+        {
+          "id": "egoforce",
+          "name": "EgoForce",
+          "summary": "18,373 段第一视角双手操作视频，同步指尖力与压力手套数据，共 739 小时。"
+        },
+        {
+          "id": "hiphi-hand",
+          "name": "HiPHI-Hand",
+          "summary": "诺亦腾开源的立体鱼眼手部动捕数据，794 段片段含 Vicon 与 MediaPipe 手部骨架。"
+        },
+        {
+          "id": "huro-egoverse",
+          "name": "HuRo-EgoVerse",
+          "summary": "EgoVerse 的 HuRo 机器人化子集，731.5 小时人体视频附手部标注与 ALLEX 轨迹。"
+        },
+        {
+          "id": "robocap-lidar-100",
+          "name": "RoboCap LiDAR-100",
+          "summary": "BitRobot 头戴 LiDAR 第一视角工作视频，50 小时覆盖厨房、汽修与汽车美容。"
+        },
+        {
+          "id": "loopglove",
+          "name": "LoopGlove",
+          "summary": "Loopeva 第一视角双手装配数据，触觉手套与重定向手部关节，共 16.4 小时。"
+        }
+      ],
+      "updated": [
+        {
+          "id": "robomocap",
+          "name": "RoboMoCap",
+          "fields": ["annotation"]
+        }
+      ],
+      "total": 22,
+      "note": "跳过 ReWAM/MemWAM：Unitree R1 遥操作仅 300 段、约 2.3 小时，规模偏小；LALABAB/VLA-Bind 为 LIBERO 属性和基准评测数据，训练价值有限；Travor278/whoego-synth-isaac 为相机归属识别任务，无操作轨迹；Kyry10/h2-dances 为舞蹈动作重定向，无手物交互。HiPHI-Hand 与 RoboCap-LiDAR-100 均为门控数据集，未下载数据，标定与字段依据官方 README 与文件列表。"
+    },
     {
       "date": "2026-11-15",
       "added": [
