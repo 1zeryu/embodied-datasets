@@ -1,10 +1,309 @@
 {
   "meta": {
     "schema_version": 1,
-    "updated_at": "2026-11-16",
-    "count": 22
+    "updated_at": "2026-11-17",
+    "count": 26
   },
   "datasets": [
+    {
+      "id": "iumi",
+      "name": "Crobotia Household Bimanual Manipulation Dataset (iUMI)",
+      "org": "Crobotia（IROS 2026 双手操作 Workshop）",
+      "source_url": "https://huggingface.co/datasets/Crobotia/iUMI",
+      "download_url": "https://huggingface.co/datasets/Crobotia/iUMI",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "action",
+        "audio",
+        "language"
+      ],
+      "task_types": [
+        "双手衣物展开",
+        "铺平",
+        "衣物折叠",
+        "手持夹爪示教"
+      ],
+      "scale": {
+        "episodes": 104634,
+        "hours": 1306.8,
+        "size_tb": 8.6
+      },
+      "data_format": "LeRobot",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-17",
+      "last_updated": "2026-11-13",
+      "summary": "Crobotia 发布的真实家庭双手示教数据，104,634 段衣物展开与折叠，共 1,306.8 小时。",
+      "notes": "由人手持 iUMI 夹爪在真实家庭采集，无机器人执行动作；每个 episode 为独立的 LeRobot v3.0 数据集，打包成约 3 GiB 的 TAR 分片；左右鱼眼 960x960、30 fps；含约 1 kHz IMU、48 kHz 立体声、任务区间与动作步区间标注；相机与 IMU 外参已提供，但相机与夹爪末端（TCP）的精确外参不在本批标定范围；CC BY-SA 4.0 要求演绎数据以相同许可证共享。",
+      "format_detail": {
+        "container": "LeRobot v3.0（Parquet + MP4，TAR 分片）",
+        "fields": [
+          "observation.state",
+          "action",
+          "task",
+          "timestamp",
+          "meta/calibration.json",
+          "meta/annotation.json",
+          "imu/*.csv",
+          "videos/（左右目鱼眼）"
+        ],
+        "fps": 30,
+        "resolution": "960x960",
+        "video_codec": "h264"
+      },
+      "tree": "iUMI/\n├─ episodes/\n│  ├─ part-00000.tar\n│  └─ ...\n├─ qc/\n│  └─ ...\n├─ assets/\n│  └─ ...\n├─ scripts/load_batch.py\n├─ episodes.csv\n├─ shards.csv\n├─ checksums.sha256\n├─ LICENSE\n├─ NOTICE\n└─ README.md",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "not_provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 2,
+        "views": [
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "toyblocks",
+      "name": "ToyBlocks Dataset",
+      "org": "Allen Institute for AI (Ai2)",
+      "source_url": "https://huggingface.co/datasets/allenai/toyblocks-data",
+      "download_url": "https://huggingface.co/datasets/allenai/toyblocks-data",
+      "platform": "single_arm",
+      "source_type": "sim",
+      "robots": [
+        "Franka Research 3",
+        "Robotiq 2F-85"
+      ],
+      "modalities": [
+        "rgb",
+        "depth",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "积木堆叠",
+        "抓取放置",
+        "积木翻转",
+        "积木旋转",
+        "长程规划"
+      ],
+      "scale": {
+        "episodes": 83496,
+        "hours": 1596.4
+      },
+      "data_format": "LeRobot",
+      "license": "ODC-BY 1.0",
+      "license_url": "https://opendatacommons.org/licenses/by/1-0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-17",
+      "last_updated": "2026-11-06",
+      "summary": "Ai2 仿真 Franka FR3 积木操作数据集，83,496 段演示、1,596 小时，含双视角 RGB 与深度。",
+      "notes": "纯仿真自动生成，分 Easy/Medium/Hard 三档，共 3,600 个 PDDL 问题；25 fps，前视与腕部相机 640x360，RGB 为 AV1、深度为 12-bit HEVC；状态 8 维、动作 9 维，另记录物体位姿、相机位姿与内参；全部为成功演示并附 27 帧完成段，共 481,207 个技能步骤标注。",
+      "format_detail": {
+        "container": "Parquet + MP4（深度为 HEVC）",
+        "fields": [
+          "observation.state",
+          "observation.state.ee_position",
+          "observation.state.object_pose.block_purple",
+          "observation.state.high_level_state",
+          "observation.images.camera:front_camera",
+          "observation.images.camera:gripper_camera",
+          "observation.depth.camera:front_camera",
+          "observation.depth.camera:gripper_camera",
+          "action.joint_target",
+          "action.ee_target",
+          "task_index"
+        ],
+        "fps": 25,
+        "resolution": "640x360",
+        "video_codec": "AV1 / HEVC（深度）"
+      },
+      "tree": "ToyBlocks/\n├─ Easy/\n│  ├─ Train/Easy_Train/\n│  │  ├─ data/chunk-000/file-000.parquet\n│  │  ├─ meta/info.json\n│  │  └─ videos/observation.images.camera:front_camera/chunk-000/file-000.mp4\n│  ├─ Val/Easy_Val_1k/\n│  │  └─ ...\n│  └─ Test/Easy_Test_1k/\n│     └─ ...\n├─ Medium/\n│  └─ ...\n├─ Hard/\n│  └─ ...\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "provided"
+      },
+      "sensors": {
+        "cameras": 2,
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "rw-rl",
+      "name": "RW-RL Dataset",
+      "org": "Boden Intelligence / 君普创新中心 / 上海交通大学 MINT Lab",
+      "source_url": "https://huggingface.co/datasets/MINT-SJTU/RW-RL-Dataset",
+      "download_url": "https://huggingface.co/datasets/MINT-SJTU/RW-RL-Dataset",
+      "platform": "multi",
+      "source_type": "real",
+      "robots": [
+        "Galaxea R1 Lite",
+        "G2A",
+        "SO-101",
+        "PiperX"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "真机强化学习",
+        "遥操作示教",
+        "插拔装配",
+        "衣物折叠",
+        "装箱整理",
+        "桌面清理"
+      ],
+      "scale": {
+        "episodes": 33830
+      },
+      "data_format": "LeRobot",
+      "license": "unknown",
+      "train_use": "unknown",
+      "commercial_use": "unknown",
+      "redistribution": "unknown",
+      "first_seen": "2026-11-17",
+      "last_updated": "2026-10-19",
+      "summary": "上交 MINT 等发布的真机交互数据集，33,830 段演示，覆盖四类机器人与多类家庭任务。",
+      "notes": "当前含 R1Lite、G2A、PiperX、SO101 四个子集；R1Lite 每段 4 路视频（1280x720 顶视与 640x360 腕视，15 fps），G2A 8 路（最高 1920x1536，30 fps），SO101 3 路；已公布的 499.2 小时仅覆盖 Project04 与 SO101，全量时长未给出；仓库未附许可证文件；另有 BodenAI 托管的 RW-RL-HIL 人类干预子集。仓库于 2026-06 首次发布，最新子集更新于 2026-10-19。",
+      "format_detail": {
+        "container": "LeRobot（Parquet + MP4）",
+        "fields": [
+          "observation.images.camera_top",
+          "observation.images.camera_top_right",
+          "observation.images.camera_wrist_left",
+          "observation.images.camera_wrist_right",
+          "observation.state.left_arm",
+          "observation.state.right_arm",
+          "observation.state.left_gripper",
+          "observation.state.right_gripper",
+          "observation.state.left_ee_pose",
+          "observation.state.right_ee_pose",
+          "action.left_arm",
+          "action.right_arm",
+          "action.left_gripper",
+          "action.right_gripper",
+          "timestamp",
+          "task_index"
+        ],
+        "resolution": "1280x720（R1Lite 顶视）/ 640x360（腕视）"
+      },
+      "tree": "RW-RL-Dataset/\n├─ r1lite_plug_charger_to_power_strip/\n│  ├─ data/chunk-000/file-000.parquet\n│  ├─ meta/info.json\n│  └─ videos/observation.images.camera_top/chunk-000/file-000.mp4\n├─ g2_auto_parts_sort/\n│  └─ ...\n├─ so101_fold_clothes_left_stack_right/\n│  └─ ...\n├─ bi_so101_insert_copper_screw/\n│  └─ ...\n├─ assets/\n│  └─ ...\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "mipo-go1",
+      "name": "MIPO (Unitree Go1) Multi-IMU Inertial Odometry Dataset",
+      "org": "Open-IO（SSIO 团队）",
+      "source_url": "https://huggingface.co/datasets/Open-IO/mipo-go1-odometry",
+      "download_url": "https://huggingface.co/datasets/Open-IO/mipo-go1-odometry",
+      "platform": "mobile",
+      "source_type": "real",
+      "robots": [
+        "Unitree Go1"
+      ],
+      "modalities": [
+        "joint_state"
+      ],
+      "task_types": [
+        "惯性里程计",
+        "四足步态",
+        "多 IMU 融合",
+        "室内外定位"
+      ],
+      "scale": {
+        "episodes": 84
+      },
+      "data_format": "HDF5",
+      "license": "AGPL-3.0",
+      "license_url": "https://www.gnu.org/licenses/agpl-3.0.html",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-17",
+      "last_updated": "2026-10-27",
+      "summary": "Unitree Go1 多 IMU 惯性里程计数据，79 段室内与 5 段室外记录，附足端力与位置参考。",
+      "notes": "由 Cerberus 2.0 的 ROS bag 转为 HDF5，每文件对应一袋数据；机身 IMU 约 400 Hz，4 个小腿 WT901 IMU 约 333 Hz，12 关节与 4 路足端力约 400 Hz，各话题保留原始时间戳、未做同步；室内有 OptiTrack 真值，室外仅有操作员手持手机 GPS+IMU 的粗参考；提供 kalibr 时间偏移与 IMU 外参，但无相机；AGPL-3.0 许可证源自原始数据仓库。",
+      "format_detail": {
+        "container": "HDF5",
+        "fields": [
+          "unitree_hardware/imu/linear_acceleration",
+          "unitree_hardware/imu/angular_velocity",
+          "unitree_hardware/imu/orientation",
+          "unitree_hardware/joint_foot/position",
+          "unitree_hardware/joint_foot/velocity",
+          "unitree_hardware/joint_foot/effort",
+          "WT901_47_Data/*",
+          "natnet_ros/Shuo_Go1/pose（仅室内）"
+        ]
+      },
+      "tree": "mipo-go1-odometry/\n├─ indoor/\n│  ├─ 20230615_risqh_gait_analysis/20230615-risqh-flyingtrot-04-04-square.h5\n│  ├─ 20230620_risqh_robustness_test/\n│  │  └─ ...\n│  ├─ 20230625_gait/\n│  │  └─ ...\n│  ├─ 230622_robustness/\n│  │  └─ ...\n│  ├─ mipo_time_offsets.json\n│  ├─ mipo_joint_stats.json\n│  └─ README.md\n├─ outdoor/\n│  ├─ CMU garage/230828-cmu-trot-06-040-east-campus-garage-bad-gps.h5\n│  ├─ pgo_densified_ref/CMU garage/...npz\n│  ├─ ahrs_gps_yaw_offsets.json\n│  └─ README.md\n├─ splits/\n│  ├─ test.txt\n│  └─ train.txt\n├─ DATA_README.md\n└─ README.md",
+      "calibration": {
+        "intrinsics": "not_provided",
+        "extrinsics": "not_provided",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
     {
       "id": "egoforce",
       "name": "EgoForce",

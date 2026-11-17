@@ -1,9 +1,37 @@
 {
   "meta": {
-    "updated_at": "2026-11-16",
-    "entries": 4
+    "updated_at": "2026-11-17",
+    "entries": 5
   },
   "entries": [
+    {
+      "date": "2026-11-17",
+      "added": [
+        {
+          "id": "iumi",
+          "name": "Crobotia Household Bimanual Manipulation Dataset (iUMI)",
+          "summary": "Crobotia 发布的真实家庭双手示教数据，104,634 段衣物展开与折叠，共 1,306.8 小时。"
+        },
+        {
+          "id": "toyblocks",
+          "name": "ToyBlocks Dataset",
+          "summary": "Ai2 仿真 Franka FR3 积木操作数据集，83,496 段演示、1,596 小时，含双视角 RGB 与深度。"
+        },
+        {
+          "id": "rw-rl",
+          "name": "RW-RL Dataset",
+          "summary": "上交 MINT 等发布的真机交互数据集，33,830 段演示，覆盖四类机器人与多类家庭任务。"
+        },
+        {
+          "id": "mipo-go1",
+          "name": "MIPO (Unitree Go1) Multi-IMU Inertial Odometry Dataset",
+          "summary": "Unitree Go1 多 IMU 惯性里程计数据，79 段室内与 5 段室外记录，附足端力与位置参考。"
+        }
+      ],
+      "updated": [],
+      "total": 26,
+      "note": "跳过 Kiro Robotics 等商业完整集的免费样本（57 段/39.5 分钟以下）；we-dream/g1-post-training-dataset 为门控数据且 README 需授权，无法核验文件树与标定；wayrise/RoboCOIN 与 OpenWAM/InternData-A1 是既有数据的再打包，且未给出许可证；truetracedata/factory-stereo-egocentric 门控且文件树不可读；Supermimic、PhysTwin、galafinger、arete、xieshanrui 等仅 12 分钟至 100 条轨迹，规模过小；Nexdata-kr 的两个万小时仓库仅含宣传视频；embodied-ai-research/real2sim-lab-room 为场景资产，无轨迹。"
+    },
     {
       "date": "2026-11-16",
       "added": [
