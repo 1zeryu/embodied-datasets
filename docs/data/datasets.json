@@ -1,10 +1,346 @@
 {
   "meta": {
     "schema_version": 1,
-    "updated_at": "2026-11-17",
-    "count": 26
+    "updated_at": "2026-11-18",
+    "count": 31
   },
   "datasets": [
+    {
+      "id": "xphi-egocentric-40h",
+      "name": "XP Robotics Egocentric Handheld Video (40h)",
+      "org": "XP Robotics",
+      "source_url": "https://huggingface.co/datasets/xphirobotics/xphi-egocentric-40h",
+      "download_url": "https://huggingface.co/datasets/xphirobotics/xphi-egocentric-40h",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "人类日常操作",
+        "手持采集"
+      ],
+      "scale": {
+        "episodes": 539,
+        "hours": 40
+      },
+      "data_format": "MCAP",
+      "license": "Apache License 2.0",
+      "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-18",
+      "last_updated": "2026-11-02",
+      "summary": "XP Robotics 发布的 539 段第一视角手持视频，共 40 小时，覆盖多种日常任务。",
+      "notes": "需在 Hugging Face 接受访问条件后下载；单目 1920x1080 30fps H.265，MCAP 封装，含 camera-info 内参与 session-metadata；只有视频与元数据，不含机器人动作或外参。",
+      "format_detail": {
+        "container": "MCAP",
+        "fields": [
+          "/top-left-camera/image-raw",
+          "/top-left-camera/camera-info",
+          "session-metadata"
+        ],
+        "fps": 30,
+        "resolution": "1920x1080",
+        "video_codec": "hevc"
+      },
+      "tree": "xphi-egocentric-40h/\n├─ xphi_ego_001.mcap\n├─ xphi_ego_002.mcap\n├─ ...\n├─ metadata.csv\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "xphi-industrial-egocentric",
+      "name": "XP Robotics Industrial Egocentric",
+      "org": "XP Robotics",
+      "source_url": "https://huggingface.co/datasets/xphirobotics/xphi-industrial-egocentric",
+      "download_url": "https://huggingface.co/datasets/xphirobotics/xphi-industrial-egocentric",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "audio"
+      ],
+      "task_types": [
+        "工业操作",
+        "第一视角视频",
+        "技能采集"
+      ],
+      "scale": {
+        "episodes": 4003,
+        "hours": 199.6
+      },
+      "data_format": "MP4 + AAC + JSONL",
+      "license": "unknown",
+      "train_use": "unknown",
+      "commercial_use": "unknown",
+      "redistribution": "unknown",
+      "first_seen": "2026-11-18",
+      "last_updated": "2026-11-02",
+      "summary": "XP Robotics 工业与手工艺场景第一视角数据，4,003 段、199.6 小时，含 IMU 与音频。",
+      "notes": "按 29 个设备目录存放，每段含 MP4、AAC 音轨、IMU JSONL 和 metadata.json；HEVC 1920x1080 30fps；README 未声明许可证，也未提供相机标定文件。",
+      "format_detail": {
+        "container": "MP4 + AAC + JSONL",
+        "fields": [
+          "<device>-<NNNN>.mp4",
+          "<device>-<NNNN>.aac",
+          "<device>-<NNNN>.txt（IMU）",
+          "<device>-<NNNN>.metadata.json"
+        ],
+        "fps": 30,
+        "resolution": "1920x1080",
+        "video_codec": "hevc"
+      },
+      "tree": "xphi-industrial-egocentric/\n├─ a01524-H/\n│  ├─ a01524-H-0147.mp4\n│  ├─ a01524-H-0147.aac\n│  ├─ a01524-H-0147.txt\n│  ├─ a01524-H-0147.metadata.json\n│  └─ ...\n├─ a06546-H/\n│  └─ ...\n├─ ...（共 29 个设备目录）\n├─ metadata.csv\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "dexpoint-bimanual-egocentric-round11",
+      "name": "Bimanual Human Demonstrations round11",
+      "org": "dexpoint",
+      "source_url": "https://huggingface.co/datasets/dexpoint/bimanual-egocentric-round11-800",
+      "download_url": "https://huggingface.co/datasets/dexpoint/bimanual-egocentric-round11-800",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "depth",
+        "point_cloud",
+        "joint_state",
+        "action"
+      ],
+      "task_types": [
+        "双臂人类示范",
+        "开瓶",
+        "顺序抓放",
+        "双臂插入",
+        "抽屉操作"
+      ],
+      "scale": {
+        "episodes": 800
+      },
+      "data_format": "HDF5 + LeRobot v3.0",
+      "license": "unknown",
+      "train_use": "unknown",
+      "commercial_use": "unknown",
+      "redistribution": "unknown",
+      "first_seen": "2026-11-18",
+      "last_updated": "2026-11-18",
+      "summary": "800 段双臂第一视角人类示范，含深度、点云、手部状态与标定，覆盖四类精细任务。",
+      "notes": "bottle、drawer、dual_insertion、pick_place 四个任务各 200 段，仅保留物理成功样本；RGB 320x240，深度 60x80，10 Hz 观测、30 Hz 动作子步；附仿真回放记录，不含机器人动作标签。",
+      "format_detail": {
+        "container": "HDF5 + LeRobot v3.0",
+        "fields": [
+          "observation.images.egocentric",
+          "observation.depth.egocentric_m",
+          "observation.depth.valid",
+          "observation.point_cloud.xyz",
+          "observation.point_cloud.rgb",
+          "observation.state",
+          "action",
+          "action.substeps"
+        ],
+        "fps": 10,
+        "resolution": "320x240"
+      },
+      "tree": "bimanual-egocentric-round11-800/\n├─ tasks/\n│  ├─ bottle/\n│  │  ├─ human/\n│  │  ├─ human_lerobot/\n│  │  ├─ human_sources/\n│  │  ├─ reachability/\n│  │  ├─ corpus.json\n│  │  └─ split.json\n│  ├─ drawer/\n│  ├─ dual_insertion/\n│  └─ pick_place/\n├─ previews/\n├─ checksums.jsonl\n├─ COMPLETE.json\n├─ collection.json\n├─ load_dataset.py\n├─ README.md\n└─ .gitattributes",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "unknown",
+        "depth": "provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "pyrobotics-four-suite-quantitative",
+      "name": "Four-Suite Quantitative Manipulation",
+      "org": "pyrobotics",
+      "source_url": "https://huggingface.co/datasets/pyrobotics/four-suite-quantitative-manipulation",
+      "download_url": "https://huggingface.co/datasets/pyrobotics/four-suite-quantitative-manipulation",
+      "platform": "single_arm",
+      "source_type": "sim",
+      "robots": [
+        "Franka Emika Panda"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "定量操作",
+        "抓放",
+        "倒液",
+        "装配",
+        "力控"
+      ],
+      "scale": {
+        "episodes": 3200
+      },
+      "data_format": "HDF5",
+      "license": "unknown",
+      "train_use": "unknown",
+      "commercial_use": "unknown",
+      "redistribution": "unknown",
+      "first_seen": "2026-11-18",
+      "last_updated": "2026-11-17",
+      "summary": "3,200 段 MuJoCo Franka Panda 仿真示范，覆盖厨房、车间、实验室与工厂四类场景。",
+      "notes": "16 个任务各 200 段；agent 与 wrist 两路 256x256 RGB，含 EEF 状态、腕部力/力矩、相对位姿动作、有效掩码和数值目标；metadata/cameras.json 给出每个场景的相机内外参；未声明许可证。",
+      "format_detail": {
+        "container": "HDF5",
+        "fields": [
+          "images/image",
+          "images/wrist_image",
+          "state",
+          "actions",
+          "timestamps",
+          "wrench",
+          "goal_normalized",
+          "valid_mask"
+        ],
+        "resolution": "256x256"
+      },
+      "tree": "four-suite-quantitative-manipulation/\n├─ episodes/\n│  ├─ factory_close_drawer/\n│  │  ├─ episode_0000.hdf5\n│  │  └─ ...\n│  ├─ kitchen_pouring/\n│  └─ ...（共 16 个任务目录）\n├─ metadata/\n│  ├─ normalization/\n│  ├─ cameras.json\n│  ├─ schema.json\n│  └─ validation.json\n├─ manifest.json\n├─ checksums.sha256\n├─ UPLOAD_COMPLETE.json\n├─ README.md\n└─ .gitattributes",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "not_provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 2,
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "nut-3-tactile",
+      "name": "nut_3_tactile",
+      "org": "chrisw-shadow",
+      "source_url": "https://huggingface.co/datasets/chrisw-shadow/nut_3_tactile",
+      "download_url": "https://huggingface.co/datasets/chrisw-shadow/nut_3_tactile",
+      "platform": "dual_arm",
+      "source_type": "real",
+      "robots": [
+        "UR10e（Dexee 夹爪）"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "tactile"
+      ],
+      "task_types": [
+        "双臂操作",
+        "触觉操作"
+      ],
+      "scale": {
+        "episodes": 151
+      },
+      "data_format": "LeRobot v3.0",
+      "license": "Apache License 2.0",
+      "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-18",
+      "last_updated": "2026-11-13",
+      "summary": "UR10e 双臂触觉操作数据，151 条轨迹、15.95 万帧，含三路视频与 153 维触觉状态。",
+      "notes": "README 未说明任务与采集细节；50 Hz、640x480 AV1；state 为 153 维，含 dx_F* 触觉特征；无深度、标定文件与末端位姿字段；许可证来自 Hub 标签，仓库未附 LICENSE 文件。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.state",
+          "observation.images.fixed",
+          "observation.images.wrist_1",
+          "observation.images.wrist_2",
+          "action"
+        ],
+        "fps": 50,
+        "resolution": "640x480",
+        "video_codec": "av1"
+      },
+      "tree": "nut_3_tactile/\n├─ data/\n│  └─ chunk-000/\n│     └─ file-000.parquet\n├─ meta/\n│  ├─ episodes/\n│  │  └─ chunk-000/\n│  ├─ info.json\n│  └─ ...\n├─ videos/\n│  ├─ observation.images.fixed/\n│  ├─ observation.images.wrist_1/\n│  └─ observation.images.wrist_2/\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "unknown"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 3,
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "provided"
+      }
+    },
     {
       "id": "iumi",
       "name": "Crobotia Household Bimanual Manipulation Dataset (iUMI)",

@@ -1,9 +1,42 @@
 {
   "meta": {
-    "updated_at": "2026-11-17",
-    "entries": 5
+    "updated_at": "2026-11-18",
+    "entries": 6
   },
   "entries": [
+    {
+      "date": "2026-11-18",
+      "added": [
+        {
+          "id": "xphi-egocentric-40h",
+          "name": "XP Robotics Egocentric Handheld Video (40h)",
+          "summary": "XP Robotics 发布的 539 段第一视角手持视频，共 40 小时，覆盖多种日常任务。"
+        },
+        {
+          "id": "xphi-industrial-egocentric",
+          "name": "XP Robotics Industrial Egocentric",
+          "summary": "XP Robotics 工业与手工艺场景第一视角数据，4,003 段、199.6 小时，含 IMU 与音频。"
+        },
+        {
+          "id": "dexpoint-bimanual-egocentric-round11",
+          "name": "Bimanual Human Demonstrations round11",
+          "summary": "800 段双臂第一视角人类示范，含深度、点云、手部状态与标定，覆盖四类精细任务。"
+        },
+        {
+          "id": "pyrobotics-four-suite-quantitative",
+          "name": "Four-Suite Quantitative Manipulation",
+          "summary": "3,200 段 MuJoCo Franka Panda 仿真示范，覆盖厨房、车间、实验室与工厂四类场景。"
+        },
+        {
+          "id": "nut-3-tactile",
+          "name": "nut_3_tactile",
+          "summary": "UR10e 双臂触觉操作数据，151 条轨迹、15.95 万帧，含三路视频与 153 维触觉状态。"
+        }
+      ],
+      "updated": [],
+      "total": 31,
+      "note": "Unitree 官方 11-12 至 11-16 新增约 36 个 G1 Dex1 单任务仓库，属 UnifoLM_G1_Dex1_Dataset 108 项集合的分任务切片，未逐一收录；WiserZhou/HumanoidMotion 门控且 README 不可读；MedSalim/labbit 为合成研究试点；zhezhang92/dex_grasping 为抓取位姿而非轨迹；Owlsnet/BrainCo 仅 10 条样例；Nexdata-kr 2 万小时仓库仅含宣传材料；shimokawatoko/parc-t3 无 README 与元数据；xieshanrui/yam、galafinger、xinxinZhang23e 等规模过小。"
+    },
     {
       "date": "2026-11-17",
       "added": [
