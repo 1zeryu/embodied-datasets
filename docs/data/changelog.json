@@ -1,9 +1,32 @@
 {
   "meta": {
-    "updated_at": "2026-11-18",
-    "entries": 6
+    "updated_at": "2026-11-19",
+    "entries": 7
   },
   "entries": [
+    {
+      "date": "2026-11-19",
+      "added": [
+        {
+          "id": "keti-humanoid-hri-safety",
+          "name": "KETI Humanoid HRI Safety Dataset",
+          "summary": "KETI 在 Isaac Sim 生成的 Unitree H1 人机安全数据，297 段轨迹含 7 路相机与碰撞标注。"
+        },
+        {
+          "id": "seesharp-vla-real-robot-demos",
+          "name": "SeeSharp-VLA Real Robot Demonstrations",
+          "summary": "SeeSharp-VLA 真机示教集，400 段轨迹覆盖 8 项取放与装配任务，单臂与双臂混采。"
+        },
+        {
+          "id": "xphi-stereo-egocentric",
+          "name": "XP Robotics Stereo Egocentric with Hand Tracking",
+          "summary": "XP Robotics 头戴双目第一视角数据，25 个会话 7.6 小时，含手部跟踪、IMU 与内参。"
+        }
+      ],
+      "updated": [],
+      "total": 34,
+      "note": "跳过 hjx1995/g1_loco_manipulation（6 场景各 10 段、约 1 小时）；cooper-manufacturing-robotics/rishima_merged（76 段、约 16.7 分钟）；TuanDepZai/sim-vla-maniskill-demos（仅 PegInsertionSide 500 段已确认，112x112 分辨率）；At1uri/robotic-manipulation-trajectory-benchmarks（合成 10 步轨迹基准，无真实观测）；rigby-robotics/rigby-kinematic（LLM 生成运动学片段，无传感器与任务执行数据）；embodied-ai-research/ISTA-9Tasks 系列（LIBERO 指令切换评测数据）；InSAI-Lab/VLAN（仅评测切分，采集方式未明确）；DJ-Research/RobotShifts-backup（训练检查点备份）；Nexdata-kr 万小时仓库仍仅含宣传材料。"
+    },
     {
       "date": "2026-11-18",
       "added": [

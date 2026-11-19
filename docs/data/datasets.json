@@ -1,10 +1,222 @@
 {
   "meta": {
     "schema_version": 1,
-    "updated_at": "2026-11-18",
-    "count": 31
+    "updated_at": "2026-11-19",
+    "count": 34
   },
   "datasets": [
+    {
+      "id": "keti-humanoid-hri-safety",
+      "name": "KETI Humanoid HRI Safety Dataset",
+      "org": "韩国电子技术研究院（KETI）",
+      "source_url": "https://huggingface.co/datasets/KETI-IRRC/keti-humanoid-hri-safety",
+      "download_url": "https://huggingface.co/datasets/KETI-IRRC/keti-humanoid-hri-safety",
+      "platform": "humanoid",
+      "source_type": "sim",
+      "robots": [
+        "Unitree H1"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "人机安全评估",
+        "移动导航",
+        "碰撞检测"
+      ],
+      "scale": {
+        "episodes": 297,
+        "hours": 1.4
+      },
+      "data_format": "LeRobot",
+      "license": "CC BY 4.0",
+      "license_url": "https://huggingface.co/datasets/KETI-IRRC/keti-humanoid-hri-safety",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-19",
+      "last_updated": "2026-11-18",
+      "summary": "KETI 在 Isaac Sim 生成的 Unitree H1 人机安全数据，297 段轨迹含 7 路相机与碰撞标注。",
+      "notes": "仿真数据，非真机采集；50 fps、247,181 帧，约 1.4 小时；7 路 640x480 AV1 视频，覆盖头部、双腕、后方、第三人称与高处监控；meta/cameras.json 提供内参，逐步记录各相机位姿，未提供深度与分割图；safety.* 扩展按 ISO/TS 15066 给出接触力、碰撞与成功/失败标签；部分文档为韩文。",
+      "format_detail": {
+        "container": "Parquet + AV1 视频",
+        "fields": [
+          "observation.state.joint_pos",
+          "observation.root_pose",
+          "observation.imu",
+          "observation.contact.force",
+          "observation.camera_pose.head_rgb",
+          "observation.command_velocity",
+          "action",
+          "task",
+          "safety.event"
+        ],
+        "fps": 50,
+        "resolution": "640x480",
+        "video_codec": "av1"
+      },
+      "tree": "keti-humanoid-hri-safety/\n├─ data/\n│  └─ chunk-000/\n│     ├─ file-000.parquet\n│     └─ ...\n├─ meta/\n│  ├─ episodes/\n│  ├─ joint_map/\n│  ├─ info.json\n│  ├─ tasks.parquet\n│  ├─ stats.json\n│  ├─ cameras.json\n│  ├─ scenarios.json\n│  ├─ rules.json\n│  ├─ safety_schema.json\n│  └─ assets.json\n├─ videos/\n│  ├─ observation.images.head_rgb/\n│  ├─ observation.images.head_down_rgb/\n│  ├─ observation.images.left_wrist_rgb/\n│  ├─ observation.images.right_wrist_rgb/\n│  ├─ observation.images.rear_rgb/\n│  ├─ observation.images.third_person_rgb/\n│  └─ observation.images.cctv_rgb/\n├─ assets/\n│  ├─ unitree_h1/\n│  └─ ...\n├─ docs/\n│  └─ assets/\n├─ LICENSE\n└─ README.md",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "provided"
+      },
+      "sensors": {
+        "cameras": 7,
+        "views": [
+          "third_person",
+          "wrist",
+          "ego",
+          "overhead"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "seesharp-vla-real-robot-demos",
+      "name": "SeeSharp-VLA Real Robot Demonstrations",
+      "org": "SeeSharp-VLA（coldfireFlord）",
+      "source_url": "https://huggingface.co/datasets/coldfireFlord/seesharp-vla-real-robot-datasets",
+      "download_url": "https://huggingface.co/datasets/coldfireFlord/seesharp-vla-real-robot-datasets",
+      "platform": "multi",
+      "source_type": "real",
+      "robots": [
+        "PiperX"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "精细操作",
+        "物体放置",
+        "双臂协同"
+      ],
+      "scale": {
+        "episodes": 400,
+        "hours": 2.5
+      },
+      "data_format": "LeRobot",
+      "license": "unknown",
+      "train_use": "unknown",
+      "commercial_use": "unknown",
+      "redistribution": "unknown",
+      "first_seen": "2026-11-19",
+      "last_updated": "2026-11-18",
+      "summary": "SeeSharp-VLA 真机示教集，400 段轨迹覆盖 8 项取放与装配任务，单臂与双臂混采。",
+      "notes": "8 个任务目录各 50 段，共 265,756 帧、30 fps；7 个单臂任务用 2 路相机，双臂任务用 3 路；meta 中 robot_type 为 piperx_follower，README 未给具体型号与许可证；README 明确说明段数只表示覆盖量，不代表任务成功；无标定文件与深度。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "action",
+          "observation.state",
+          "observation.images.environment_1",
+          "observation.images.wrist",
+          "task"
+        ],
+        "fps": 30
+      },
+      "tree": "seesharp-vla-real-robot-datasets/\n├─ banana_to_red_basket/\n│  ├─ data/chunk-000/\n│  ├─ meta/\n│  │  ├─ episodes/\n│  │  ├─ info.json\n│  │  ├─ stats.json\n│  │  └─ tasks.parquet\n│  ├─ videos/\n│  │  ├─ observation.images.environment_1/\n│  │  └─ observation.images.wrist/\n│  └─ release.json\n├─ bimanual_kiwi_drawer/\n│  └─ ...\n├─ bottle_label_matching/\n│  └─ ...\n├─ coin_piggybank/\n│  └─ ...\n├─ key_o/\n│  └─ ...\n├─ keyboard_hello/\n│  └─ ...\n├─ kiwi/\n│  └─ ...\n├─ nut_on_upright_bolt/\n│  └─ ...\n├─ task_index.json\n└─ README.md",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "unknown"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 2,
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "xphi-stereo-egocentric",
+      "name": "XP Robotics Stereo Egocentric with Hand Tracking",
+      "org": "XP Robotics",
+      "source_url": "https://huggingface.co/datasets/xphirobotics/xphi-stereo-egocentric",
+      "download_url": "https://huggingface.co/datasets/xphirobotics/xphi-stereo-egocentric",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "language"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "手部跟踪",
+        "人类日常操作"
+      ],
+      "scale": {
+        "episodes": 25,
+        "hours": 7.6
+      },
+      "data_format": "MP4 + JSON",
+      "license": "Apache-2.0",
+      "license_url": "https://huggingface.co/datasets/xphirobotics/xphi-stereo-egocentric",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-19",
+      "last_updated": "2026-11-02",
+      "summary": "XP Robotics 头戴双目第一视角数据，25 个会话 7.6 小时，含手部跟踪、IMU 与内参。",
+      "notes": "人类第一视角视频，无机器人执行动作；双路 H.264 1920x1080 30 fps；hands.json 为逐帧手部关键点与抓握状态，joint_state 指人手而非机器人关节；motion_data.json 为 200 Hz IMU；camera_intrinsics.json 提供焦距、主点与畸变，无外参、深度与动作序列；门控自动审批；session_001 至 session_004 缺 metadata.json。",
+      "format_detail": {
+        "container": "MP4 + JSON",
+        "fields": [
+          "left_video.mp4",
+          "right_video.mp4",
+          "hands.json",
+          "motion_data.json",
+          "camera_intrinsics.json",
+          "video_timestamps.json"
+        ],
+        "fps": 30,
+        "resolution": "1920x1080",
+        "video_codec": "h264"
+      },
+      "tree": "xphi-stereo-egocentric/\n├─ session_001/\n│  ├─ left_video.mp4\n│  ├─ right_video.mp4\n│  ├─ hands.json\n│  ├─ hands_metadata.json\n│  ├─ motion_data.json\n│  ├─ camera_intrinsics.json\n│  └─ video_timestamps.json\n├─ session_002/\n│  └─ ...\n├─ session_003/\n│  └─ ...\n├─ session_025/\n│  └─ ...\n├─ metadata.csv\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 2,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
     {
       "id": "xphi-egocentric-40h",
       "name": "XP Robotics Egocentric Handheld Video (40h)",
