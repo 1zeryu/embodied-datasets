@@ -1,10 +1,457 @@
 {
   "meta": {
     "schema_version": 1,
-    "updated_at": "2026-11-19",
-    "count": 34
+    "updated_at": "2026-11-20",
+    "count": 40
   },
   "datasets": [
+    {
+      "id": "robocap-10k",
+      "name": "RoboCap-10k",
+      "org": "Grounded Superintelligence",
+      "source_url": "https://huggingface.co/datasets/groundedsi/RoboCap-10k",
+      "download_url": "https://huggingface.co/datasets/groundedsi/RoboCap-10k",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "language"
+      ],
+      "task_types": [
+        "第一视角操作",
+        "双手操作",
+        "技能学习",
+        "语言标注"
+      ],
+      "scale": {
+        "hours": 10000
+      },
+      "data_format": "LeRobot（分片）",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-20",
+      "last_updated": "2026-11-19",
+      "summary": "RoboCap 头戴六目设备采集的 1 万小时第一视角操作数据，含头手 3D 位姿与语言标注。",
+      "notes": "六相机头戴设备 RoboCap 在真实工作场景采集，人类操作而非机器人执行；共约 1 万小时，按 shard 分片存放，每片为 LeRobot 结构，视频键为左右眼、前、侧共 6 路；提供米制头部位姿与手部位姿以及两级语言标注；对应论文 arXiv:2610.07217；门控需人工审批，文件级细节未公开。",
+      "format_detail": {
+        "container": "Parquet + MP4（分片）",
+        "fields": [
+          "observation.images.left_eye",
+          "observation.images.left_front",
+          "observation.images.left_side",
+          "observation.images.right_eye",
+          "observation.images.right_front",
+          "observation.images.right_side",
+          "meta/episodes"
+        ]
+      },
+      "tree": "RoboCap-10k/\n├─ shards/\n│  ├─ shard-0000/\n│  │  ├─ data/chunk-000/\n│  │  ├─ meta/\n│  │  └─ videos/（left_eye、left_front、left_side、right_eye、right_front、right_side）\n│  ├─ shard-0001/\n│  └─ ...\n└─ .gitattributes",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "unknown",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 6,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "unknown",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "umi-towel-folding-annotated",
+      "name": "UMI Towel Folding Subtask-Annotated Dataset",
+      "org": "nishankgite",
+      "source_url": "https://huggingface.co/datasets/nishankgite/umi-towel-folding-annotated",
+      "download_url": "https://huggingface.co/datasets/nishankgite/umi-towel-folding-annotated",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "布料折叠",
+        "子任务标注",
+        "双手操作"
+      ],
+      "scale": {
+        "episodes": 303,
+        "hours": 2.0
+      },
+      "data_format": "LeRobot v2.1",
+      "license": "other",
+      "train_use": "unknown",
+      "commercial_use": "unknown",
+      "redistribution": "unknown",
+      "first_seen": "2026-11-20",
+      "last_updated": "2026-11-20",
+      "summary": "UMI 双手手持夹爪折毛巾示教，303 段轨迹带 12 类子任务分段标注。",
+      "notes": "人手持 UMI 夹爪采集，非机器人执行；15 Hz，285 段训练加 18 段验证，约 2.0 小时；双腕 448x252 H.264，状态与动作为双手各 3 维位置、4 维四元数与夹爪开度；subtask_labels.json 给出 12 类步骤段；另含 pi0.5 训练格式副本，勿重复计数；卡片仅声明 other 许可证。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.images.left_wrist",
+          "observation.images.right_wrist",
+          "observation.state",
+          "action",
+          "src_index",
+          "task_index"
+        ],
+        "fps": 15,
+        "resolution": "448x252",
+        "video_codec": "h264"
+      },
+      "tree": "umi-towel-folding-annotated/\n├─ lerobot/umi_towel_v1/\n│  ├─ train/\n│  │  ├─ data/chunk-000/\n│  │  ├─ meta/\n│  │  └─ videos/\n│  └─ val/\n│     └─ ...\n├─ lerobot_pi05/\n│  ├─ umi_towel_train/\n│  └─ umi_towel_val/\n├─ annotations/\n│  ├─ subtask_labels.json\n│  ├─ episode_boundaries.json\n│  └─ ANNOTATE.md\n├─ eval/\n├─ code/\n├─ split.json\n├─ README.md\n└─ .gitattributes",
+      "calibration": {
+        "intrinsics": "not_provided",
+        "extrinsics": "not_provided",
+        "depth": "not_provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 2,
+        "views": [
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "rss-dual-arm-tactile",
+      "name": "RSS Dual-Arm Tactile Manipulation",
+      "org": "SingleBicycle",
+      "source_url": "https://huggingface.co/datasets/SingleBicycle/rss-dual-arm-tactile",
+      "download_url": "https://huggingface.co/datasets/SingleBicycle/rss-dual-arm-tactile",
+      "platform": "dual_arm",
+      "source_type": "real",
+      "robots": [
+        "UFACTORY xArm6（双臂）",
+        "BrainCo Revo2（灵巧手）"
+      ],
+      "modalities": [
+        "rgb",
+        "depth",
+        "joint_state",
+        "action",
+        "language",
+        "tactile"
+      ],
+      "task_types": [
+        "双臂倒液",
+        "USB 插拔",
+        "触觉操作",
+        "策略评测"
+      ],
+      "scale": {
+        "size_tb": 0.5
+      },
+      "data_format": "HDF5 + JSONL + MP4/MKV",
+      "license": "unknown",
+      "train_use": "unknown",
+      "commercial_use": "unknown",
+      "redistribution": "unknown",
+      "first_seen": "2026-11-20",
+      "last_updated": "2026-11-19",
+      "summary": "xArm6 双臂加 Revo2 灵巧手的真机触觉数据，覆盖倒液与 USB 插拔。",
+      "notes": "两台 UFACTORY xArm6 各配 BrainCo Revo2 手与 Tujian 触觉手套，含静态头部相机与双腕相机；每段提供 rgb_head.mp4、depth_head.mkv、腕部视频、30 Hz HDF5、IMU、手套标定与 kalibr 参数；整库约 470 GB，既有成功遥操作与失败样本，也有策略 rollout；未声明许可证；门控自动审批。",
+      "format_detail": {
+        "container": "HDF5 + JSONL + MP4/MKV",
+        "fields": [
+          "rgb_head.mp4",
+          "depth_head.mkv",
+          "wrist_left.mp4",
+          "wrist_right.mp4",
+          "episode_30hz.h5",
+          "robot/left/arm.jsonl",
+          "robot/left/hand.jsonl",
+          "robot/right/arm.jsonl",
+          "robot/right/hand.jsonl",
+          "imu.txt",
+          "kalibr_parameters.yaml",
+          "head_param.json",
+          "task_info.json",
+          "config_snapshot/dual_arm_poses.json"
+        ],
+        "fps": 30,
+        "video_codec": "h264（RGB）"
+      },
+      "tree": "rss-dual-arm-tactile/\n├─ task4_dual_arm_tube_pour_20261005/\n│  └─ <episode_id>/\n│     ├─ robot/\n│     ├─ config_snapshot/\n│     ├─ rgb_head.mp4\n│     ├─ depth_head.mkv\n│     ├─ wrist_left.mp4\n│     ├─ wrist_right.mp4\n│     ├─ episode_30hz.h5\n│     └─ ...\n├─ task4_dual_arm_tube_pour_20261022/\n├─ task4_dual_arm_tube_pour_20261022_failures/\n├─ task4_dual_arm_tube_pour_fail_cases_20261005/\n├─ task4_usb_plug_dual_20261108/\n├─ task4_usb_plug_dual_20261108_failures/\n├─ task4_usb_plug_dual_20261110/\n├─ task4_dp_rl_rollouts_20261103/\n├─ task4_pi05_rl_rollouts_20261030/\n├─ task_usb_plug_dp_base_rollouts_20261115/\n├─ task_usb_plug_dp_e600_rollouts_20261117/\n├─ task_usb_plug_pi05_fix_rollouts_20261118/\n├─ task_case_videos_20261115/\n├─ rollout_code_20261026/\n├─ tujian_glove_code_20261102/\n└─ ...",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "provided",
+        "eef_pose": "unknown"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "provided"
+      },
+      "sensors": {
+        "cameras": 3,
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "provided"
+      }
+    },
+    {
+      "id": "humanoidtoolbench-teleop",
+      "name": "ToolBook: HumanoidToolBench Demonstrations",
+      "org": "首尔大学 SNU-PI",
+      "source_url": "https://huggingface.co/datasets/snupilab/humanoidtoolbench-teleop",
+      "download_url": "https://huggingface.co/datasets/snupilab/humanoidtoolbench-teleop",
+      "platform": "humanoid",
+      "source_type": "sim",
+      "robots": [
+        "Unitree G1"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "工具选择",
+        "工具使用",
+        "移动操作",
+        "长时程操作"
+      ],
+      "scale": {
+        "episodes": 2072,
+        "hours": 6.7
+      },
+      "data_format": "LeRobot v2.1",
+      "license": "CC BY-NC 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-20",
+      "last_updated": "2026-11-19",
+      "summary": "Unitree G1 在 MuJoCo 中的工具使用遥操作演示，2,072 段轨迹。",
+      "notes": "Quest 手部追踪经全身控制器遥操作 G1 仿真本体，50 Hz；每个场景分 L0/L1/L2 与 S/R 两种布局，另含 Isaac Sim 重渲染的 169 段副本，勿与原始轨迹重复计数；状态 43 维、末端状态 14 维，ego 与双腕相机均为 640x360；next.success/failure 与工具选择指标齐全；卡片未给出相机内参和外参。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.images.ego_view",
+          "observation.images.wrist_left",
+          "observation.images.wrist_right",
+          "observation.state",
+          "observation.eef_state",
+          "action",
+          "next.success",
+          "next.failure",
+          "task_index"
+        ],
+        "fps": 50,
+        "resolution": "640x360"
+      },
+      "tree": "humanoidtoolbench-teleop/\n├─ raw/\n│  ├─ ohchul/G1BallMove-L2-S-v0/\n│  │  └─ level-0/\n│  │     ├─ data/chunk-000/\n│  │     ├─ videos/chunk-000/\n│  │     └─ meta/\n│  ├─ chaeyun/\n│  └─ ...（共 8 位操作者）\n├─ rendered/isaac/\n├─ rendered_images/\n├─ trimmed/\n├─ hardware/\n├─ viewer/\n├─ README.md\n└─ .gitattributes",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "provided"
+      },
+      "sensors": {
+        "cameras": 3,
+        "views": [
+          "ego",
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "evo-dexbench",
+      "name": "Evo-DexBench",
+      "org": "上海交通大学 MINT 实验室",
+      "source_url": "https://huggingface.co/datasets/MINT-SJTU/Evo-DexBench-dataset",
+      "download_url": "https://huggingface.co/datasets/MINT-SJTU/Evo-DexBench-dataset",
+      "platform": "multi",
+      "source_type": "sim",
+      "robots": [
+        "Franka Emika Panda",
+        "Shadow Hand（仿真）"
+      ],
+      "modalities": [
+        "rgb",
+        "depth",
+        "joint_state",
+        "action",
+        "language",
+        "tactile"
+      ],
+      "task_types": [
+        "灵巧操作",
+        "按钮操作",
+        "旋转操作",
+        "装配",
+        "铰接物体操作",
+        "少样本迁移"
+      ],
+      "scale": {
+        "episodes": 1248
+      },
+      "data_format": "HDF5 + LeRobot v3.0",
+      "license": "unknown",
+      "train_use": "unknown",
+      "commercial_use": "unknown",
+      "redistribution": "unknown",
+      "first_seen": "2026-11-20",
+      "last_updated": "2026-11-19",
+      "summary": "30 项任务的灵巧操作仿真基准，1,248 段成功演示，含 RGB、深度与触觉。",
+      "notes": "Isaac Sim/ManiSkill 中经 Quest 3 遥操作采集，Franka Panda 配仿真 Shadow Hand，单臂与双臂各 15 项任务；30 Hz，每项 Core 任务 50 段、Gen 任务 8 段；三路 224x224 AV1 视频与对齐深度，状态 111/222 维、动作 30/60 维，单手 123 维虚拟触觉；含任务阶段标签与成功标志；卡片未声明许可证。",
+      "format_detail": {
+        "container": "HDF5 + Parquet + AV1 视频",
+        "fields": [
+          "observation.images.context",
+          "observation.images.interaction",
+          "observation.images.wrist_right",
+          "observation.depth.context",
+          "observation.depth.interaction",
+          "observation.depth.wrist_right",
+          "observation.tactile.right",
+          "observation.state",
+          "action",
+          "next.reward",
+          "next.terminated",
+          "next.truncated",
+          "task_index"
+        ],
+        "fps": 30,
+        "resolution": "224x224",
+        "video_codec": "av1"
+      },
+      "tree": "Evo-DexBench-dataset/\n├─ h5/\n│  ├─ Button-driven/m01/\n│  │  ├─ m01_v1_00000.h5\n│  │  └─ ...\n│  ├─ Rotational manipulation/\n│  ├─ Access-and-transfer/\n│  ├─ Structured configuration/\n│  ├─ Assembly/\n│  └─ Articulated configuration control/\n├─ lerobot/\n│  ├─ Button-driven/m01/\n│  │  ├─ data/chunk-000/\n│  │  ├─ meta/\n│  │  └─ videos/\n│  └─ ...（共 30 个任务）\n├─ assets/\n├─ data_inventory.json\n├─ README.md\n└─ .gitattributes",
+      "calibration": {
+        "intrinsics": "not_provided",
+        "extrinsics": "not_provided",
+        "depth": "provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "provided"
+      },
+      "sensors": {
+        "cameras": 3,
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "provided"
+      }
+    },
+    {
+      "id": "robotwin-if",
+      "name": "RoboTwin-IF",
+      "org": "RuFlect Intelligence",
+      "source_url": "https://huggingface.co/datasets/RuFlect/RoboTwin-IF",
+      "download_url": "https://huggingface.co/datasets/RuFlect/RoboTwin-IF",
+      "platform": "dual_arm",
+      "source_type": "sim",
+      "robots": [
+        "RoboTwin 双臂仿真平台"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "指令跟随",
+        "双臂操作",
+        "抓取",
+        "放置",
+        "场景泛化"
+      ],
+      "scale": {
+        "episodes": 275270,
+        "hours": 795.8
+      },
+      "data_format": "LeRobot v3.0",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-20",
+      "last_updated": "2026-11-19",
+      "summary": "RoboTwin 双臂仿真指令跟随数据，27.5 万段专家演示，含头部与双腕三路视频。",
+      "notes": "纯仿真脚本专家数据，25 fps、7,161.8 万帧，约 795.8 小时；train 248,202 段、val 27,068 段；三路 320x240 H.264 视频，状态与动作均为 14 维双臂关节角与夹爪开度；无深度与标定文件；含 27,349 条任务指令；Mixed 50 评测集另附压缩包，素材沿用 RoboTwin 原始许可；卡片未写明具体机械臂型号。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.state",
+          "action",
+          "observation.images.head_camera",
+          "observation.images.left_camera",
+          "observation.images.right_camera",
+          "task_index",
+          "timestamp",
+          "frame_index",
+          "episode_index"
+        ],
+        "fps": 25,
+        "resolution": "320x240",
+        "video_codec": "h264"
+      },
+      "tree": "RoboTwin-IF/\n├─ data/\n│  └─ chunk-000/\n│     ├─ file-000.parquet\n│     └─ ...\n├─ meta/\n│  ├─ episodes/chunk-000/\n│  ├─ info.json\n│  ├─ tasks.parquet\n│  └─ stats.json\n├─ videos/\n│  ├─ observation.images.head_camera/\n│  │  └─ chunk-000/\n│  ├─ observation.images.left_camera/\n│  │  └─ chunk-000/\n│  └─ observation.images.right_camera/\n│     └─ chunk-000/\n├─ provenance/\n│  └─ episodes.parquet\n├─ benchmark/\n│  └─ mixed50/\n├─ README.md\n└─ .gitattributes",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "unknown",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 3,
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
     {
       "id": "keti-humanoid-hri-safety",
       "name": "KETI Humanoid HRI Safety Dataset",
@@ -1233,13 +1680,15 @@
           "data/robot0_gripper_width",
           "meta/episode_ends",
           "demos/<demo>/camera_trajectory.csv",
-          "demos/<demo>/imu_data.json"
+          "demos/<demo>/imu_data.json",
+          "bimanual_cloth_folding/.../calibration/gopro_intrinsics_1080p.json",
+          "bimanual_cloth_folding/.../calibration/robot_world_hand_eye.json"
         ],
         "resolution": "224x224"
       },
       "tree": "universal_manipulation_interface/\n├─ bimanual_cloth_folding/\n│  ├─ open_source_slam_reruns/\n│  │  └─ ...\n│  ├─ sessions/\n│  │  ├─ 20231225_cheng/\n│  │  │  └─ ...\n│  │  └─ ...\n│  └─ bimanual_cloth_folding.zarr.zip\n├─ bimanual_dish_washing/\n│  └─ ...\n├─ cup_in_lab/\n│  ├─ mp4s/\n│  │  └─ ...\n│  └─ cup_in_the_lab.zarr.zip\n├─ cup_in_the_wild/\n│  ├─ mp4s/\n│  │  └─ ...\n│  └─ cup_in_the_wild.zarr.zip\n├─ dynamic_tossing/\n│  └─ ...\n├─ .gitattributes\n└─ README.md",
       "calibration": {
-        "intrinsics": "unknown",
+        "intrinsics": "provided",
         "extrinsics": "provided",
         "depth": "not_provided",
         "eef_pose": "provided"

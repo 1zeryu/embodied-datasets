@@ -1,9 +1,56 @@
 {
   "meta": {
-    "updated_at": "2026-11-19",
-    "entries": 7
+    "updated_at": "2026-11-20",
+    "entries": 8
   },
   "entries": [
+    {
+      "date": "2026-11-20",
+      "added": [
+        {
+          "id": "robocap-10k",
+          "name": "RoboCap-10k",
+          "summary": "RoboCap 头戴六目设备采集的 1 万小时第一视角操作数据，含头手 3D 位姿与语言标注。"
+        },
+        {
+          "id": "umi-towel-folding-annotated",
+          "name": "UMI Towel Folding Subtask-Annotated Dataset",
+          "summary": "UMI 双手手持夹爪折毛巾示教，303 段轨迹带 12 类子任务分段标注。"
+        },
+        {
+          "id": "rss-dual-arm-tactile",
+          "name": "RSS Dual-Arm Tactile Manipulation",
+          "summary": "xArm6 双臂加 Revo2 灵巧手的真机触觉数据，覆盖倒液与 USB 插拔。"
+        },
+        {
+          "id": "humanoidtoolbench-teleop",
+          "name": "ToolBook: HumanoidToolBench Demonstrations",
+          "summary": "Unitree G1 在 MuJoCo 中的工具使用遥操作演示，2,072 段轨迹。"
+        },
+        {
+          "id": "evo-dexbench",
+          "name": "Evo-DexBench",
+          "summary": "30 项任务的灵巧操作仿真基准，1,248 段成功演示，含 RGB、深度与触觉。"
+        },
+        {
+          "id": "robotwin-if",
+          "name": "RoboTwin-IF",
+          "summary": "RoboTwin 双臂仿真指令跟随数据，27.5 万段专家演示，含头部与双腕三路视频。"
+        }
+      ],
+      "updated": [
+        {
+          "id": "umi",
+          "name": "UMI (Universal Manipulation Interface) Data",
+          "fields": [
+            "calibration",
+            "format_detail"
+          ]
+        }
+      ],
+      "total": 40,
+      "note": "跳过 NeoteAI/OpenNeoData-OXT（门控触觉再打包，未给出可直接核验的轨迹规模）；Lisavila/TacInno-UniVTAC-Demos（800 段，规模偏小）；HumanCOIN 的 140 个 L1 分片仓库（按任务拆分且无合并入口）；airoa-org/yubi-corl2026-umi-arena 各分片（门控且卡片不可读）；MLL-Lab/embodied-exam-data、luhr/MSC-mobilebench-boards 为评测或榜单页面；starpilot-ai/mobile-umi_samples 仅少量样本；phaonan/DexArena-camera-high-sol 与 FreDERicia/SWAM-Posttrain 为既有数据的再渲染或再打包。UMI 的 calibration 目录实际含 gopro_intrinsics_1080p.json 与 robot_world_hand_eye.json，据此将 intrinsics 由 unknown 改为 provided。"
+    },
     {
       "date": "2026-11-19",
       "added": [
