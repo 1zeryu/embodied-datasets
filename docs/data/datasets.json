@@ -1,10 +1,500 @@
 {
   "meta": {
     "schema_version": 1,
-    "updated_at": "2026-11-20",
-    "count": 40
+    "updated_at": "2026-11-21",
+    "count": 47
   },
   "datasets": [
+    {
+      "id": "grail",
+      "name": "GRAIL Humanoid Loco-Manipulation Dataset",
+      "org": "NVIDIA",
+      "source_url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Locomanipulation-GRAIL",
+      "download_url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Locomanipulation-GRAIL",
+      "platform": "humanoid",
+      "source_type": "sim",
+      "robots": [
+        "Unitree G1"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state"
+      ],
+      "task_types": [
+        "全身移动操作",
+        "抓取",
+        "上下楼梯",
+        "坐下",
+        "地形行走"
+      ],
+      "scale": {
+        "episodes": 35097,
+        "hours": 93.3,
+        "size_tb": 0.3
+      },
+      "data_format": "PKL + MP4 + USD",
+      "license": "CC BY-NC 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-21",
+      "last_updated": "2026-11-20",
+      "summary": "用视频先验生成的 Unitree G1 全身移动操作仿真轨迹，覆盖抓取、上下楼与坐下。",
+      "notes": "4D 人-物交互轨迹在 Isaac Lab 中做物理验证后发布，按 HOI 类别分为 11 个目录、35,097 条动作；每条含合成源视频、SMPL-X 人体与物体 6-DoF 重建、G1 29 关节轨迹、物体轨迹与 USD 资产；轨迹 25 Hz，源视频 24 fps；checkpoint 目录与 RoboCasa、ComAsset 资产各有独立许可；无深度、触觉与成功标签；论文 arXiv:2606.05160。",
+      "format_detail": {
+        "container": "PKL + MP4 + USD",
+        "fields": [
+          "video/<category>__<object>__<NNN>.mp4",
+          "recon/<category>__<object>__<NNN>.pkl",
+          "robot/<category>__<object>__<NNN>.pkl",
+          "objects/<category>__<object>__<NNN>.pkl",
+          "meta/<category>__<object>__<NNN>.pkl",
+          "object_usd/<category>__<object>__<NNN>.usd",
+          "bps/<category>__<object>__<NNN>.npy"
+        ],
+        "fps": 25
+      },
+      "tree": "PhysicalAI-Robotics-Locomanipulation-GRAIL/\n├─ data/\n│  ├─ pickup_table/\n│  │  ├─ bps/\n│  │  ├─ meta/\n│  │  ├─ object_usd/\n│  │  ├─ objects/\n│  │  ├─ recon/\n│  │  ├─ robot/\n│  │  └─ video/\n│  ├─ pickup_ground/\n│  ├─ manip_ground/\n│  ├─ manip_table/\n│  ├─ sitting/\n│  ├─ slope/\n│  ├─ curb/\n│  ├─ stair_p1/\n│  ├─ stair_p2/\n│  ├─ stair_p3/\n│  ├─ stair_p4/\n│  └─ ...（共 11 个 HOI 类别目录）\n├─ checkpoint/\n│  ├─ GEM-SMPL/\n│  ├─ FoundationPose/\n│  └─ SONIC/\n└─ assets/\n   └─ videos/",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "third_person"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "robogene",
+      "name": "RoboGene Dataset",
+      "org": "北京人形机器人创新中心等（X-Humanoid）",
+      "source_url": "https://huggingface.co/datasets/X-Humanoid/RoboGene",
+      "download_url": "https://huggingface.co/datasets/X-Humanoid/RoboGene",
+      "platform": "dual_arm",
+      "source_type": "real",
+      "robots": [
+        "Franka FR3 双臂（franka_fr3_dualArm-gripper-6cameras_2）"
+      ],
+      "modalities": [
+        "rgb",
+        "depth",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "双臂操作",
+        "VLA 预训练",
+        "工具使用",
+        "多场景任务"
+      ],
+      "scale": {
+        "episodes": 2128,
+        "hours": 10.1
+      },
+      "data_format": "LeRobot v2.1",
+      "license": "Apache License 2.0",
+      "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-21",
+      "last_updated": "2026-11-01",
+      "summary": "智能体框架生成的 150 项 Franka 双臂真机任务，含六路 RGB 与深度。",
+      "notes": "Franka FR3 双臂配夹爪，6 路 RGB 与 6 路深度均为 480×640、30 Hz，另含关节角、末端位姿与自然语言指令；150 个任务各自是独立 LeRobot 数据集，需按任务目录下载，合计 2,128 段、约 10.1 小时；未提供相机内外参文件；论文 arXiv:2602.16444。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.rgb_images.camera_front",
+          "observation.rgb_images.camera_left",
+          "observation.rgb_images.camera_right",
+          "observation.rgb_images.camera_top",
+          "observation.rgb_images.camera_wrist_left",
+          "observation.rgb_images.camera_wrist_right",
+          "observation.depth_images.camera_front",
+          "observation.state.arm_joint_position",
+          "observation.state.hand_joint_position",
+          "observation.state.end_effector",
+          "action.arm_joint_position",
+          "action.hand_joint_position",
+          "action.end_effector"
+        ],
+        "fps": 30,
+        "resolution": "480x640"
+      },
+      "tree": "RoboGene/\n└─ dual_arm/\n   ├─ robogene_twoArm_franka_adjust_black_computer_stand/\n   │  ├─ data/\n   │  ├─ meta/\n   │  └─ videos/\n   ├─ robogene_twoArm_franka_adjust_lamp/\n   └─ ...（共 150 个任务目录，每个为独立 LeRobot 数据集）",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "unknown",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 6,
+        "views": [
+          "third_person",
+          "wrist",
+          "overhead"
+        ],
+        "proprioception": "provided"
+      }
+    },
+    {
+      "id": "stera-10m",
+      "name": "Stera-10M",
+      "org": "FPV Labs",
+      "source_url": "https://huggingface.co/datasets/fpvlabs/stera-10m",
+      "download_url": "https://huggingface.co/datasets/fpvlabs/stera-10m",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "depth",
+        "point_cloud",
+        "joint_state",
+        "language"
+      ],
+      "task_types": [
+        "第一视角操作",
+        "双手操作",
+        "技能学习",
+        "语言标注"
+      ],
+      "scale": {
+        "episodes": 9922,
+        "hours": 200,
+        "size_tb": 1.6
+      },
+      "data_format": "MP4 + HDF5 + PLY",
+      "license": "CC BY-NC 4.0（WiLoR 与 MANO 另有条款）",
+      "license_url": "https://fpvlabs.ai/stera-10m/license",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-21",
+      "last_updated": "2026-11-20",
+      "summary": "iPhone 采集的 200 小时第一视角多模态数据，含 LiDAR 深度与双手 21 关节。",
+      "notes": "584 个会话、20 位采集者、9,922 段片段；RGB 1280×720、15 fps、H.264，LiDAR 深度 144×256 与 RGB 对齐；含 ARKit 6-DoF 位姿、IMU、双手 MANO 轨迹、房间网格与分层语言标注；标注含需口令解密的个人信息字段；门控需申请；WiLoR 与 MANO 资产另有许可条款。",
+      "format_detail": {
+        "container": "MP4 + HDF5 + PLY",
+        "fields": [
+          "rgb.mp4",
+          "annotation.hdf5",
+          "hierarchy.json",
+          "mesh.ply",
+          "calibrations/rgb_K.npy",
+          "calibrations/rgb_D.npy",
+          "calibrations/depth_K.npy",
+          "calibrations/R_optical_to_link.npy"
+        ],
+        "fps": 15,
+        "resolution": "1280x720",
+        "video_codec": "h264"
+      },
+      "tree": "Stera-10M/\n├─ session_data_20260328_234041/\n│  ├─ annotation.hdf5\n│  ├─ calibrations/\n│  │  ├─ rgb_K.npy\n│  │  ├─ rgb_D.npy\n│  │  ├─ depth_K.npy\n│  │  ├─ depth_D.npy\n│  │  ├─ R_optical_to_link.npy\n│  │  └─ meta.json\n│  ├─ hierarchy.json\n│  ├─ mesh.ply\n│  ├─ rgb.mp4\n│  ├─ thumbnail.jpg\n│  ├─ visualization.rrd\n│  └─ visualization_2min.rrd\n├─ session_data_20260328_235204/\n└─ ...（共 584 个会话目录）",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "karigar-100",
+      "name": "Karigar-100",
+      "org": "FPV Labs",
+      "source_url": "https://huggingface.co/datasets/fpvlabs/karigar-100",
+      "download_url": "https://huggingface.co/datasets/fpvlabs/karigar-100",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "手工艺",
+        "工业场景",
+        "技能学习"
+      ],
+      "scale": {
+        "episodes": 1921,
+        "hours": 102.6,
+        "size_tb": 2.3
+      },
+      "data_format": "MCAP",
+      "license": "CC BY-NC 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-21",
+      "last_updated": "2026-11-21",
+      "summary": "20 个真实工作场所的 102.6 小时第一视角技能视频，覆盖 90 种工种。",
+      "notes": "1,921 段 MCAP，来自 20 台双目与 30 台六目头戴设备，均带 IMU；覆盖 10 个行业、146 个场景，83.3% 时长被评为高难度精细手工作业；仅提供行业、场景、工种、设备与难度等片段级标签，无手部姿态、动作与语言指令；门控需人工审批，禁止商业使用。",
+      "format_detail": {
+        "container": "MCAP",
+        "fields": [
+          "episodes/<device>/<episode_id>.mcap",
+          "manifest.csv"
+        ]
+      },
+      "tree": "Karigar-100/\n├─ episodes/\n│  ├─ FPV-2C-001/\n│  │  ├─ 05da2811-...mcap\n│  │  ├─ 0bc36a7f-...mcap\n│  │  └─ ...（每段一个 MCAP）\n│  ├─ FPV-2C-002/\n│  └─ ...（共 50 个设备目录）\n├─ manifest.csv\n├─ download.py\n├─ README.md\n└─ .gitattributes",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "robodyna-benchmark",
+      "name": "RoboDyna Benchmark",
+      "org": "RoboDyna",
+      "source_url": "https://huggingface.co/datasets/RoboDyna/robodyna-benchmark-v2",
+      "download_url": "https://huggingface.co/datasets/RoboDyna/robodyna-benchmark-v2",
+      "platform": "dual_arm",
+      "source_type": "sim",
+      "robots": [
+        "UR5 双臂 + WSG 夹爪（ur5-wsg）"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "动态操作",
+        "双臂操作",
+        "接抛",
+        "传送带",
+        "时序控制"
+      ],
+      "scale": {
+        "episodes": 4050,
+        "hours": 22.9
+      },
+      "data_format": "HDF5 + LeRobot v2.1",
+      "license": "Apache License 2.0",
+      "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-21",
+      "last_updated": "2026-11-20",
+      "summary": "SAPIEN 仿真的双臂动态操作基准，81 组任务条件、4,050 段成功示教。",
+      "notes": "基于 RoboTwin 2.0 / DOMINO 与 SAPIEN 3.0.3；30 个任务×不同动态条件共 81 组，每组 50 段，仅含成功专家轨迹；HDF5 与 LeRobot v2.1 是同一批轨迹的两份布局，勿重复计数；控制 16.667 Hz，三路 320×240 RGB；相机内外参、末端位姿与逐步语言标注存于 HDF5；未采集深度、点云与分割。",
+      "format_detail": {
+        "container": "HDF5 + Parquet + MP4",
+        "fields": [
+          "observation.images.head",
+          "observation.images.left_wrist",
+          "observation.images.right_wrist",
+          "observation.state",
+          "observation.endpose",
+          "observation.task_state",
+          "action"
+        ],
+        "fps": 16.667,
+        "resolution": "320x240"
+      },
+      "tree": "robodyna-benchmark-v2/\n├─ hdf5/\n│  ├─ boil_milk/base/\n│  ├─ catch_cuboid/base/\n│  └─ ...（30 个任务）\n├─ lerobot/\n│  ├─ boil_milk/base/\n│  ├─ catch_cuboid/base/\n│  └─ ...\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "not_provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "provided"
+      },
+      "sensors": {
+        "cameras": 3,
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "arete-egocentric-10k-actions",
+      "name": "Egocentric-10K Actions",
+      "org": "Arete Robotics",
+      "source_url": "https://huggingface.co/datasets/arete-robotics/egocentric-10k-actions",
+      "download_url": "https://huggingface.co/datasets/arete-robotics/egocentric-10k-actions",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "language"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "工厂作业",
+        "手部动作",
+        "动作预测基准"
+      ],
+      "scale": {
+        "episodes": 648,
+        "hours": 2.15
+      },
+      "data_format": "LeRobot v3.0",
+      "license": "CC BY-NC 4.0（标注）/ Apache 2.0（视频）",
+      "license_url": "https://huggingface.co/datasets/arete-robotics/egocentric-10k-actions/blob/main/LICENSE.md",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-21",
+      "last_updated": "2026-11-16",
+      "summary": "从 Egocentric-10K 切出的 648 段工厂视频，含双手 3D 关键点与动作标签。",
+      "notes": "源自 Build AI 的 Egocentric-10K（Apache 2.0），标注为 Arete Robotics 的 CC BY-NC 4.0；15 fps、640×360 鱼眼，逐帧提供 OpenCV 鱼眼内参；双手 2D/3D 关键点、腕部位姿与抓握动作由自动流程生成，未人工核验；无深度流，深度由手部尺寸估计；按工厂划分 train 484 / val 48 / test 116；门控自动审批。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.images.ego",
+          "observation.intrinsics",
+          "observation.hands.kp2d",
+          "observation.hands.kp3d",
+          "observation.hands.valid",
+          "observation.hands.ee",
+          "action",
+          "task"
+        ],
+        "fps": 15,
+        "resolution": "640x360"
+      },
+      "tree": "egocentric-10k-actions/\n├─ data/chunk-000/\n├─ meta/\n│  ├─ episodes/chunk-000/\n│  ├─ benchmark.json\n│  ├─ captions.json\n│  ├─ info.json\n│  ├─ quality.json\n│  ├─ sources.json\n│  ├─ splits.json\n│  ├─ stats.json\n│  └─ tasks.parquet\n├─ videos/observation.images.ego/\n├─ scripts/\n├─ assets/\n├─ LICENSE.md\n├─ README.md\n└─ .gitattributes",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "xphi-stereo-industrial-egocentric",
+      "name": "XP Robotics Stereo Industrial Egocentric",
+      "org": "XP Robotics",
+      "source_url": "https://huggingface.co/datasets/xphirobotics/xphi-stereo-industrial-egocentric",
+      "download_url": "https://huggingface.co/datasets/xphirobotics/xphi-stereo-industrial-egocentric",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "手工艺",
+        "工业场景",
+        "双目采集"
+      ],
+      "scale": {
+        "episodes": 83,
+        "hours": 40.3
+      },
+      "data_format": "H.265 + JSON",
+      "license": "unknown",
+      "train_use": "unknown",
+      "commercial_use": "unknown",
+      "redistribution": "unknown",
+      "first_seen": "2026-11-21",
+      "last_updated": "2026-11-20",
+      "summary": "XP Robotics 工业手工艺双目第一视角数据，83 个会话、40.3 小时，带 IMU 与标定。",
+      "notes": "13 台头戴双目设备、83 个会话；左右目各 1920×1080 并排为 3840×1080，30 fps HEVC；含 ICM-42688-P IMU 与逐会话双目内外参（stereo_calibration.bin、calibration.json）；episode.json 仅有任务、环境、操作者与设备标签；未声明许可证。",
+      "format_detail": {
+        "container": "H.265 + JSON",
+        "fields": [
+          "video.h265",
+          "imu.imu",
+          "imu.raw",
+          "frames.idx",
+          "stereo_calibration.bin",
+          "calibration.json",
+          "metadata.json"
+        ],
+        "fps": 30,
+        "resolution": "3840x1080（左右目各 1920x1080）",
+        "video_codec": "hevc"
+      },
+      "tree": "xphi-stereo-industrial-egocentric/\n├─ device_01/\n│  ├─ session_001/\n│  │  ├─ chunk_000000/（video.h265、imu.imu、calibration.json 等）\n│  │  └─ episode.json\n│  ├─ session_002/\n│  └─ ...（device_01 共 3 个会话）\n├─ device_02/\n├─ ...（共 13 台设备，83 个会话）\n├─ metadata.csv\n├─ README.md\n└─ .gitattributes",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "unknown",
+        "subtask": "not_provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 2,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
     {
       "id": "robocap-10k",
       "name": "RoboCap-10k",

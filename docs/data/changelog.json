@@ -1,9 +1,52 @@
 {
   "meta": {
-    "updated_at": "2026-11-20",
-    "entries": 8
+    "updated_at": "2026-11-21",
+    "entries": 9
   },
   "entries": [
+    {
+      "date": "2026-11-21",
+      "added": [
+        {
+          "id": "grail",
+          "name": "GRAIL Humanoid Loco-Manipulation Dataset",
+          "summary": "用视频先验生成的 Unitree G1 全身移动操作仿真轨迹，覆盖抓取、上下楼与坐下。"
+        },
+        {
+          "id": "robogene",
+          "name": "RoboGene Dataset",
+          "summary": "智能体框架生成的 150 项 Franka 双臂真机任务，含六路 RGB 与深度。"
+        },
+        {
+          "id": "stera-10m",
+          "name": "Stera-10M",
+          "summary": "iPhone 采集的 200 小时第一视角多模态数据，含 LiDAR 深度与双手 21 关节。"
+        },
+        {
+          "id": "karigar-100",
+          "name": "Karigar-100",
+          "summary": "20 个真实工作场所的 102.6 小时第一视角技能视频，覆盖 90 种工种。"
+        },
+        {
+          "id": "robodyna-benchmark",
+          "name": "RoboDyna Benchmark",
+          "summary": "SAPIEN 仿真的双臂动态操作基准，81 组任务条件、4,050 段成功示教。"
+        },
+        {
+          "id": "arete-egocentric-10k-actions",
+          "name": "Egocentric-10K Actions",
+          "summary": "从 Egocentric-10K 切出的 648 段工厂视频，含双手 3D 关键点与动作标签。"
+        },
+        {
+          "id": "xphi-stereo-industrial-egocentric",
+          "name": "XP Robotics Stereo Industrial Egocentric",
+          "summary": "XP Robotics 工业手工艺双目第一视角数据，83 个会话、40.3 小时，带 IMU 与标定。"
+        }
+      ],
+      "updated": [],
+      "total": 47,
+      "note": "跳过 rhoyn-robotics/data-sample（仅 21 段样本）、EngineAI-Embodied/Awaken-Human（33.8 秒预览、许可受限）、b4r4d41z/Humanoid-Bimanual-Manipulation-IsaacSim（无许可证且规模未知）、fastwalker1118/embodiedclaw_data（BEHAVIOR-1K 策略 rollout 而非示教）、KIKIJUE/humanoid-everyday（USC-GVL 既有数据的 LeRobot 再打包）、xlangai/RoboWild 与 openrobokit/robokit（场景与机器人资产，无轨迹）、uwsbel/NeDM（系统辨识时序数据）、ChangChrisLiu/E3D-Desktop-Disassembly 与 GenAI-for-Tactile-Graphics/TactileNet（图像或生成模型数据）、iciclab/Robot_physics_interaction_with_Human_linguistic（HRI 语音数据，无操作轨迹）、PeterXie666/lff-bench（智能体评测回放且未声明许可证）、xphirobotics/xphi-stereo-rig（仅 9 个文件）、titus-robots/titus-packing-benchmark-alpha（基准代码与资产，示教数据另在门控仓库）。对 calibration 仍含 unknown 的旧记录按文件树复查：xphi-stereo-egocentric、bidex-100、loco-manipulation-data 的对应字段此前已修正；ropedia-xperience-2 无深度文件，rss-dual-arm-tactile 的命中项为代码配置，其余维持 unknown。"
+    },
     {
       "date": "2026-11-20",
       "added": [
