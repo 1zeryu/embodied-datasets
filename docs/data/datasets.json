@@ -1,10 +1,500 @@
 {
   "meta": {
     "schema_version": 1,
-    "updated_at": "2026-11-21",
-    "count": 47
+    "updated_at": "2026-11-24",
+    "count": 54
   },
   "datasets": [
+    {
+      "id": "robotrack-15m",
+      "name": "RoboTrack-15M",
+      "org": "Allen Institute for AI (Ai2)",
+      "source_url": "https://huggingface.co/datasets/allenai/RoboTrack-15M",
+      "download_url": "https://huggingface.co/datasets/allenai/RoboTrack-15M",
+      "platform": "single_arm",
+      "source_type": "sim",
+      "robots": [
+        "Franka Emika Panda"
+      ],
+      "modalities": [
+        "rgb"
+      ],
+      "task_types": [
+        "点跟踪",
+        "抓取"
+      ],
+      "scale": {
+        "episodes": 1500
+      },
+      "data_format": "MP4 + NPZ",
+      "license": "ODC-BY 1.0",
+      "license_url": "https://opendatacommons.org/licenses/by/1-0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-24",
+      "last_updated": "2026-11-23",
+      "summary": "Ai2 用 ProcTHOR 仿真的 Franka 视频点跟踪训练集，1,500 段、1,500 万条轨迹。",
+      "notes": "仿真数据，无动作与关节状态标注；300 个房屋各 5 段情景，第三人称与腕部两路共 3,000 段视频，每段 5,000 条点轨迹；内参、可见性与查询帧存于 NPZ；评测集 RoboTrack-Bench 单独发布，未收录。",
+      "format_detail": {
+        "container": "MP4 + NPZ",
+        "fields": [
+          "trajs_2d",
+          "visibility",
+          "query_frames",
+          "points_3d",
+          "intrinsics"
+        ],
+        "fps": 15,
+        "resolution": "624x352"
+      },
+      "tree": "RoboTrack-15M/\n├─ houses/\n│  └─ house_1023/\n│     └─ generated/\n│        └─ ...（episode_<n>_<view>.mp4 与 _point_tracks.npz）\n├─ manifests/\n│  └─ ...\n├─ previews/\n│  └─ ...\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 2,
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "handworldbench-corpus",
+      "name": "HandWorldBench-Corpus",
+      "org": "EmbodiedCity",
+      "source_url": "https://huggingface.co/datasets/EmbodiedCity/HandWorldBench-Corpus",
+      "download_url": "https://huggingface.co/datasets/EmbodiedCity/HandWorldBench-Corpus",
+      "platform": "dexterous_hand",
+      "source_type": "hybrid",
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "language"
+      ],
+      "task_types": [
+        "双手操作",
+        "灵巧操作",
+        "抓取",
+        "放置"
+      ],
+      "scale": {
+        "episodes": 20000,
+        "hours": 63.7,
+        "size_tb": 0.1
+      },
+      "data_format": "MP4 + NPZ",
+      "license": "CC BY-NC 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-24",
+      "last_updated": "2026-11-21",
+      "summary": "人类、HandsOn 仿真与 TI5 真机灵巧手混合的 2 万段片段，含三维手部关节与字幕。",
+      "notes": "hybrid：1 万段人类第一视角、6 千段 HandsOn 仿真、4 千段 TI5 真机；TI5 的三维关节依赖估计深度，未做米制标定；内参分别来自设备标定、仿真与估计；只提供 c2w 参考位姿，没有相机到机器人基座的外参；评测集 HandWorldBench 单独发布，未收录。",
+      "format_detail": {
+        "container": "MP4 + NPZ",
+        "fields": [
+          "joints_2d_px",
+          "joints_camera_m",
+          "K",
+          "D",
+          "c2w",
+          "caption"
+        ],
+        "fps": 30,
+        "resolution": "640x480（TI5），ego 与 HandsOn 随源变化"
+      },
+      "tree": "HandWorldBench-Corpus/\n├─ assets/\n│  └─ teaser.png\n├─ shards/\n│  ├─ ego-0000.tar\n│  └─ ...（共 149 个分片）\n├─ index.parquet\n├─ manifest.jsonl.gz\n├─ load_clip.py\n├─ taxonomy.json\n├─ SHA256SUMS\n├─ LICENSE\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "not_provided",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "roboinf-4k",
+      "name": "RoboInF-4K",
+      "org": "上海交通大学 DeepVisionLab",
+      "source_url": "https://huggingface.co/datasets/JGuo666/RoboInF-4K",
+      "download_url": "https://huggingface.co/datasets/JGuo666/RoboInF-4K",
+      "platform": "dual_arm",
+      "source_type": "sim",
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "指令跟随",
+        "抓取",
+        "放置",
+        "按钮操作",
+        "开关操作"
+      ],
+      "scale": {
+        "episodes": 3381,
+        "size_tb": 0.1
+      },
+      "data_format": "HDF5 + Tar",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-24",
+      "last_updated": "2026-11-23",
+      "summary": "RoboTwin 2.0 仿真的双臂指令跟随基准，3,381 段公开示教与四路相机标定。",
+      "notes": "仿真数据，本体型号未在卡片中写明，沿用 RoboTwin 2.0 双臂资产；帧率不固定，955,781 个采样时刻对应 3,823,124 张图像；每段含 camera/<cam>/intrinsic_cv 与 extrinsic_cv（世界到相机）、对象与机器人关键点、接触事件和分割 ID；两种测试外观不含参考动作、成功标签与专家示教。",
+      "format_detail": {
+        "container": "Tar（HDF5 + JPEG）",
+        "fields": [
+          "state",
+          "action",
+          "time/time_sec",
+          "calibration/<camera>/intrinsic_cv",
+          "calibration/<camera>/extrinsic_cv",
+          "keypoints",
+          "contacts",
+          "instruction"
+        ],
+        "resolution": "320x240",
+        "video_codec": "jpeg"
+      },
+      "tree": "RoboInF-4K/\n├─ contacts/\n│  └─ open_laptop/\n│     └─ train-000.tar\n├─ data/\n│  └─ open_laptop/\n│     └─ train-000.tar\n├─ jpeg/\n│  └─ ...（四路相机 JPEG 分片，按 8 个任务分目录）\n├─ masks/\n├─ terminal_rgb/\n├─ manifests/\n│  ├─ train.jsonl\n│  └─ val.jsonl\n├─ evaluation/\n│  └─ ...\n├─ docs/\n│  └─ format.md\n├─ examples/\n├─ statistics.json\n├─ SHA256SUMS\n├─ LICENSE\n├─ CITATION.cff\n├─ THIRD_PARTY_NOTICES.md\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "not_provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "provided"
+      },
+      "sensors": {
+        "cameras": 4,
+        "views": [
+          "overhead",
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "memcert",
+      "name": "MemCert",
+      "org": "MemCert 团队",
+      "source_url": "https://huggingface.co/datasets/hiwe0305/MemCert",
+      "download_url": "https://huggingface.co/datasets/hiwe0305/MemCert",
+      "platform": "single_arm",
+      "source_type": "sim",
+      "robots": [
+        "Franka Emika Panda"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "记忆依赖操作",
+        "抓取",
+        "分类",
+        "放置"
+      ],
+      "scale": {
+        "episodes": 3240,
+        "size_tb": 0.3
+      },
+      "data_format": "LeRobot",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-24",
+      "last_updated": "2026-11-24",
+      "summary": "考察历史观测记忆的 Franka 仿真基准，3,240 段，附决策点与正确选项标注。",
+      "notes": "仿真数据，机器人类型为 panda；卡片列 8 个任务族，仓库当前可读 5 个族；observation.state 为 TCP 位姿加夹爪宽度，action 为增量位姿与夹爪；annotation.* 含决策点、正确选项、阶段与记忆摘要；L2_twin 让答案保持可见，用来分离记忆与操作能力；未发布相机标定文件。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.images.top",
+          "observation.images.wrist",
+          "observation.state",
+          "action",
+          "task",
+          "annotation.decision_point",
+          "annotation.memory_summary"
+        ],
+        "fps": 20,
+        "resolution": "224x224",
+        "video_codec": "h264"
+      },
+      "tree": "MemCert/\n├─ cabinet_search/\n│  └─ L1/\n├─ key_trial/\n│  ├─ L1/\n│  ├─ L2/\n│  ├─ L2_twin/\n│  └─ L3/\n├─ recipe_pot/\n│  ├─ L1/\n│  ├─ L2/\n│  └─ L3/\n├─ scale_sort/\n│  ├─ L1/\n│  ├─ L2/\n│  └─ L2_twin/\n├─ sealed_bin/\n│  ├─ L1/\n│  ├─ L2/\n│  ├─ L2_twin/\n│  └─ L3/\n├─ certification/\n│  ├─ certificates/\n│  ├─ stats/\n│  └─ vgates/\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "provided",
+        "success": "provided"
+      },
+      "sensors": {
+        "cameras": 2,
+        "views": [
+          "overhead",
+          "wrist"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "ual-husky-campus",
+      "name": "UAL Husky Campus",
+      "org": "University of Almería",
+      "source_url": "https://huggingface.co/datasets/jlblancoc/ual-husky-campus",
+      "download_url": "https://huggingface.co/datasets/jlblancoc/ual-husky-campus",
+      "platform": "mobile",
+      "source_type": "real",
+      "robots": [
+        "Clearpath Husky A200"
+      ],
+      "modalities": [
+        "rgb",
+        "point_cloud",
+        "joint_state"
+      ],
+      "task_types": [
+        "导航",
+        "SLAM",
+        "里程计",
+        "多传感器融合"
+      ],
+      "scale": {
+        "episodes": 6,
+        "hours": 2.3,
+        "size_tb": 0.2
+      },
+      "data_format": "MCAP",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-24",
+      "last_updated": "2026-11-23",
+      "summary": "Husky A200 校园多传感器数据，6 段 138 分钟，附 RTK 真值与完整标定。",
+      "notes": "移动机器人室外数据；03–05 段用 Ouster OS0-32，00–02 段用 Velodyne VLP-16，均 10 Hz；Bumblebee2 双目 1024x768 Bayer 15 Hz，IMU 150 Hz，轮式里程计 18.5 Hz；1 Hz RTK 固定解作为真值；calibration.yaml 含相机内参与静态外参；人脸与车牌已模糊。",
+      "format_detail": {
+        "container": "MCAP",
+        "fields": [
+          "ouster/points",
+          "velodyne_points",
+          "bumblebee/left/image_raw",
+          "bumblebee/right/image_raw",
+          "taobotics/imu",
+          "gnss/f9p/ubx_nav_pvt",
+          "platform/odom",
+          "platform/joint_states",
+          "tf",
+          "tf_static"
+        ],
+        "fps": 15,
+        "resolution": "1024x768",
+        "video_codec": "raw"
+      },
+      "tree": "ual-husky-campus/\n├─ ual_husky_campus_00/\n│  ├─ blur_detections/\n│  ├─ ground_truth/\n│  ├─ sensors/\n│  └─ stereo/\n├─ ual_husky_campus_01/\n│  └─ ...\n├─ ual_husky_campus_02/\n│  └─ ...\n├─ ual_husky_campus_03/\n│  └─ ...\n├─ ual_husky_campus_04/\n│  └─ ...\n├─ ual_husky_campus_05/\n│  └─ ...\n├─ calibration.yaml\n├─ eval_rtk.py\n├─ gt_summary.json\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "third_person"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "wake-egocentric-10h",
+      "name": "Wake Egocentric 10h Sample",
+      "org": "Wake",
+      "source_url": "https://huggingface.co/datasets/wake-inc/wake-egocentric-10h-sample",
+      "download_url": "https://huggingface.co/datasets/wake-inc/wake-egocentric-10h-sample",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "language"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "职业技能",
+        "操作记录"
+      ],
+      "scale": {
+        "episodes": 242,
+        "hours": 10.2,
+        "size_tb": 0.1
+      },
+      "data_format": "LeRobot",
+      "license": "Apache-2.0",
+      "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-24",
+      "last_updated": "2026-11-24",
+      "summary": "Wake 头戴手机采集的 10.2 小时第一视角工作视频，242 段含同步 IMU 与任务标签。",
+      "notes": "人类第一视角视频，无机器人动作；130 项任务、196 名采集者、43 个国家；observation.state 与 action 为零填充，本导出没有手部跟踪；IMU 含加速度、角速度与四元数，1,102,625 帧中 1,079,815 帧有采样；这是公开样例导出，更多时长需单独授权。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.images.ego",
+          "observation.imu.accel",
+          "observation.imu.gyro",
+          "observation.imu.orientation",
+          "observation.state",
+          "action",
+          "task_index"
+        ],
+        "fps": 30,
+        "resolution": "1920x1080",
+        "video_codec": "h264"
+      },
+      "tree": "wake-egocentric-10h/\n├─ data/\n│  └─ chunk-000/\n│     ├─ file-000.parquet\n│     └─ ...\n├─ meta/\n│  ├─ episodes/\n│  ├─ info.json\n│  ├─ stats.json\n│  └─ tasks.parquet\n├─ videos/\n│  └─ observation.images.ego/\n│     └─ chunk-000/\n├─ SHA256SUMS\n├─ wake-delivery.json\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "xphi-two-hands-egocentric",
+      "name": "XP Robotics Two-Hands Egocentric",
+      "org": "XP Robotics",
+      "source_url": "https://huggingface.co/datasets/xphirobotics/xphi-two-hands-egocentric",
+      "download_url": "https://huggingface.co/datasets/xphirobotics/xphi-two-hands-egocentric",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "双手作业",
+        "汽车维修",
+        "木工",
+        "居家清洁"
+      ],
+      "scale": {
+        "episodes": 342,
+        "hours": 83.1,
+        "size_tb": 0.3
+      },
+      "data_format": "MP4 + CSV + JSON",
+      "license": "unknown",
+      "train_use": "unknown",
+      "commercial_use": "unknown",
+      "redistribution": "unknown",
+      "first_seen": "2026-11-24",
+      "last_updated": "2026-11-23",
+      "summary": "XP Robotics 双手作业第一视角视频，342 段 83.1 小时，附逐段剪辑与检测元数据。",
+      "notes": "人类第一视角，无机器人动作；分为商业 294 段、汽车维修 14 段、木工 7 段、住宅 1 段与未分类；每段 video.mp4 配 sensors.csv（IMU、GPS 与步数）、summary.json（保留时长、手部使用比例、分段）、detector.json 与隐私处理记录；根目录 metadata.csv 汇总类别、任务与时长；卡片未声明许可证。",
+      "format_detail": {
+        "container": "MP4 + CSV + JSON",
+        "fields": [
+          "video.mp4",
+          "sensors.csv",
+          "summary.json",
+          "detector.json",
+          "session_info.json",
+          "privacy.json",
+          "metadata.csv"
+        ],
+        "video_codec": "h264 / hevc"
+      },
+      "tree": "xphi-two-hands-egocentric/\n├─ automobile_repair/\n│  ├─ 001_automobile_repair_02_10/\n│  │  ├─ privacy.json\n│  │  ├─ summary.json\n│  │  └─ video.mp4\n│  └─ ...\n├─ carpentry/\n│  └─ ...\n├─ commercial/\n│  └─ ...\n├─ residential/\n│  └─ ...\n├─ uncategorised/\n│  └─ ...\n├─ metadata.csv\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "not_provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
     {
       "id": "grail",
       "name": "GRAIL Humanoid Loco-Manipulation Dataset",
