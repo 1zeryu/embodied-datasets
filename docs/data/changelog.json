@@ -1,9 +1,47 @@
 {
   "meta": {
-    "updated_at": "2026-11-24",
-    "entries": 10
+    "updated_at": "2026-11-26",
+    "entries": 11
   },
   "entries": [
+    {
+      "date": "2026-11-26",
+      "added": [
+        {
+          "id": "humano",
+          "name": "HUMANO",
+          "summary": "Unitree G1 全身移动操作仿真基准，100 项任务、5,000 段训练示教与 2 万段评测。"
+        },
+        {
+          "id": "ma-bench",
+          "name": "MA-Bench",
+          "summary": "双机器人协作操作仿真基准，7 项任务 700 段同步专家示教、共 85 万控制步。"
+        },
+        {
+          "id": "wake-egocentric-100h",
+          "name": "Wake Egocentric 100h",
+          "summary": "Wake 头戴手机采集的 100.31 小时第一视角视频，926 段含同步 IMU 与 160 项任务标签。"
+        },
+        {
+          "id": "xphi-stereo-usb-egocentric",
+          "name": "XP Robotics Stereo USB Egocentric",
+          "summary": "XP Robotics 头戴双目 USB 设备采集的办公打包与装配第一视角数据，89 个会话。"
+        },
+        {
+          "id": "xphi-egocentric-hands-depth",
+          "name": "XP Robotics Egocentric Hands + Depth",
+          "summary": "XP Robotics 58 个会话的第一视角手工与工业作业数据，含 iPhone LiDAR 深度与三维手部关键点。"
+        },
+        {
+          "id": "awaken-human-800h",
+          "name": "Awaken-Human 800h",
+          "summary": "EngineAI 用 PICO 头显采集的 800 小时第一视角全身动作数据，含手部跟踪与相机标定。"
+        }
+      ],
+      "updated": [],
+      "total": 60,
+      "note": "跳过 galafinger/factory-egocentric-sample 与 Akuma London、Talos Dataworks、Train Them AI 等商业数据集的免费预览（3 段或 5 分钟级别）；marafield/egocentric-herding-animal-care 仓库仅含 README、无实际数据；SpaceVision-AI/ARCADE-Checkout 人类示教仅 97 段且门控访问；HumanCOIN 逐任务 l1_* 分片、xphi-egocentric-video（15 段 5 小时）与 xphi-egocentric-cleaning（9 会话 6.7 小时）规模偏小；reactive-labs/workcell-manipulation 与 roaddata-ai 城市街景数据不属于机器人轨迹。旧记录复查：Open-HumanWAM-50K 与 Gen-HumanWholeBody 的公开文件树中未见深度或标定路径，相关 calibration 字段维持 unknown。"
+    },
     {
       "date": "2026-11-24",
       "added": [

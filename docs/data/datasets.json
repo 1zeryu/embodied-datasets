@@ -1,10 +1,416 @@
 {
   "meta": {
     "schema_version": 1,
-    "updated_at": "2026-11-24",
-    "count": 54
+    "updated_at": "2026-11-26",
+    "count": 60
   },
   "datasets": [
+    {
+      "id": "awaken-human-800h",
+      "name": "Awaken-Human 800h",
+      "org": "EngineAI",
+      "source_url": "https://huggingface.co/datasets/EngineAI-Embodied/Awaken-Human-800h",
+      "download_url": "https://huggingface.co/datasets/EngineAI-Embodied/Awaken-Human-800h",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "日常活动",
+        "全身动作捕捉",
+        "动作分段"
+      ],
+      "scale": {
+        "hours": 800
+      },
+      "data_format": "tar.zst",
+      "license": "EngineAI Academic Research License 1.0（非商业、禁止再分发）",
+      "license_url": "https://huggingface.co/datasets/EngineAI-Embodied/Awaken-Human-800h/blob/main/LICENSE",
+      "train_use": "research_only",
+      "commercial_use": "research_only",
+      "redistribution": "restricted",
+      "first_seen": "2026-11-26",
+      "last_updated": "2026-11-24",
+      "summary": "EngineAI 用 PICO 头显采集的 800 小时第一视角全身动作数据，含手部跟踪与相机标定。",
+      "notes": "需在 HF 页面提交申请并人工审核后下载；每段包含未畸变左目视频、全身与手部跟踪、相机标定与源头时序动作标注；数据按 archives/800h 下的 tar.zst 分卷打包并附 SHA256SUMS；许可证限非商业学术研究且禁止再分发。",
+      "format_detail": {
+        "container": "tar.zst"
+      },
+      "tree": "Awaken-Human-800h/\n├─ archives/\n│  └─ 800h/\n│     ├─ package.json\n│     ├─ processed-00000.tar.zst\n│     └─ ...（按分卷打包）\n├─ LICENSE\n├─ LICENSE.zh-CN.md\n├─ README.md\n├─ README.zh-CN.md\n└─ SHA256SUMS.txt",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "unknown",
+        "subtask": "provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "xphi-egocentric-hands-depth",
+      "name": "XP Robotics Egocentric Hands + Depth",
+      "org": "XP Robotics",
+      "source_url": "https://huggingface.co/datasets/xphirobotics/xphi-egocentric-hands-depth",
+      "download_url": "https://huggingface.co/datasets/xphirobotics/xphi-egocentric-hands-depth",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "depth"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "工业作业",
+        "装配",
+        "家务"
+      ],
+      "scale": {},
+      "data_format": "MOV + MCAP + JSON",
+      "license": "unknown",
+      "train_use": "unknown",
+      "commercial_use": "unknown",
+      "redistribution": "unknown",
+      "first_seen": "2026-11-26",
+      "last_updated": "2026-11-23",
+      "summary": "XP Robotics 58 个会话的第一视角手工与工业作业数据，含 iPhone LiDAR 深度与三维手部关键点。",
+      "notes": "59 段视频、57 个 ROS2 MCAP；42 个 ARKit/LiDAR 会话提供 hands.json、深度相机内参与 AR 位姿，16 个 Android 会话提供 IMU 与相机内参；metadata.csv 列出设备、任务、地点与模态；视频为 H.264/H.265；自由文本任务标签由操作者填写；未声明许可证。",
+      "format_detail": {
+        "container": "MOV + MCAP + JSON",
+        "fields": [
+          "video.mov",
+          "episode_metadata.json",
+          "camera_intrinsic.json",
+          "motion_data.json",
+          "video_timestamps.json",
+          "hands.json",
+          "hands_metadata.json",
+          "depth_camera_intrinsics.json",
+          "ar_session.json",
+          "xp/<session>.mcap"
+        ]
+      },
+      "tree": "xphi-egocentric-hands-depth/\n├─ egocentric_data/\n│  └─ <session>/\n│     ├─ video.mov\n│     ├─ episode_metadata.json\n│     ├─ camera_intrinsic.json\n│     ├─ motion_data.json\n│     ├─ video_timestamps.json\n│     ├─ hands.json（ARKit/LiDAR 会话）\n│     ├─ depth_camera_intrinsics.json\n│     └─ ar_session.json\n├─ xp/\n│  ├─ <session>.mcap\n│  └─ <session>.mcap.metadata.json\n├─ metadata.csv\n└─ README.md",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "not_provided",
+        "depth": "provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "unknown",
+        "subtask": "not_provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "xphi-stereo-usb-egocentric",
+      "name": "XP Robotics Stereo USB Egocentric",
+      "org": "XP Robotics",
+      "source_url": "https://huggingface.co/datasets/xphirobotics/xphi-stereo-usb-egocentric",
+      "download_url": "https://huggingface.co/datasets/xphirobotics/xphi-stereo-usb-egocentric",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "办公打包",
+        "装配",
+        "双目采集"
+      ],
+      "scale": {},
+      "data_format": "MP4 + JSON",
+      "license": "unknown",
+      "train_use": "unknown",
+      "commercial_use": "unknown",
+      "redistribution": "unknown",
+      "first_seen": "2026-11-26",
+      "last_updated": "2026-11-23",
+      "summary": "XP Robotics 头戴双目 USB 设备采集的办公打包与装配第一视角数据，89 个会话。",
+      "notes": "每目 2000x1200、基线 0.06 m；89 个会话、1027 个分块、1957 路视频；每块含左右目 MP4、IMU 运动 JSON、逐帧时间戳、内参与双目标定、块元数据；部分早期分块只有左目；视频为 H.264/H.265；任务与环境写在 chunk_metadata.json 的自由文本字段；未声明许可证。",
+      "format_detail": {
+        "container": "MP4 + JSON",
+        "fields": [
+          "left_video.mp4",
+          "right_video.mp4",
+          "motion_<n>.json",
+          "timestamps_<n>.json",
+          "camera_intrinsic.json",
+          "chunk_metadata.json",
+          "session_manifest.json"
+        ],
+        "resolution": "2000x1200（每目）",
+        "video_codec": "h264/h265"
+      },
+      "tree": "xphi-stereo-usb-egocentric/\n├─ session_1787742167808_CPH2401/\n│  └─ session_1787742167808_CPH2401/\n│     ├─ camera_intrinsic.json\n│     ├─ metadata.json\n│     ├─ session_manifest.json\n│     └─ stereo_calibration.json\n├─ session_1788244186694_SM-S918B/\n│  └─ chunk_1/\n│     ├─ camera_intrinsic.json\n│     ├─ chunk_metadata.json\n│     ├─ left_video.mp4\n│     └─ ...\n├─ ...（共 89 个会话、1027 个分块）\n├─ metadata.csv\n├─ README.md\n└─ .gitattributes",
+      "calibration": {
+        "intrinsics": "provided",
+        "extrinsics": "provided",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "unknown",
+        "subtask": "not_provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 2,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "wake-egocentric-100h",
+      "name": "Wake Egocentric 100h",
+      "org": "Wake",
+      "source_url": "https://huggingface.co/datasets/wake-inc/egocentric-100h",
+      "download_url": "https://huggingface.co/datasets/wake-inc/egocentric-100h",
+      "platform": "multi",
+      "source_type": "human",
+      "modalities": [
+        "rgb",
+        "language"
+      ],
+      "task_types": [
+        "第一视角视频",
+        "家务",
+        "商业作业",
+        "精细操作"
+      ],
+      "scale": {
+        "episodes": 926,
+        "hours": 100.31,
+        "size_tb": 0.5
+      },
+      "data_format": "LeRobot v3.0",
+      "license": "Apache-2.0",
+      "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-26",
+      "last_updated": "2026-11-24",
+      "summary": "Wake 头戴手机采集的 100.31 小时第一视角视频，926 段含同步 IMU 与 160 项任务标签。",
+      "notes": "448 名采集者、44 个国家、54 种设备；1,083 万帧、30 fps；925 段 1920x1080、1 段 3840x2160，多数为 HEVC；无手部跟踪，observation.state 与 action 为零填充；IMU 含加速度、角速度与四元数，1,083 万帧中 1,066 万帧有采样；整包 492 GiB，以视频为主；公开可下载，更多时长需单独授权。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.images.ego",
+          "observation.state",
+          "action",
+          "observation.imu.accel",
+          "observation.imu.gyro",
+          "observation.imu.orientation",
+          "timestamp",
+          "frame_index",
+          "episode_index",
+          "index",
+          "task_index"
+        ],
+        "fps": 30,
+        "resolution": "1920x1080",
+        "video_codec": "hevc/h264"
+      },
+      "tree": "egocentric-100h/\n├─ data/\n│  └─ chunk-000/\n│     ├─ file-000.parquet\n│     └─ ...（每段一个 parquet）\n├─ meta/\n│  ├─ episodes/chunk-000/\n│  ├─ info.json\n│  ├─ stats.json\n│  └─ tasks.parquet\n├─ videos/\n│  └─ observation.images.ego/\n│     └─ chunk-000/\n├─ SHA256SUMS\n├─ wake-delivery.json\n├─ .gitattributes\n└─ README.md",
+      "calibration": {
+        "intrinsics": "unknown",
+        "extrinsics": "unknown",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "not_provided"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "ma-bench",
+      "name": "MA-Bench",
+      "org": "EmbodiedCity",
+      "source_url": "https://huggingface.co/datasets/EmbodiedCity/MA-Bench",
+      "download_url": "https://huggingface.co/datasets/EmbodiedCity/MA-Bench",
+      "platform": "multi",
+      "source_type": "sim",
+      "robots": [
+        "ALOHA",
+        "Franka Emika Panda",
+        "UR5"
+      ],
+      "modalities": [
+        "rgb",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "双臂协作",
+        "多机器人协作",
+        "抓取",
+        "放置",
+        "交接",
+        "倒取"
+      ],
+      "scale": {
+        "episodes": 700
+      },
+      "data_format": "HDF5 + MP4",
+      "license": "MIT",
+      "license_url": "https://opensource.org/licenses/MIT",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-26",
+      "last_updated": "2026-11-24",
+      "summary": "双机器人协作操作仿真基准，7 项任务 700 段同步专家示教、共 85 万控制步。",
+      "notes": "基于 RoboTwin 与 SAPIEN 构建，覆盖 ALOHA+ALOHA、Panda+ALOHA、Panda+UR5 三类组合；每段含两个 agent 各自的 trajectory.h5 与自我视角视频（ALOHA 三路、Panda/UR5 两路）；动作按 25 Hz 记录，ALOHA 14 维、Panda 8 维、UR5 7 维；instructions.json 提供全局与分角色指令；各任务视频帧率不同（25 Hz 或 6.25 Hz），需按 /video_tick 对齐；无深度、标定与成功标签。",
+      "format_detail": {
+        "container": "HDF5 + MP4",
+        "fields": [
+          "action",
+          "tick",
+          "video_tick/head",
+          "video_tick/left_wrist",
+          "video_tick/right_wrist",
+          "videos/head.mp4",
+          "videos/left_wrist.mp4",
+          "videos/right_wrist.mp4"
+        ],
+        "fps": 25
+      },
+      "tree": "MA-Bench/\n├─ tasks/\n│  ├─ joint_bowl_placing/\n│  │  ├─ instructions.json\n│  │  └─ episode0/\n│  │     ├─ agent_a/（trajectory.h5、videos/）\n│  │     └─ agent_b/（trajectory.h5、videos/）\n│  ├─ find_common_color/\n│  ├─ hold_and_scan/\n│  ├─ open_door_place_pot/\n│  ├─ lift_tray_keep_objects/\n│  ├─ lift_tray_pour_food/\n│  ├─ pour_and_catch/\n│  └─ ...（每个任务 100 段）\n├─ README.md\n└─ .gitattributes",
+      "calibration": {
+        "intrinsics": "not_provided",
+        "extrinsics": "not_provided",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 3,
+        "views": [
+          "third_person",
+          "wrist"
+        ],
+        "proprioception": "not_provided",
+        "tactile": "not_provided"
+      }
+    },
+    {
+      "id": "humano",
+      "name": "HUMANO",
+      "org": "Symbiosis Robotics",
+      "source_url": "https://huggingface.co/datasets/Symbiosis-Robotics/HUMANO",
+      "download_url": "https://huggingface.co/datasets/Symbiosis-Robotics/HUMANO",
+      "platform": "humanoid",
+      "source_type": "sim",
+      "robots": [
+        "Unitree G1"
+      ],
+      "modalities": [
+        "rgb",
+        "joint_state",
+        "action",
+        "language"
+      ],
+      "task_types": [
+        "全身移动操作",
+        "抓取",
+        "放置",
+        "推拉",
+        "坐下",
+        "长时程任务"
+      ],
+      "scale": {
+        "episodes": 5000
+      },
+      "data_format": "LeRobot v2.1",
+      "license": "Apache-2.0",
+      "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "train_use": "allowed",
+      "commercial_use": "allowed",
+      "redistribution": "allowed",
+      "first_seen": "2026-11-26",
+      "last_updated": "2026-11-25",
+      "summary": "Unitree G1 全身移动操作仿真基准，100 项任务、5,000 段训练示教与 2 万段评测。",
+      "notes": "在 MolmoSpaces/iTHOR 场景中用 SONIC 遥操作生成，50 FPS、LeRobot v2.1，每行 25 列；输入为 43 维 observation.state 加 3 维投影重力，动作含 64 维 motion token 与左右手各 7 关节；另有 sim.qpos/qvel 等回放字段；每个任务 50 段训练示教、25 段 ID 评测与 7 类 OOD 各 25 段，共 2 万段冻结评测；数据按每任务 zip 分发，整库约 27.5 GB；无深度、标定与成功标签；代码为 MIT，数据按 HF 卡片为 Apache-2.0。",
+      "format_detail": {
+        "container": "Parquet + MP4",
+        "fields": [
+          "observation.images.ego_view",
+          "observation.state",
+          "observation.root_orientation",
+          "observation.projected_gravity",
+          "action.wbc",
+          "action.motion_token",
+          "teleop.left_hand_joints",
+          "teleop.right_hand_joints",
+          "sim.qpos",
+          "task_index",
+          "timestamp",
+          "frame_index",
+          "episode_index"
+        ],
+        "fps": 50
+      },
+      "tree": "HUMANO/\n├─ data/\n│  ├─ advanced/\n│  │  ├─ G1WholebodyChairPushToTableTeleop.zip\n│  │  └─ ...（每任务一个 zip）\n│  ├─ basic/\n│  ├─ condition/\n│  ├─ goal/\n│  ├─ long/\n│  ├─ movement/\n│  ├─ object/\n│  └─ spatial/\n├─ resources/\n│  ├─ molmospaces-ithor.zip\n│  ├─ unitree-g1-urdf.zip\n│  ├─ rigid-objects.zip\n│  └─ ...\n├─ README.md\n└─ .gitattributes",
+      "calibration": {
+        "intrinsics": "not_provided",
+        "extrinsics": "not_provided",
+        "depth": "not_provided",
+        "eef_pose": "not_provided"
+      },
+      "annotation": {
+        "language": "provided",
+        "subtask": "not_provided",
+        "success": "unknown"
+      },
+      "sensors": {
+        "cameras": 1,
+        "views": [
+          "ego"
+        ],
+        "proprioception": "provided",
+        "tactile": "not_provided"
+      }
+    },
     {
       "id": "robotrack-15m",
       "name": "RoboTrack-15M",
